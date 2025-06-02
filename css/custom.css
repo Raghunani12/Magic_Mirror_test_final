@@ -262,20 +262,78 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-/* Photo Slideshow Styling */
+/* Photo Slideshow Styling with Color Gradient */
 .MMM-ImageSlideshow {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     border: 2px solid rgba(255, 255, 255, 0.1);
     animation: slideInLeft 1s ease-out 0.5s both;
+    position: relative;
 }
 
 .MMM-ImageSlideshow img {
     border-radius: 13px;
     transition: all 1.5s ease;
-    filter: grayscale(100%) contrast(1.2);
+    filter: contrast(1.2) brightness(1.1);
     animation: imageZoom 12s ease-in-out infinite;
+    position: relative;
+    z-index: 1;
+}
+
+/* Beautiful Color Gradient Overlay */
+.MMM-ImageSlideshow::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(
+        135deg,
+        rgba(138, 43, 226, 0.4) 0%,    /* Purple */
+        rgba(30, 144, 255, 0.4) 25%,   /* Blue */
+        rgba(0, 191, 255, 0.4) 50%,    /* Sky Blue */
+        rgba(255, 20, 147, 0.4) 75%,   /* Pink */
+        rgba(255, 69, 0, 0.4) 100%     /* Orange Red */
+    );
+    z-index: 2;
+    pointer-events: none;
+    border-radius: 13px;
+    mix-blend-mode: overlay;
+    opacity: 0.8;
+    transition: all 0.3s ease;
+    animation: gradientShift 8s ease-in-out infinite;
+}
+
+/* Animated Gradient Effect */
+@keyframes gradientShift {
+    0%, 100% {
+        background: linear-gradient(
+            135deg,
+            rgba(138, 43, 226, 0.4) 0%,
+            rgba(30, 144, 255, 0.4) 25%,
+            rgba(0, 191, 255, 0.4) 50%,
+            rgba(255, 20, 147, 0.4) 75%,
+            rgba(255, 69, 0, 0.4) 100%
+        );
+    }
+    50% {
+        background: linear-gradient(
+            135deg,
+            rgba(255, 69, 0, 0.4) 0%,
+            rgba(255, 20, 147, 0.4) 25%,
+            rgba(0, 191, 255, 0.4) 50%,
+            rgba(30, 144, 255, 0.4) 75%,
+            rgba(138, 43, 226, 0.4) 100%
+        );
+    }
+}
+
+/* Hover effect for enhanced gradient */
+.MMM-ImageSlideshow:hover::before {
+    opacity: 1;
+    mix-blend-mode: soft-light;
 }
 
 @keyframes imageZoom {

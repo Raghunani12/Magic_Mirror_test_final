@@ -116,8 +116,8 @@ let config = {
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: null, // Will be auto-detected via IP
-				lon: null, // Will be auto-detected via IP
+				lat: 28.6139, // New Delhi coordinates
+				lon: 77.2090, // New Delhi coordinates
 				units: "metric",
 				tempUnits: "metric",
 				windUnits: "metric",
@@ -207,7 +207,7 @@ let config = {
 			module: "MMM-ImageSlideshow",
 			position: "bottom_left",
 			config: {
-				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
+				imagePaths: ["photos/"],
 				slideshowSpeed: 12 * 1000, // 12 seconds
 				delayUntilRestart: 0,
 				fixedImageWidth: 320,
