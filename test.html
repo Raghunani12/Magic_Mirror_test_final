@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Smart Mirror Test Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #000;
+            color: #fff;
+            padding: 20px;
+            margin: 0;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .status {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #00ff00;
+        }
+        .error {
+            border-left-color: #ff0000;
+        }
+        .warning {
+            border-left-color: #ffaa00;
+        }
+        .test-button {
+            background: #007acc;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin: 5px;
+        }
+        .test-button:hover {
+            background: #005a9e;
+        }
+        .log {
+            background: #111;
+            padding: 10px;
+            border-radius: 5px;
+            font-family: monospace;
+            font-size: 12px;
+            max-height: 200px;
+            overflow-y: auto;
+            margin: 10px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Smart Mirror Test & Debug Page</h1>
+        
+        <div class="status">
+            <h3>📊 Server Status</h3>
+            <p><strong>Server URL:</strong> <a href="http://localhost:8080" target="_blank" style="color: #00ff00;">http://localhost:8080</a></p>
+            <p><strong>Test Time:</strong> <span id="currentTime"></span></p>
+            <p><strong>Status:</strong> <span id="serverStatus">Checking...</span></p>
+        </div>
+
+        <div class="status">
+            <h3>🧪 Quick Tests</h3>
+            <button class="test-button" onclick="testServer()">Test Server Connection</button>
+            <button class="test-button" onclick="testCalendar()">Test Google Calendar</button>
+            <button class="test-button" onclick="testWeather()">Test Weather API</button>
+            <button class="test-button" onclick="openMirror()">Open Smart Mirror</button>
+        </div>
+
+        <div class="status">
+            <h3>📋 Expected Modules</h3>
+            <ul>
+                <li>✅ <strong>Clock</strong> - Time and date display</li>
+                <li>✅ <strong>Calendar</strong> - Google Calendar (raghunani1437@gmail.com)</li>
+                <li>✅ <strong>Weather</strong> - Current weather only</li>
+                <li>✅ <strong>Location</strong> - IP-based location (MMM-ip)</li>
+                <li>✅ <strong>News</strong> - Multi-source news feed</li>
+                <li>✅ <strong>Photos</strong> - Image slideshow</li>
+                <li>✅ <strong>Compliments</strong> - Motivational messages</li>
+                <li>✅ <strong>Debug Monitor</strong> - Real-time module monitoring</li>
+            </ul>
+        </div>
+
+        <div class="status">
+            <h3>🔧 Debug Instructions</h3>
+            <ol>
+                <li><strong>Open Smart Mirror:</strong> <a href="http://localhost:8080" target="_blank" style="color: #00ff00;">http://localhost:8080</a></li>
+                <li><strong>Open Browser Console:</strong> Press F12</li>
+                <li><strong>Toggle Debug Console:</strong> Click "🔍 DEBUG" button or press Ctrl+Shift+D</li>
+                <li><strong>Check Module Status:</strong> Run <code>debugMonitor.printStatusReport()</code></li>
+                <li><strong>Check Specific Module:</strong> Run <code>debugMonitor.getModuleStatus('calendar')</code></li>
+            </ol>
+        </div>
+
+        <div class="status">
+            <h3>📝 Test Log</h3>
+            <div id="testLog" class="log">
+                Ready to run tests...<br>
+            </div>
+        </div>
+
+        <div class="status">
+            <h3>❓ Troubleshooting</h3>
+            <p><strong>If you see "No modules detected":</strong></p>
+            <ul>
+                <li>Wait 10-15 seconds for modules to load</li>
+                <li>Refresh the browser page</li>
+                <li>Check browser console for JavaScript errors</li>
+                <li>Verify server is running on port 8080</li>
+            </ul>
+            <p><strong>If calendar is empty:</strong></p>
+            <ul>
+                <li>Check if your Google Calendar is public</li>
+                <li>Verify the iCal URL is accessible</li>
+                <li>Check internet connection</li>
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        function updateTime() {
+            document.getElementById('currentTime').textContent = new Date().toLocaleString();
+        }
+        
+        function log(message) {
+            const logDiv = document.getElementById('testLog');
+            logDiv.innerHTML += new Date().toLocaleTimeString() + ': ' + message + '<br>';
+            logDiv.scrollTop = logDiv.scrollHeight;
+        }
+        
+        function testServer() {
+            log('Testing server connection...');
+            fetch('http://localhost:8080')
+                .then(response => {
+                    if (response.ok) {
+                        log('✅ Server is responding correctly');
+                        document.getElementById('serverStatus').textContent = 'Online';
+                        document.getElementById('serverStatus').style.color = '#00ff00';
+                    } else {
+                        log('❌ Server responded with error: ' + response.status);
+                        document.getElementById('serverStatus').textContent = 'Error';
+                        document.getElementById('serverStatus').style.color = '#ff0000';
+                    }
+                })
+                .catch(error => {
+                    log('❌ Cannot connect to server: ' + error.message);
+                    document.getElementById('serverStatus').textContent = 'Offline';
+                    document.getElementById('serverStatus').style.color = '#ff0000';
+                });
+        }
+        
+        function testCalendar() {
+            log('Testing Google Calendar connection...');
+            fetch('https://calendar.google.com/calendar/ical/raghunani1437%40gmail.com/public/basic.ics')
+                .then(response => {
+                    if (response.ok) {
+                        log('✅ Google Calendar is accessible');
+                        return response.text();
+                    } else {
+                        throw new Error('Calendar not accessible');
+                    }
+                })
+                .then(data => {
+                    if (data.includes('VCALENDAR')) {
+                        log('✅ Calendar data is valid');
+                    } else {
+                        log('⚠️ Calendar data format may be incorrect');
+                    }
+                })
+                .catch(error => {
+                    log('❌ Calendar test failed: ' + error.message);
+                });
+        }
+        
+        function testWeather() {
+            log('Testing weather API...');
+            fetch('https://api.open-meteo.com/v1/forecast?latitude=28.6139&longitude=77.2090&current_weather=true')
+                .then(response => {
+                    if (response.ok) {
+                        log('✅ Weather API is accessible');
+                        return response.json();
+                    } else {
+                        throw new Error('Weather API not accessible');
+                    }
+                })
+                .then(data => {
+                    if (data.current_weather) {
+                        log('✅ Weather data is valid: ' + data.current_weather.temperature + '°C');
+                    } else {
+                        log('⚠️ Weather data format unexpected');
+                    }
+                })
+                .catch(error => {
+                    log('❌ Weather test failed: ' + error.message);
+                });
+        }
+        
+        function openMirror() {
+            log('Opening Smart Mirror in new tab...');
+            window.open('http://localhost:8080', '_blank');
+        }
+        
+        // Initialize
+        updateTime();
+        setInterval(updateTime, 1000);
+        
+        // Auto-test server on load
+        setTimeout(testServer, 1000);
+    </script>
+</body>
+</html>

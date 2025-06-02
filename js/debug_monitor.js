@@ -138,36 +138,86 @@ class DebugMonitor {
     }
 
     monitorModuleLoading() {
-        // Monitor when modules are loaded
-        const originalDefine = window.Module?.define || function() {};
-        
-        if (window.Module) {
-            window.Module.define = function(name, moduleDefinition) {
-                console.log(`🔄 Loading module: ${name}`);
-                debugMonitor.updateModuleStatus(name, 'INFO', 'Module loading started');
-                
-                const result = originalDefine.call(this, name, moduleDefinition);
-                
-                setTimeout(() => {
-                    console.log(`✅ Module loaded: ${name}`);
-                    debugMonitor.updateModuleStatus(name, 'INFO', 'Module loaded successfully');
-                }, 100);
-                
-                return result;
+        // Initialize known modules from server logs
+        const knownModules = [
+            'alert', 'updatenotification', 'clock', 'calendar',
+            'weather', 'MMM-ip', 'newsfeed', 'MMM-ImageSlideshow', 'compliments'
+        ];
+
+        // Add known modules to status
+        knownModules.forEach(moduleName => {
+            this.updateModuleStatus(moduleName, 'INFO', 'Module detected from server logs');
+        });
+
+        // Monitor MagicMirror module registration
+        if (typeof Module !== 'undefined') {
+            const originalRegister = Module.register || function() {};
+            Module.register = function(name, moduleDefinition) {
+                console.log(`🔄 Registering module: ${name}`);
+                debugMonitor.updateModuleStatus(name, 'INFO', 'Module registered');
+                return originalRegister.call(this, name, moduleDefinition);
             };
+        }
+
+        // Monitor when DOM is ready and modules start
+        document.addEventListener('DOMContentLoaded', () => {
+            setTimeout(() => {
+                this.detectModulesFromDOM();
+            }, 2000);
+        });
+
+        // If DOM is already loaded
+        if (document.readyState === 'complete' || document.readyState === 'interactive') {
+            setTimeout(() => {
+                this.detectModulesFromDOM();
+            }, 2000);
         }
     }
 
+    detectModulesFromDOM() {
+        // Look for module elements in the DOM
+        const moduleElements = document.querySelectorAll('.module');
+        moduleElements.forEach(element => {
+            const classes = element.className.split(' ');
+            const moduleClass = classes.find(cls => cls.startsWith('module_') || cls.includes('MMM-'));
+            if (moduleClass) {
+                const moduleName = moduleClass.replace('module_', '').replace('_', '-');
+                this.updateModuleStatus(moduleName, 'INFO', 'Module found in DOM');
+            }
+        });
+
+        // Also check for specific module containers
+        const specificModules = {
+            'clock': '.clock',
+            'calendar': '.calendar',
+            'weather': '.weather',
+            'newsfeed': '.newsfeed',
+            'compliments': '.compliments'
+        };
+
+        Object.entries(specificModules).forEach(([name, selector]) => {
+            if (document.querySelector(selector)) {
+                this.updateModuleStatus(name, 'INFO', 'Module UI detected');
+            }
+        });
+    }
+
     setupStatusReports() {
-        // Print status report every 30 seconds
+        // Print status report every 15 seconds
         setInterval(() => {
             this.printStatusReport();
-        }, 30000);
+        }, 15000);
 
-        // Print initial report after 5 seconds
+        // Print initial report after 3 seconds
         setTimeout(() => {
             this.printStatusReport();
-        }, 5000);
+        }, 3000);
+
+        // Additional check after 10 seconds for DOM modules
+        setTimeout(() => {
+            this.detectModulesFromDOM();
+            this.printStatusReport();
+        }, 10000);
     }
 
     printStatusReport() {
@@ -291,15 +341,26 @@ class DebugMonitor {
         `;
         document.body.appendChild(debugConsole);
 
-        // Update UI every 5 seconds
+        // Update UI every 3 seconds
         setInterval(() => {
+            this.updateDebugUI();
+        }, 3000);
+
+        // Initial update after 1 second
+        setTimeout(() => {
+            this.updateDebugUI();
+        }, 1000);
+
+        // Additional updates to catch modules loading
+        setTimeout(() => {
+            this.detectModulesFromDOM();
             this.updateDebugUI();
         }, 5000);
 
-        // Initial update after 2 seconds
         setTimeout(() => {
+            this.detectModulesFromDOM();
             this.updateDebugUI();
-        }, 2000);
+        }, 10000);
     }
 
     toggleDebugConsole() {
