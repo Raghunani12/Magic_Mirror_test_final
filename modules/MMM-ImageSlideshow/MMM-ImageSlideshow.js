@@ -159,3 +159,5 @@ Module.register("MMM-ImageSlideshow", {
 		return wrapper;
 	}
 });
+
+
