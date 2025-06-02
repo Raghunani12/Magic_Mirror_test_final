@@ -24,7 +24,7 @@ let config = {
 			   // as we have no usage, we  have no constraints on what this field holds
 			   // see https://en.wikipedia.org/wiki/Locale_(computer_software) for the possibilities
 
-	logLevel: ["INFO", "LOG", "WARN", "ERROR"], // Add "DEBUG" for even more logging
+	logLevel: ["INFO", "LOG", "WARN", "ERROR", "DEBUG"], // Add "DEBUG" for even more logging
 	timeFormat: 24,
 	units: "metric",
 
@@ -32,10 +32,16 @@ let config = {
 		// System modules
 		{
 			module: "alert",
+			config: {
+				debug: true
+			}
 		},
 		{
 			module: "updatenotification",
-			position: "top_bar"
+			position: "top_bar",
+			config: {
+				debug: true
+			}
 		},
 
 		// Clock and Date - Top Left
@@ -52,7 +58,8 @@ let config = {
 				timezone: null,
 				showSunTimes: false,
 				lat: null,
-				lon: null
+				lon: null,
+				debug: true
 			}
 		},
 
@@ -84,7 +91,9 @@ let config = {
 				hidePrivate: false,
 				hideOngoing: false,
 				colored: false, // Black and white theme
-				coloredSymbolOnly: false
+				coloredSymbolOnly: false,
+				debug: true,
+				logFeedWarnings: true
 			}
 		},
 
@@ -108,7 +117,8 @@ let config = {
 				showHumidity: true,
 				showSun: false,
 				showFeelsLike: true,
-				colored: false // Black and white theme
+				colored: false, // Black and white theme
+				debug: true
 			}
 		},
 
@@ -127,7 +137,8 @@ let config = {
 				showRainAmount: true,
 				colored: false, // Black and white theme
 				fade: true,
-				fadePoint: 0.25
+				fadePoint: 0.25,
+				debug: true
 			}
 		},
 
@@ -142,7 +153,8 @@ let config = {
 				showCountry: true,
 				showFlag: false, // Black and white theme
 				showIP: false,
-				lang: "en"
+				lang: "en",
+				debug: true
 			}
 		},
 
@@ -191,7 +203,8 @@ let config = {
 				endTags: [],
 				prohibitedWords: [],
 				scrollLength: 500,
-				logFeedWarnings: false
+				logFeedWarnings: true,
+				debug: true
 			}
 		},
 
@@ -218,7 +231,8 @@ let config = {
 				sortImagesDescending: false,
 				maxWidth: "100%",
 				maxHeight: "100%",
-				showProgressBar: false
+				showProgressBar: false,
+				debug: true
 			}
 		},
 
@@ -255,7 +269,8 @@ let config = {
 						"Well-earned rest ahead!",
 						"Tomorrow awaits your brilliance!"
 					]
-				}
+				},
+				debug: true
 			}
 		}
 	]
