@@ -1,0 +1,505 @@
+/* Professional Smart Mirror - Black & White Animated Theme
+ * Sleek, Modern, and Minimalist Design
+ */
+
+/* Global Styling */
+body {
+    margin: 0;
+    height: 100vh;
+    background: #000000;
+    background-image:
+        radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
+        radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
+    color: #ffffff;
+    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-weight: 300;
+    font-size: 18px;
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    overflow: hidden;
+    animation: backgroundPulse 30s ease-in-out infinite;
+}
+
+@keyframes backgroundPulse {
+    0%, 100% {
+        background-image:
+            radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
+    }
+    50% {
+        background-image:
+            radial-gradient(circle at 75% 25%, #111111 0%, transparent 50%),
+            radial-gradient(circle at 25% 75%, #0a0a0a 0%, transparent 50%);
+    }
+}
+
+/* Header Styling */
+.region.top.bar {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 0;
+    animation: slideDown 1s ease-out;
+}
+
+@keyframes slideDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Module Headers */
+.module-header {
+    font-size: 24px;
+    font-weight: 200;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    margin-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    animation: glow 3s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
+    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); }
+}
+
+/* Clock Styling */
+.clock {
+    font-size: 72px;
+    font-weight: 100;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    animation: clockPulse 2s ease-in-out infinite;
+}
+
+@keyframes clockPulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.02); }
+}
+
+.clock .date {
+    font-size: 28px;
+    font-weight: 200;
+    opacity: 0.9;
+    margin-top: 15px;
+    letter-spacing: 1px;
+    animation: fadeInUp 1s ease-out 0.5s both;
+}
+
+@keyframes fadeInUp {
+    from { transform: translateY(20px); opacity: 0; }
+    to { transform: translateY(0); opacity: 0.9; }
+}
+
+/* Calendar Styling */
+.calendar {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideInLeft 1s ease-out;
+}
+
+@keyframes slideInLeft {
+    from { transform: translateX(-100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.calendar .event {
+    margin: 12px 0;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    animation: fadeIn 0.5s ease-out;
+    transition: all 0.3s ease;
+}
+
+.calendar .event:hover {
+    transform: translateX(5px);
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.calendar .event:last-child {
+    border-bottom: none;
+}
+
+.calendar .event .time {
+    color: #ffffff;
+    font-weight: 300;
+    opacity: 0.8;
+    font-size: 16px;
+}
+
+.calendar .event .title {
+    color: #ffffff;
+    font-weight: 400;
+    margin-top: 5px;
+}
+
+/* Weather Styling */
+.weather {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 15px;
+    padding: 20px;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+    animation: slideInRight 1s ease-out;
+}
+
+@keyframes slideInRight {
+    from { transform: translateX(100%); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+.weather .current {
+    text-align: center;
+}
+
+.weather .temperature {
+    font-size: 56px;
+    font-weight: 100;
+    color: #ffffff;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    animation: temperaturePulse 4s ease-in-out infinite;
+}
+
+@keyframes temperaturePulse {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+.weather .weathericon {
+    font-size: 64px;
+    margin: 15px 0;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    animation: iconFloat 3s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-10px); }
+}
+
+.weather .forecast {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 20px;
+    gap: 10px;
+}
+
+.weather .forecast .day {
+    text-align: center;
+    flex: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    padding: 15px 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.weather .forecast .day:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-5px);
+}
+
+/* News Feed Styling */
+.newsfeed {
+    background: rgba(0, 0, 0, 0.8);
+    backdrop-filter: blur(15px);
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 20px 0;
+    animation: slideUp 1s ease-out;
+}
+
+@keyframes slideUp {
+    from { transform: translateY(100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+.newsfeed .newsfeed-source {
+    color: #ffffff;
+    font-weight: 300;
+    margin-right: 15px;
+    opacity: 0.7;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+}
+
+.newsfeed .newsfeed-title {
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: scrollText 30s linear infinite;
+}
+
+@keyframes scrollText {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* Photo Slideshow Styling */
+.MMM-ImageSlideshow {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    animation: slideInLeft 1s ease-out 0.5s both;
+}
+
+.MMM-ImageSlideshow img {
+    border-radius: 13px;
+    transition: all 1.5s ease;
+    filter: grayscale(100%) contrast(1.2);
+    animation: imageZoom 12s ease-in-out infinite;
+}
+
+@keyframes imageZoom {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Location Display Styling */
+.MMM-ip {
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    border-radius: 25px;
+    padding: 15px 30px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    text-align: center;
+    font-weight: 300;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    animation: slideInDown 1s ease-out;
+    letter-spacing: 1px;
+}
+
+@keyframes slideInDown {
+    from { transform: translateY(-100%); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+/* Compliments Styling */
+.compliments {
+    font-size: 32px;
+    font-weight: 200;
+    text-align: center;
+    color: #ffffff;
+    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+    font-style: italic;
+    margin: 25px 0;
+    letter-spacing: 2px;
+    animation: complimentGlow 4s ease-in-out infinite alternate;
+}
+
+@keyframes complimentGlow {
+    from {
+        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
+        opacity: 0.8;
+    }
+    to {
+        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+        opacity: 1;
+    }
+}
+
+/* Region Specific Styling */
+.region.top.left {
+    text-align: left;
+    animation: slideInLeft 1s ease-out;
+}
+
+.region.top.right {
+    text-align: right;
+    animation: slideInRight 1s ease-out;
+}
+
+.region.top.center {
+    text-align: center;
+    animation: slideInDown 1s ease-out;
+}
+
+.region.bottom.bar {
+    text-align: center;
+    animation: slideUp 1s ease-out;
+}
+
+.region.bottom.left {
+    text-align: left;
+    animation: slideInLeft 1s ease-out 0.5s both;
+}
+
+.region.lower.third {
+    text-align: center;
+    animation: fadeIn 1s ease-out 1s both;
+}
+
+/* Module Container Styling */
+.module {
+    animation: moduleAppear 1s ease-out;
+    transition: all 0.3s ease;
+}
+
+@keyframes moduleAppear {
+    from {
+        opacity: 0;
+        transform: scale(0.9) translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+/* Responsive Design */
+@media (max-width: 1200px) {
+    body {
+        font-size: 16px;
+    }
+
+    .clock {
+        font-size: 60px;
+    }
+
+    .weather .temperature {
+        font-size: 48px;
+    }
+
+    .weather .weathericon {
+        font-size: 56px;
+    }
+
+    .compliments {
+        font-size: 28px;
+    }
+
+    .module-header {
+        font-size: 20px;
+    }
+}
+
+@media (max-width: 800px) {
+    body {
+        font-size: 14px;
+    }
+
+    .clock {
+        font-size: 48px;
+    }
+
+    .weather .temperature {
+        font-size: 36px;
+    }
+
+    .weather .weathericon {
+        font-size: 44px;
+    }
+
+    .compliments {
+        font-size: 24px;
+    }
+
+    .MMM-ImageSlideshow {
+        max-width: 280px;
+        max-height: 180px;
+    }
+
+    .module-header {
+        font-size: 18px;
+    }
+}
+
+/* Enhanced Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(30px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Interactive Hover Effects */
+.calendar:hover,
+.weather:hover {
+    background: rgba(255, 255, 255, 0.08);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
+    transition: all 0.4s ease;
+}
+
+.MMM-ip:hover {
+    background: rgba(255, 255, 255, 0.1);
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+}
+
+/* Loading States */
+.loading {
+    opacity: 0.5;
+    animation: loadingPulse 2s ease-in-out infinite;
+}
+
+@keyframes loadingPulse {
+    0%, 100% {
+        opacity: 0.5;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 0.8;
+        transform: scale(1.02);
+    }
+}
+
+/* Scrollbar Styling */
+::-webkit-scrollbar {
+    width: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.1);
+}
+
+::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.5);
+}
+
+/* Focus States for Accessibility */
+.module:focus,
+.calendar .event:focus,
+.weather:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+}
+
+/* Print Styles */
+@media print {
+    body {
+        background: white !important;
+        color: black !important;
+    }
+
+    .module {
+        animation: none !important;
+    }
+}
