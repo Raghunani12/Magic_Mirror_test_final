@@ -213,19 +213,9 @@ let config = {
 				fixedImageWidth: 320,
 				fixedImageHeight: 240,
 				randomizeImageOrder: true,
-				treatImagePathsAsGlob: false,
-				imageExts: ["bmp", "jpg", "jpeg", "gif", "png"],
-				transitionImages: true,
-				showImageInfo: false,
-				backgroundColor: "#000000", // Black background
-				transitions: ["opacity", "slideFromRight", "slideFromLeft"],
-				transitionSpeed: "1.5s",
-				recursiveSubDirectories: false,
-				sortImagesBy: "created",
-				sortImagesDescending: false,
-				maxWidth: "100%",
-				maxHeight: "100%",
-				showProgressBar: false,
+				treatAllPathsAsOne: false,
+				makeImagesGrayscale: false,
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png",
 				debug: true
 			}
 		},
