@@ -50,15 +50,17 @@ let config = {
 			position: "top_left",
 			config: {
 				timeFormat: 24,
-				showPeriod: false,
 				showDate: true,
-				showWeek: true,
+				showWeek: false,
 				dateFormat: "dddd, MMMM Do YYYY",
-				clockBold: true,
-				timezone: null,
+				displayType: "digital",
+				clockBold: false,
+				showPeriod: false,
 				showSunTimes: false,
+				showMoonTimes: false,
 				lat: null,
 				lon: null,
+				timezone: null,
 				debug: true
 			}
 		},
@@ -66,7 +68,7 @@ let config = {
 		// Your Google Calendar - Top Left
 		{
 			module: "calendar",
-			header: "📅 My Calendar",
+			header: "My Calendar",
 			position: "top_left",
 			config: {
 				calendars: [
@@ -74,11 +76,16 @@ let config = {
 						fetchInterval: 5 * 60 * 1000, // 5 minutes
 						symbol: "calendar-check",
 						url: "https://calendar.google.com/calendar/ical/raghunani1437%40gmail.com/public/basic.ics",
-						name: "Personal Calendar"
+						name: "Personal Calendar",
+						auth: {
+							user: "",
+							pass: "",
+							method: "basic"
+						}
 					}
 				],
-				maximumEntries: 8,
-				maximumNumberOfDays: 365,
+				maximumEntries: 10,
+				maximumNumberOfDays: 60,
 				displaySymbol: true,
 				defaultSymbol: "calendar",
 				showLocation: false,
@@ -92,6 +99,10 @@ let config = {
 				hideOngoing: false,
 				colored: false, // Black and white theme
 				coloredSymbolOnly: false,
+				tableClass: "small",
+				broadcastEvents: true,
+				excludedEvents: [],
+				sliceMultiDayEvents: false,
 				debug: true,
 				logFeedWarnings: true
 			}
@@ -101,7 +112,7 @@ let config = {
 		{
 			module: "weather",
 			position: "top_right",
-			header: "🌤️ Current Weather",
+			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -113,31 +124,14 @@ let config = {
 				updateInterval: 10 * 60 * 1000, // 10 minutes
 				animationSpeed: 1000,
 				showWindDirection: true,
-				showWindDirectionAsArrow: true,
+				showWindDirectionAsArrow: false,
 				showHumidity: true,
-				showSun: false,
 				showFeelsLike: true,
+				showSun: false,
+				showMoonTimes: false,
 				colored: false, // Black and white theme
-				debug: true
-			}
-		},
-
-		// Weather Forecast - Top Right
-		{
-			module: "weather",
-			position: "top_right",
-			header: "📊 5-Day Forecast",
-			config: {
-				weatherProvider: "openmeteo",
-				type: "forecast",
-				lat: null, // Will be auto-detected via IP
-				lon: null, // Will be auto-detected via IP
-				units: "metric",
-				maxNumberOfDays: 5,
-				showRainAmount: true,
-				colored: false, // Black and white theme
-				fade: true,
-				fadePoint: 0.25,
+				roundTemp: true,
+				degreeLabel: true,
 				debug: true
 			}
 		},

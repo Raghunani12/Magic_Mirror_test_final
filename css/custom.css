@@ -68,64 +68,65 @@ body {
 
 /* Clock Styling */
 .clock {
-    font-size: 72px;
-    font-weight: 100;
+    font-size: 64px;
+    font-weight: 200;
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    margin-bottom: 15px;
-    letter-spacing: 2px;
-    animation: clockPulse 2s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    line-height: 1.1;
 }
 
-@keyframes clockPulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.02); }
+.clock .time {
+    display: block;
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
 }
 
 .clock .date {
-    font-size: 28px;
-    font-weight: 200;
-    opacity: 0.9;
-    margin-top: 15px;
-    letter-spacing: 1px;
-    animation: fadeInUp 1s ease-out 0.5s both;
+    font-size: 24px;
+    font-weight: 300;
+    opacity: 0.85;
+    margin-top: 10px;
+    letter-spacing: 0.5px;
+    line-height: 1.3;
+    color: #ffffff;
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    /* Remove blinking animation */
+    animation: none !important;
 }
 
-@keyframes fadeInUp {
-    from { transform: translateY(20px); opacity: 0; }
-    to { transform: translateY(0); opacity: 0.9; }
+/* Remove any blinking or pulsing animations from clock */
+.clock,
+.clock .time,
+.clock .date,
+.clock .week {
+    animation: none !important;
 }
 
 /* Calendar Styling */
 .calendar {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
-    padding: 20px;
+    border-radius: 12px;
+    padding: 18px;
     margin: 15px 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    animation: slideInLeft 1s ease-out;
-}
-
-@keyframes slideInLeft {
-    from { transform: translateX(-100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
 }
 
 .calendar .event {
-    margin: 12px 0;
+    margin: 10px 0;
     padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    animation: fadeIn 0.5s ease-out;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
     transition: all 0.3s ease;
 }
 
 .calendar .event:hover {
-    transform: translateX(5px);
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 8px;
-    padding-left: 10px;
+    transform: translateX(3px);
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 6px;
+    padding-left: 8px;
 }
 
 .calendar .event:last-child {
@@ -136,30 +137,42 @@ body {
     color: #ffffff;
     font-weight: 300;
     opacity: 0.8;
-    font-size: 16px;
+    font-size: 15px;
+    margin-bottom: 3px;
 }
 
 .calendar .event .title {
     color: #ffffff;
     font-weight: 400;
-    margin-top: 5px;
+    font-size: 16px;
+    line-height: 1.3;
+    margin-top: 2px;
+}
+
+.calendar .event .symbol {
+    color: #ffffff;
+    opacity: 0.7;
+    margin-right: 8px;
+}
+
+/* Calendar header styling */
+.calendar .module-header {
+    font-size: 20px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 300;
 }
 
 /* Weather Styling */
 .weather {
     background: rgba(255, 255, 255, 0.05);
     backdrop-filter: blur(10px);
-    border-radius: 15px;
+    border-radius: 12px;
     padding: 20px;
     margin: 15px 0;
     border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-    animation: slideInRight 1s ease-out;
-}
-
-@keyframes slideInRight {
-    from { transform: translateX(100%); opacity: 0; }
-    to { transform: translateX(0); opacity: 1; }
+    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    text-align: center;
 }
 
 .weather .current {
@@ -167,52 +180,50 @@ body {
 }
 
 .weather .temperature {
-    font-size: 56px;
-    font-weight: 100;
+    font-size: 48px;
+    font-weight: 200;
     color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    animation: temperaturePulse 4s ease-in-out infinite;
-}
-
-@keyframes temperaturePulse {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
+    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
+    margin: 10px 0;
+    line-height: 1;
 }
 
 .weather .weathericon {
-    font-size: 64px;
+    font-size: 56px;
     margin: 15px 0;
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    animation: iconFloat 3s ease-in-out infinite;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
+    line-height: 1;
 }
 
-@keyframes iconFloat {
-    0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-10px); }
+.weather .description {
+    font-size: 18px;
+    color: #ffffff;
+    opacity: 0.8;
+    margin: 8px 0;
+    text-transform: capitalize;
 }
 
-.weather .forecast {
-    display: flex;
-    justify-content: space-between;
-    margin-top: 20px;
-    gap: 10px;
+.weather .humidity,
+.weather .wind,
+.weather .feelslike {
+    font-size: 14px;
+    color: #ffffff;
+    opacity: 0.7;
+    margin: 5px 0;
 }
 
-.weather .forecast .day {
-    text-align: center;
-    flex: 1;
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 12px;
-    padding: 15px 8px;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    transition: all 0.3s ease;
-    animation: fadeInUp 0.5s ease-out;
+.weather .module-header {
+    font-size: 18px;
+    margin-bottom: 15px;
+    color: #ffffff;
+    font-weight: 300;
 }
 
-.weather .forecast .day:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-5px);
+/* Remove weather animations to reduce distraction */
+.weather .temperature,
+.weather .weathericon {
+    animation: none !important;
 }
 
 /* News Feed Styling */
