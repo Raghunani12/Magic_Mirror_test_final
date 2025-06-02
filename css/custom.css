@@ -262,78 +262,52 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-/* Photo Slideshow Styling with Color Gradient */
+/* Photo Slideshow Styling */
 .MMM-ImageSlideshow {
     border-radius: 15px;
     overflow: hidden;
     box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
     border: 2px solid rgba(255, 255, 255, 0.1);
     animation: slideInLeft 1s ease-out 0.5s both;
-    position: relative;
 }
 
+/* Image with Color Gradient Overlay */
 .MMM-ImageSlideshow img {
     border-radius: 13px;
     transition: all 1.5s ease;
     filter: contrast(1.2) brightness(1.1);
     animation: imageZoom 12s ease-in-out infinite;
     position: relative;
-    z-index: 1;
-}
 
-/* Beautiful Color Gradient Overlay */
-.MMM-ImageSlideshow::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
+    /* Apply gradient directly to the image */
     background: linear-gradient(
         135deg,
-        rgba(138, 43, 226, 0.4) 0%,    /* Purple */
-        rgba(30, 144, 255, 0.4) 25%,   /* Blue */
-        rgba(0, 191, 255, 0.4) 50%,    /* Sky Blue */
-        rgba(255, 20, 147, 0.4) 75%,   /* Pink */
-        rgba(255, 69, 0, 0.4) 100%     /* Orange Red */
+        rgba(138, 43, 226, 0.3) 0%,    /* Purple */
+        rgba(30, 144, 255, 0.3) 25%,   /* Blue */
+        rgba(0, 191, 255, 0.3) 50%,    /* Sky Blue */
+        rgba(255, 20, 147, 0.3) 75%,   /* Pink */
+        rgba(255, 69, 0, 0.3) 100%     /* Orange Red */
     );
-    z-index: 2;
-    pointer-events: none;
-    border-radius: 13px;
-    mix-blend-mode: overlay;
-    opacity: 0.8;
-    transition: all 0.3s ease;
-    animation: gradientShift 8s ease-in-out infinite;
+    background-blend-mode: overlay;
+
+    /* Alternative: Use box-shadow for gradient effect */
+    box-shadow:
+        inset 0 0 0 2px rgba(138, 43, 226, 0.2),
+        inset 0 0 20px rgba(30, 144, 255, 0.2),
+        inset 0 0 40px rgba(0, 191, 255, 0.2),
+        inset 0 0 60px rgba(255, 20, 147, 0.2),
+        inset 0 0 80px rgba(255, 69, 0, 0.2);
 }
 
-/* Animated Gradient Effect */
-@keyframes gradientShift {
-    0%, 100% {
-        background: linear-gradient(
-            135deg,
-            rgba(138, 43, 226, 0.4) 0%,
-            rgba(30, 144, 255, 0.4) 25%,
-            rgba(0, 191, 255, 0.4) 50%,
-            rgba(255, 20, 147, 0.4) 75%,
-            rgba(255, 69, 0, 0.4) 100%
-        );
-    }
-    50% {
-        background: linear-gradient(
-            135deg,
-            rgba(255, 69, 0, 0.4) 0%,
-            rgba(255, 20, 147, 0.4) 25%,
-            rgba(0, 191, 255, 0.4) 50%,
-            rgba(30, 144, 255, 0.4) 75%,
-            rgba(138, 43, 226, 0.4) 100%
-        );
-    }
-}
-
-/* Hover effect for enhanced gradient */
-.MMM-ImageSlideshow:hover::before {
-    opacity: 1;
-    mix-blend-mode: soft-light;
+/* Hover effect for enhanced colors */
+.MMM-ImageSlideshow img:hover {
+    filter: contrast(1.3) brightness(1.2) saturate(1.2);
+    box-shadow:
+        inset 0 0 0 3px rgba(138, 43, 226, 0.4),
+        inset 0 0 30px rgba(30, 144, 255, 0.3),
+        inset 0 0 50px rgba(0, 191, 255, 0.3),
+        inset 0 0 70px rgba(255, 20, 147, 0.3),
+        inset 0 0 90px rgba(255, 69, 0, 0.3);
 }
 
 @keyframes imageZoom {

@@ -207,7 +207,7 @@ let config = {
 			module: "MMM-ImageSlideshow",
 			position: "bottom_left",
 			config: {
-				imagePaths: ["photos/"],
+				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds
 				delayUntilRestart: 0,
 				fixedImageWidth: 320,
