@@ -93,13 +93,6 @@ js/positions.js
 
 # Smart Mirror specific files
 # Allow photos directory but ignore actual photo files for privacy
-!/photos/
-!/photos/README.md
-/photos/*.jpg
-/photos/*.jpeg
-/photos/*.png
-/photos/*.gif
-/photos/*.bmp
 
 # Allow our documentation
 !/SMART_MIRROR_README.md
