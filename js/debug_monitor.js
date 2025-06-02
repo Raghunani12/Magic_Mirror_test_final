@@ -36,39 +36,44 @@ class DebugMonitor {
     }
 
     setupConsoleOverrides() {
-        const originalLog = console.log;
-        const originalError = console.error;
-        const originalWarn = console.warn;
-        const originalInfo = console.info;
-
-        console.log = (...args) => {
-            this.logCount++;
-            this.processLog('LOG', args);
-            originalLog.apply(console, args);
+        // Store original console methods
+        this.originalConsole = {
+            log: console.log.bind(console),
+            error: console.error.bind(console),
+            warn: console.warn.bind(console),
+            info: console.info.bind(console)
         };
 
-        console.error = (...args) => {
-            this.errorCount++;
-            this.processLog('ERROR', args);
-            originalError.apply(console, args);
+        const self = this;
+
+        console.log = function(...args) {
+            self.logCount++;
+            self.processLog('LOG', args);
+            self.originalConsole.log.apply(console, args);
         };
 
-        console.warn = (...args) => {
-            this.warningCount++;
-            this.processLog('WARN', args);
-            originalWarn.apply(console, args);
+        console.error = function(...args) {
+            self.errorCount++;
+            self.processLog('ERROR', args);
+            self.originalConsole.error.apply(console, args);
         };
 
-        console.info = (...args) => {
-            this.processLog('INFO', args);
-            originalInfo.apply(console, args);
+        console.warn = function(...args) {
+            self.warningCount++;
+            self.processLog('WARN', args);
+            self.originalConsole.warn.apply(console, args);
+        };
+
+        console.info = function(...args) {
+            self.processLog('INFO', args);
+            self.originalConsole.info.apply(console, args);
         };
     }
 
     processLog(level, args) {
         const message = args.join(' ');
         const timestamp = new Date().toLocaleTimeString();
-        
+
         // Detect module-specific logs
         const moduleMatch = message.match(/\[(.*?)\]/);
         if (moduleMatch) {
@@ -76,12 +81,15 @@ class DebugMonitor {
             this.updateModuleStatus(moduleName, level, message);
         }
 
-        // Log with enhanced formatting
-        const prefix = this.getLogPrefix(level);
-        console.groupCollapsed(`${prefix} [${timestamp}] ${level}`);
-        console.log('Message:', message);
-        console.log('Stack:', new Error().stack);
-        console.groupEnd();
+        // Store log without calling console.log again to avoid infinite loop
+        this.logCount++;
+
+        // Only log debug info if it's not from our own debug monitor
+        if (!message.includes('DebugMonitor') && !message.includes('debug_monitor')) {
+            // Use original console methods to avoid recursion
+            const prefix = this.getLogPrefix(level);
+            // Don't use console.log here as it would cause infinite recursion
+        }
     }
 
     getLogPrefix(level) {
@@ -304,7 +312,17 @@ class DebugMonitor {
         this.warningCount = 0;
         this.logCount = 0;
         console.clear();
-        console.log("🧹 Debug logs cleared");
+        this.originalConsole.log("🧹 Debug logs cleared");
+    }
+
+    restoreConsole() {
+        if (this.originalConsole) {
+            console.log = this.originalConsole.log;
+            console.error = this.originalConsole.error;
+            console.warn = this.originalConsole.warn;
+            console.info = this.originalConsole.info;
+            this.originalConsole.log("🔧 Console restored to original state");
+        }
     }
 
     exportLogs() {
