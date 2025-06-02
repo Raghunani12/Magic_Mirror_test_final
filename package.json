@@ -1,7 +1,7 @@
 {
-	"name": "magicmirror",
-	"version": "2.31.0",
-	"description": "The open source modular smart mirror platform.",
+	"name": "professional-smart-mirror",
+	"version": "1.0.0",
+	"description": "Professional Smart Mirror with Black & White Animated Theme - Customized for raghunani1437@gmail.com",
 	"keywords": [
 		"magic mirror",
 		"magicmirror",
@@ -9,18 +9,18 @@
 		"mirror UI",
 		"modular"
 	],
-	"homepage": "https://magicmirror.builders",
+	"homepage": "https://github.com/Raghunani12/Magic_Mirror_test_final",
 	"bugs": {
-		"url": "https://github.com/MagicMirrorOrg/MagicMirror/issues"
+		"url": "https://github.com/Raghunani12/Magic_Mirror_test_final/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/MagicMirrorOrg/MagicMirror"
+		"url": "https://github.com/Raghunani12/Magic_Mirror_test_final.git"
 	},
 	"license": "MIT",
-	"author": "Michael Teeuw",
+	"author": "Raghunani (raghunani1437@gmail.com)",
 	"contributors": [
-		"https://github.com/MagicMirrorOrg/MagicMirror/graphs/contributors"
+		"Based on MagicMirror² by Michael Teeuw"
 	],
 	"main": "js/electron.js",
 	"scripts": {
