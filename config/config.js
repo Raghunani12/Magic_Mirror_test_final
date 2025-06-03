@@ -24,9 +24,18 @@ let config = {
 			   // as we have no usage, we  have no constraints on what this field holds
 			   // see https://en.wikipedia.org/wiki/Locale_(computer_software) for the possibilities
 
-	logLevel: ["INFO", "LOG", "WARN", "ERROR", "DEBUG"], // Add "DEBUG" for even more logging
+	logLevel: [], // No logging at all
 	timeFormat: 24,
 	units: "metric",
+
+	// Disable all console output
+	electronOptions: {
+		webPreferences: {
+			webSecurity: false,
+			nodeIntegration: false,
+			contextIsolation: true
+		}
+	},
 
 	modules: [
 		// Clock and Date - Top Left

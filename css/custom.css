@@ -335,6 +335,25 @@ body {
     letter-spacing: 1px;
 }
 
+/* Hide ALL debug elements */
+.debug-console,
+.debug-toggle,
+.debug-info,
+.debug-panel,
+.console-log,
+.console-error,
+.console-warn,
+.console-info,
+.console-debug,
+[class*="debug"],
+[id*="debug"],
+.alert,
+.updatenotification {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
 /* Region Specific Styling */
 .region.top.left {
     text-align: left;
@@ -524,11 +543,6 @@ body {
 
     .module {
         animation: none !important;
-    }
-
-    .debug-console,
-    .debug-toggle {
-        display: none !important;
     }
 }
 
