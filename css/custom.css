@@ -1,6 +1,10 @@
 /* Professional Smart Mirror - Black & White Animated Theme
  * Sleek, Modern, and Minimalist Design
+ * With Wizard World Font for Magical Compliments
  */
+
+/* Import Wizard World Font */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
 
 /* Global Styling */
 body {
@@ -335,27 +339,41 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Compliments Styling */
+/* Compliments Styling - Wizard World Font */
 .compliments {
-    font-size: 32px;
-    font-weight: 200;
+    font-family: 'Cinzel', 'MedievalSharp', 'Uncial Antiqua', serif;
+    font-size: 36px;
+    font-weight: 600;
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-    font-style: italic;
+    text-shadow:
+        0 0 20px rgba(255, 255, 255, 0.8),
+        0 0 40px rgba(255, 255, 255, 0.6),
+        0 0 60px rgba(255, 255, 255, 0.4);
+    font-style: normal;
     margin: 25px 0;
-    letter-spacing: 2px;
-    animation: complimentGlow 4s ease-in-out infinite alternate;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    animation: magicalGlow 5s ease-in-out infinite alternate;
 }
 
-@keyframes complimentGlow {
+@keyframes magicalGlow {
     from {
-        text-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
-        opacity: 0.8;
+        text-shadow:
+            0 0 20px rgba(255, 255, 255, 0.8),
+            0 0 40px rgba(255, 255, 255, 0.6),
+            0 0 60px rgba(255, 255, 255, 0.4);
+        opacity: 0.9;
+        transform: scale(1);
     }
     to {
-        text-shadow: 0 0 30px rgba(255, 255, 255, 0.8), 0 0 40px rgba(255, 255, 255, 0.6);
+        text-shadow:
+            0 0 30px rgba(255, 255, 255, 1),
+            0 0 60px rgba(255, 255, 255, 0.8),
+            0 0 90px rgba(255, 255, 255, 0.6),
+            0 0 120px rgba(255, 255, 255, 0.4);
         opacity: 1;
+        transform: scale(1.02);
     }
 }
 
@@ -426,7 +444,8 @@ body {
     }
 
     .compliments {
-        font-size: 28px;
+        font-size: 30px;
+        letter-spacing: 2px;
     }
 
     .module-header {
@@ -452,7 +471,8 @@ body {
     }
 
     .compliments {
-        font-size: 24px;
+        font-size: 26px;
+        letter-spacing: 1.5px;
     }
 
     .MMM-ImageSlideshow {
