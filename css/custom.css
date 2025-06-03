@@ -19,9 +19,9 @@ body {
         radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
     color: #ffffff;
-    font-family: "Roboto", "Helvetica Neue", Arial, sans-serif;
+    font-family: 'Cinzel', serif;
     font-weight: 300;
-    font-size: 18px;
+    font-size: 14px;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
     overflow: hidden;
@@ -56,16 +56,15 @@ body {
 
 /* Module Headers */
 .module-header {
-    font-size: 24px;
-    font-weight: 200;
+    font-family: 'Cinzel', serif;
+    font-size: 16px;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    margin-bottom: 20px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 10px;
+    margin-bottom: 10px;
+    padding-bottom: 5px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    animation: glow 3s ease-in-out infinite alternate;
 }
 
 @keyframes glow {
@@ -75,31 +74,32 @@ body {
 
 /* Clock Styling */
 .clock {
-    font-size: 64px;
-    font-weight: 200;
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     letter-spacing: 1px;
     line-height: 1.1;
 }
 
 .clock .time {
     display: block;
-    font-family: 'Roboto', sans-serif;
-    font-weight: 300;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
 }
 
 .clock .date {
-    font-size: 24px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
     font-weight: 300;
     opacity: 0.85;
-    margin-top: 10px;
+    margin-top: 5px;
     letter-spacing: 0.5px;
     line-height: 1.3;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    /* Remove blinking animation */
     animation: none !important;
 }
 
@@ -113,70 +113,60 @@ body {
 
 /* Calendar Styling */
 .calendar {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 18px;
-    margin: 15px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    font-family: 'Cinzel', serif;
+    padding: 8px;
+    margin: 5px 0;
 }
 
 .calendar .event {
-    margin: 10px 0;
-    padding: 8px 0;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+    margin: 4px 0;
+    padding: 3px 0;
     transition: all 0.3s ease;
 }
 
 .calendar .event:hover {
-    transform: translateX(3px);
-    background: rgba(255, 255, 255, 0.03);
-    border-radius: 6px;
-    padding-left: 8px;
-}
-
-.calendar .event:last-child {
-    border-bottom: none;
+    transform: translateX(2px);
 }
 
 .calendar .event .time {
+    font-family: 'Cinzel', serif;
     color: #ffffff;
     font-weight: 300;
     opacity: 0.8;
-    font-size: 15px;
-    margin-bottom: 3px;
+    font-size: 10px;
+    margin-bottom: 2px;
 }
 
 .calendar .event .title {
+    font-family: 'Cinzel', serif;
     color: #ffffff;
     font-weight: 400;
-    font-size: 16px;
+    font-size: 12px;
     line-height: 1.3;
-    margin-top: 2px;
+    margin-top: 1px;
 }
 
 .calendar .event .symbol {
     color: #ffffff;
     opacity: 0.7;
-    margin-right: 8px;
+    margin-right: 4px;
+    font-size: 10px;
 }
 
 /* Calendar header styling */
 .calendar .module-header {
-    font-size: 20px;
-    margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 12px;
+    margin-bottom: 8px;
     color: #ffffff;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* Weather Styling */
 .weather {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 12px;
-    padding: 20px;
-    margin: 15px 0;
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    box-shadow: 0 6px 24px rgba(0, 0, 0, 0.2);
+    font-family: 'Cinzel', serif;
+    padding: 8px;
+    margin: 5px 0;
     text-align: center;
 }
 
@@ -185,44 +175,48 @@ body {
 }
 
 .weather .temperature {
-    font-size: 48px;
-    font-weight: 200;
+    font-family: 'Cinzel', serif;
+    font-size: 24px;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-    margin: 10px 0;
+    margin: 4px 0;
     line-height: 1;
 }
 
 .weather .weathericon {
-    font-size: 56px;
-    margin: 15px 0;
+    font-size: 28px;
+    margin: 6px 0;
     color: #ffffff;
     text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
     line-height: 1;
 }
 
 .weather .description {
-    font-size: 18px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
     color: #ffffff;
     opacity: 0.8;
-    margin: 8px 0;
+    margin: 3px 0;
     text-transform: capitalize;
 }
 
 .weather .humidity,
 .weather .wind,
 .weather .feelslike {
-    font-size: 14px;
+    font-family: 'Cinzel', serif;
+    font-size: 8px;
     color: #ffffff;
     opacity: 0.7;
-    margin: 5px 0;
+    margin: 2px 0;
 }
 
 .weather .module-header {
-    font-size: 18px;
-    margin-bottom: 15px;
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    margin-bottom: 6px;
     color: #ffffff;
-    font-weight: 300;
+    font-weight: 400;
 }
 
 /* Remove weather animations to reduce distraction */
@@ -245,20 +239,23 @@ body {
 }
 
 .newsfeed .newsfeed-source {
+    font-family: 'Cinzel', serif;
     color: #ffffff;
-    font-weight: 300;
-    margin-right: 15px;
+    font-weight: 400;
+    margin-right: 8px;
     opacity: 0.7;
     text-transform: uppercase;
     letter-spacing: 1px;
-    font-size: 14px;
+    font-size: 8px;
 }
 
 .newsfeed .newsfeed-title {
-    font-weight: 300;
+    font-family: 'Cinzel', serif;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     animation: scrollText 30s linear infinite;
+    font-size: 10px;
 }
 
 @keyframes scrollText {
@@ -268,39 +265,27 @@ body {
 
 /* Photo Slideshow Styling */
 .MMM-ImageSlideshow {
-    border-radius: 15px;
     overflow: hidden;
-    box-shadow: 0 12px 40px rgba(0, 0, 0, 0.6);
-    border: 2px solid rgba(255, 255, 255, 0.1);
-    animation: slideInLeft 1s ease-out 0.5s both;
+    max-width: 120px;
+    max-height: 80px;
 }
 
 /* Image with Color Gradient Overlay */
 .MMM-ImageSlideshow img {
-    border-radius: 13px;
     transition: all 1.5s ease;
     filter: contrast(1.2) brightness(1.1);
-    animation: imageZoom 12s ease-in-out infinite;
-    position: relative;
-
-    /* Apply gradient directly to the image */
+    width: 120px;
+    height: 80px;
+    object-fit: cover;
     background: linear-gradient(
         135deg,
-        rgba(138, 43, 226, 0.3) 0%,    /* Purple */
-        rgba(30, 144, 255, 0.3) 25%,   /* Blue */
-        rgba(0, 191, 255, 0.3) 50%,    /* Sky Blue */
-        rgba(255, 20, 147, 0.3) 75%,   /* Pink */
-        rgba(255, 69, 0, 0.3) 100%     /* Orange Red */
+        rgba(138, 43, 226, 0.3) 0%,
+        rgba(30, 144, 255, 0.3) 25%,
+        rgba(0, 191, 255, 0.3) 50%,
+        rgba(255, 20, 147, 0.3) 75%,
+        rgba(255, 69, 0, 0.3) 100%
     );
     background-blend-mode: overlay;
-
-    /* Alternative: Use box-shadow for gradient effect */
-    box-shadow:
-        inset 0 0 0 2px rgba(138, 43, 226, 0.2),
-        inset 0 0 20px rgba(30, 144, 255, 0.2),
-        inset 0 0 40px rgba(0, 191, 255, 0.2),
-        inset 0 0 60px rgba(255, 20, 147, 0.2),
-        inset 0 0 80px rgba(255, 69, 0, 0.2);
 }
 
 /* Hover effect for enhanced colors */
@@ -321,16 +306,15 @@ body {
 
 /* Location Display Styling */
 .MMM-ip {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 25px;
-    padding: 15px 30px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    font-family: 'Cinzel', serif;
     text-align: center;
-    font-weight: 300;
+    font-weight: 400;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    animation: slideInDown 1s ease-out;
     letter-spacing: 1px;
+    font-size: 10px;
+    padding: 4px 8px;
+    margin: 2px 0;
 }
 
 @keyframes slideInDown {
@@ -341,14 +325,14 @@ body {
 /* Compliments Styling - Cinzel Font */
 .compliments {
     font-family: 'Cinzel', serif;
-    font-size: 32px;
+    font-size: 16px;
     font-weight: 400;
     text-align: center;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     font-style: normal;
-    margin: 25px 0;
-    letter-spacing: 2px;
+    margin: 8px 0;
+    letter-spacing: 1px;
 }
 
 /* Region Specific Styling */
@@ -529,102 +513,7 @@ body {
     outline-offset: 2px;
 }
 
-/* Debug Console Styling */
-.debug-console {
-    position: fixed;
-    top: 10px;
-    right: 10px;
-    width: 300px;
-    max-height: 400px;
-    background: rgba(0, 0, 0, 0.9);
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 8px;
-    padding: 10px;
-    font-family: 'Courier New', monospace;
-    font-size: 12px;
-    color: #00ff00;
-    overflow-y: auto;
-    z-index: 9999;
-    backdrop-filter: blur(10px);
-    display: none;
-}
 
-.debug-console.visible {
-    display: block;
-}
-
-.debug-console h3 {
-    margin: 0 0 10px 0;
-    color: #ffffff;
-    font-size: 14px;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
-    padding-bottom: 5px;
-}
-
-.debug-console .module-status {
-    margin: 5px 0;
-    padding: 3px 5px;
-    border-radius: 3px;
-    background: rgba(255, 255, 255, 0.05);
-}
-
-.debug-console .status-active {
-    color: #00ff00;
-}
-
-.debug-console .status-error {
-    color: #ff0000;
-}
-
-.debug-console .status-warning {
-    color: #ffaa00;
-}
-
-.debug-console .status-unknown {
-    color: #888888;
-}
-
-.debug-toggle {
-    position: fixed;
-    top: 10px;
-    right: 320px;
-    background: rgba(0, 0, 0, 0.8);
-    color: white;
-    border: 1px solid rgba(255, 255, 255, 0.3);
-    border-radius: 5px;
-    padding: 5px 10px;
-    cursor: pointer;
-    z-index: 10000;
-    font-size: 12px;
-}
-
-.debug-toggle:hover {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-/* Enhanced Console Logs */
-.console-log {
-    font-family: 'Courier New', monospace;
-    font-size: 11px;
-    line-height: 1.4;
-}
-
-.console-error {
-    color: #ff6b6b !important;
-    font-weight: bold;
-}
-
-.console-warn {
-    color: #ffa726 !important;
-}
-
-.console-info {
-    color: #42a5f5 !important;
-}
-
-.console-debug {
-    color: #66bb6a !important;
-}
 
 /* Print Styles */
 @media print {
@@ -643,111 +532,4 @@ body {
     }
 }
 
-/* === Wizard Vibes + Glassmorphism Theme === */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
 
-body {
-    background: linear-gradient(145deg, #000000, #0f0f0f);
-    font-family: 'Cinzel', 'Uncial Antiqua', 'MedievalSharp', serif;
-    color: #ffffff;
-    text-shadow: 0 0 8px #ffffff;
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-}
-
-/* General Module Styling */
-.region .module {
-    background: rgba(255, 255, 255, 0.05);
-    border-radius: 15px;
-    padding: 15px;
-    margin: 10px;
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    transition: all 0.3s ease-in-out;
-}
-
-/* Clock */
-.module.clock {
-    font-size: 80px;
-    text-align: center;
-}
-
-/* Calendar */
-.module.calendar {
-    font-size: 20px;
-}
-.calendar .event {
-    transition: all 0.3s ease;
-}
-.calendar .event:hover {
-    color: #00ffd5;
-    text-shadow: 0 0 5px #00ffd5;
-    font-weight: bold;
-}
-
-/* Weather */
-.module.currentweather, .module.weatherforecast {
-    font-size: 20px;
-    text-align: center;
-}
-
-/* Newsfeed */
-.module.newsfeed {
-    font-size: 18px;
-    color: #ccc;
-}
-.newsfeed .newsfeed-title {
-    color: #ffffff;
-    font-weight: bold;
-    font-size: 20px;
-}
-.newsfeed .newsfeed-desc {
-    color: #aaa;
-}
-
-/* Hide default header/title text */
-.module-header {
-    display: none;
-}
-
-/* Animations – Kill em for stability */
-* {
-    animation: none !important;
-    transition: none !important;
-}
-
-/* SlideShow */
-.MMM-ImageSlideshow {
-    width: 100%;
-    height: auto;
-    border-radius: 20px;
-    overflow: hidden;
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-}
-
-/* Optional: Fullscreen Slideshow Vibe */
-.MMM-ImageSlideshow img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 20px;
-    opacity: 0.9;
-}
-
-/* Footer / Bottom Modules */
-.region.bottom .module {
-    text-align: center;
-    font-size: 16px;
-}
-
-/* Responsive Shrink on Tiny Screens */
-@media screen and (max-width: 768px) {
-    .module.clock {
-        font-size: 60px;
-    }
-    .module.calendar,
-    .module.currentweather,
-    .module.weatherforecast,
-    .module.newsfeed {
-        font-size: 16px;
-    }
-}

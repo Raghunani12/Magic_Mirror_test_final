@@ -188,8 +188,8 @@ let config = {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds
 				delayUntilRestart: 0,
-				fixedImageWidth: 320,
-				fixedImageHeight: 240,
+				fixedImageWidth: 120,
+				fixedImageHeight: 80,
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false,
