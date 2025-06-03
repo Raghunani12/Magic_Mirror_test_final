@@ -29,21 +29,6 @@ let config = {
 	units: "metric",
 
 	modules: [
-		// System modules
-		{
-			module: "alert",
-			config: {
-				debug: true
-			}
-		},
-		{
-			module: "updatenotification",
-			position: "top_bar",
-			config: {
-				debug: true
-			}
-		},
-
 		// Clock and Date - Top Left
 		{
 			module: "clock",
@@ -60,8 +45,7 @@ let config = {
 				showMoonTimes: false,
 				lat: null,
 				lon: null,
-				timezone: null,
-				debug: true
+				timezone: null
 			}
 		},
 
@@ -102,9 +86,7 @@ let config = {
 				tableClass: "small",
 				broadcastEvents: true,
 				excludedEvents: [],
-				sliceMultiDayEvents: false,
-				debug: true,
-				logFeedWarnings: true
+				sliceMultiDayEvents: false
 			}
 		},
 
@@ -131,8 +113,7 @@ let config = {
 				showMoonTimes: false,
 				colored: false, // Black and white theme
 				roundTemp: true,
-				degreeLabel: true,
-				debug: true
+				degreeLabel: true
 			}
 		},
 
@@ -147,8 +128,7 @@ let config = {
 				showCountry: true,
 				showFlag: false, // Black and white theme
 				showIP: false,
-				lang: "en",
-				debug: true
+				lang: "en"
 			}
 		},
 
@@ -196,9 +176,7 @@ let config = {
 				startTags: [],
 				endTags: [],
 				prohibitedWords: [],
-				scrollLength: 500,
-				logFeedWarnings: true,
-				debug: true
+				scrollLength: 500
 			}
 		},
 
@@ -215,8 +193,7 @@ let config = {
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false,
-				validImageFileExtensions: "bmp,jpg,jpeg,gif,png",
-				debug: true
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
 			}
 		},
 
@@ -253,8 +230,7 @@ let config = {
 						"Well-earned rest ahead!",
 						"Tomorrow awaits your brilliance!"
 					]
-				},
-				debug: true
+				}
 			}
 		}
 	]

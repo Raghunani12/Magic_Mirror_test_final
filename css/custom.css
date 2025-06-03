@@ -44,7 +44,6 @@ body {
 /* Header Styling */
 .region.top.bar {
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(15px);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
     padding: 15px 0;
     animation: slideDown 1s ease-out;
@@ -115,7 +114,6 @@ body {
 /* Calendar Styling */
 .calendar {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 18px;
     margin: 15px 0;
@@ -174,7 +172,6 @@ body {
 /* Weather Styling */
 .weather {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 12px;
     padding: 20px;
     margin: 15px 0;
@@ -237,7 +234,6 @@ body {
 /* News Feed Styling */
 .newsfeed {
     background: rgba(0, 0, 0, 0.8);
-    backdrop-filter: blur(15px);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px 0;
     animation: slideUp 1s ease-out;
@@ -326,7 +322,6 @@ body {
 /* Location Display Styling */
 .MMM-ip {
     background: rgba(255, 255, 255, 0.05);
-    backdrop-filter: blur(10px);
     border-radius: 25px;
     padding: 15px 30px;
     border: 1px solid rgba(255, 255, 255, 0.2);
@@ -343,42 +338,17 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Compliments Styling - Wizard World Font */
+/* Compliments Styling - Cinzel Font */
 .compliments {
-    font-family: 'Cinzel', 'MedievalSharp', 'Uncial Antiqua', serif;
-    font-size: 36px;
-    font-weight: 600;
+    font-family: 'Cinzel', serif;
+    font-size: 32px;
+    font-weight: 400;
     text-align: center;
     color: #ffffff;
-    text-shadow:
-        0 0 20px rgba(255, 255, 255, 0.8),
-        0 0 40px rgba(255, 255, 255, 0.6),
-        0 0 60px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     font-style: normal;
     margin: 25px 0;
-    letter-spacing: 3px;
-    text-transform: uppercase;
-    animation: magicalGlow 5s ease-in-out infinite alternate;
-}
-
-@keyframes magicalGlow {
-    from {
-        text-shadow:
-            0 0 20px rgba(255, 255, 255, 0.8),
-            0 0 40px rgba(255, 255, 255, 0.6),
-            0 0 60px rgba(255, 255, 255, 0.4);
-        opacity: 0.9;
-        transform: scale(1);
-    }
-    to {
-        text-shadow:
-            0 0 30px rgba(255, 255, 255, 1),
-            0 0 60px rgba(255, 255, 255, 0.8),
-            0 0 90px rgba(255, 255, 255, 0.6),
-            0 0 120px rgba(255, 255, 255, 0.4);
-        opacity: 1;
-        transform: scale(1.02);
-    }
+    letter-spacing: 2px;
 }
 
 /* Region Specific Styling */
