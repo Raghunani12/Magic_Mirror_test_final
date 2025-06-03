@@ -1,0 +1,16 @@
+[33m264b91d[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m)[m Fix image slideshow: Apply gradient to images only + correct path
+[33mf0f511d[m Fix weather with coordinates and add beautiful color gradient to image slideshow
+[33m7e4f333[m Deletd pics
+[33ma983f40[m Added Gifs
+[33m2696c72[m Files changed thier oath -Image files
+[33mbf3a111[m Changed again path to default
+[33m362c23d[m CHanged path in IMAGE SLIDESHOW
+[33mafd3488[m Changed images
+[33m3749214[m Fix MMM-ImageSlideshow configuration - use correct parameter names
+[33m620d369[m Uploading Photos to test Slideshow
+[33m80b66ae[m Fix infinite loop in debug monitor - replace with simple debug
+[33m5e021d5[m Fix debug monitor module detection and add test page
+[33m11909ad[m Enhanced smart mirror configuration and styling
+[33m8ebf106[m Add comprehensive debugging system for all modules
+[33m1319980[m Complete cleanup: Remove all old repository references
+[33m6471bec[m Initial commit: Professional Smart Mirror with Black & White Animated Theme
