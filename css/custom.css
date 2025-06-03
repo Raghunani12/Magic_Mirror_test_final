@@ -421,6 +421,7 @@ body {
     }
 
     .compliments {
+        font-family: 'Cinzel', serif;
         font-size: 30px;
         letter-spacing: 2px;
     }
@@ -449,6 +450,7 @@ body {
 
     .compliments {
         font-size: 26px;
+        font-family: 'Cinzel', serif;
         letter-spacing: 1.5px;
     }
 
