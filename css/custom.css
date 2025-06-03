@@ -7,6 +7,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
 
 /* Global Styling */
+
+
+
+
 body {
     margin: 0;
     height: 100vh;
@@ -666,5 +670,114 @@ body {
     .debug-console,
     .debug-toggle {
         display: none !important;
+    }
+}
+
+/* === Wizard Vibes + Glassmorphism Theme === */
+@import url('https://fonts.googleapis.com/css2?family=Cinzel&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
+
+body {
+    background: linear-gradient(145deg, #000000, #0f0f0f);
+    font-family: 'Cinzel', 'Uncial Antiqua', 'MedievalSharp', serif;
+    color: #ffffff;
+    text-shadow: 0 0 8px #ffffff;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+/* General Module Styling */
+.region .module {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 15px;
+    padding: 15px;
+    margin: 10px;
+    box-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    transition: all 0.3s ease-in-out;
+}
+
+/* Clock */
+.module.clock {
+    font-size: 80px;
+    text-align: center;
+}
+
+/* Calendar */
+.module.calendar {
+    font-size: 20px;
+}
+.calendar .event {
+    transition: all 0.3s ease;
+}
+.calendar .event:hover {
+    color: #00ffd5;
+    text-shadow: 0 0 5px #00ffd5;
+    font-weight: bold;
+}
+
+/* Weather */
+.module.currentweather, .module.weatherforecast {
+    font-size: 20px;
+    text-align: center;
+}
+
+/* Newsfeed */
+.module.newsfeed {
+    font-size: 18px;
+    color: #ccc;
+}
+.newsfeed .newsfeed-title {
+    color: #ffffff;
+    font-weight: bold;
+    font-size: 20px;
+}
+.newsfeed .newsfeed-desc {
+    color: #aaa;
+}
+
+/* Hide default header/title text */
+.module-header {
+    display: none;
+}
+
+/* Animations – Kill em for stability */
+* {
+    animation: none !important;
+    transition: none !important;
+}
+
+/* SlideShow */
+.MMM-ImageSlideshow {
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
+}
+
+/* Optional: Fullscreen Slideshow Vibe */
+.MMM-ImageSlideshow img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    border-radius: 20px;
+    opacity: 0.9;
+}
+
+/* Footer / Bottom Modules */
+.region.bottom .module {
+    text-align: center;
+    font-size: 16px;
+}
+
+/* Responsive Shrink on Tiny Screens */
+@media screen and (max-width: 768px) {
+    .module.clock {
+        font-size: 60px;
+    }
+    .module.calendar,
+    .module.currentweather,
+    .module.weatherforecast,
+    .module.newsfeed {
+        font-size: 16px;
     }
 }
