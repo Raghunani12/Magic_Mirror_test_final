@@ -80,7 +80,7 @@ let config = {
 					{
 						fetchInterval: 5 * 60 * 1000, // 5 minutes
 						symbol: "calendar",
-						url: "https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/7f1119da-7ece-4109-9a68-ea4e521b47ef/cid-46F8628E581F7C3D/calendar.ics",
+						url: "https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/35d23965-43f8-4e5e-8162-9a29b9f6ec76/cid-46F8628E581F7C3D/calendar.ics",
 						name: "Outlook Calendar",
 						color: "#0078d4", // Outlook blue
 						auth: {
