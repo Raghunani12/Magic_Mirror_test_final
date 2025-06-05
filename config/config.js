@@ -233,7 +233,7 @@ let config = {
 				maxImages: 50,
 				updateInterval: 60 * 60 * 1000, // Check for new photos every hour
 				showImageInfo: false,
-				debug: false
+				debug: true // Enable debug to see Google Drive integration
 			}
 		},
 

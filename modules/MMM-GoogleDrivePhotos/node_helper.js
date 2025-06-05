@@ -51,9 +51,17 @@ module.exports = NodeHelper.create({
 
                 if (images.length === 0) {
                     // Method 3: Provide instructions for manual setup
-                    Log.warn(`⚠️ Could not automatically load images from folder. Please use file IDs instead.`);
+                    Log.warn(`⚠️ Could not automatically load images from folder: ${folderId}`);
+                    Log.info(`📋 To use Google Drive photos, please follow these steps:`);
+                    Log.info(`1. Open your folder: https://drive.google.com/drive/folders/${folderId}`);
+                    Log.info(`2. Right-click each photo → Share → Get link → Anyone with link can view`);
+                    Log.info(`3. Copy the file ID from each photo's URL`);
+                    Log.info(`4. Add file IDs to config: fileIds: ["file_id_1", "file_id_2", ...]`);
+
                     this.sendSocketNotification("GOOGLE_DRIVE_ERROR", {
-                        error: "Could not load images from folder. Please provide individual file IDs in the config."
+                        error: `Google Drive folder access requires individual file IDs. Please see console for setup instructions.`,
+                        folderId: folderId,
+                        folderUrl: `https://drive.google.com/drive/folders/${folderId}`
                     });
                     return;
                 }
