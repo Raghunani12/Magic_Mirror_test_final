@@ -328,8 +328,8 @@ body {
     font-family: 'Cinzel', serif;
     text-align: center;
     font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    color: hsl(0, 0%, 100%);
+    text-shadow: 0 0 10px rgba(255, 255, 255, 0.808);
     letter-spacing: 1px;
     font-size: 10px;
     padding: 4px 8px;
