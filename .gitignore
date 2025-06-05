@@ -66,6 +66,14 @@ Temporary Items
 !/modules/MMM-ImageSlideshow/**
 !/modules/MMM-ip
 !/modules/MMM-ip/**
+!/modules/MMM-SimpleLocation
+!/modules/MMM-SimpleLocation/**
+!/modules/MMM-ModulePosition
+!/modules/MMM-ModulePosition/**
+!/modules/MMM-FeedUtilities
+!/modules/MMM-FeedUtilities/**
+!/modules/MMM-Mail
+!/modules/MMM-Mail/**
 
 # Allow our custom CSS and config files
 /css/*
