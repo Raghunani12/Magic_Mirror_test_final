@@ -94,7 +94,7 @@ let config = {
 				maximumNumberOfDays: 60,
 				displaySymbol: true,
 				defaultSymbol: "calendar",
-				showLocation: false,
+				showLocation: true,
 				displayRepeatingCountTitle: false,
 				dateFormat: "MMM Do",
 				timeFormat: "HH:mm",
@@ -112,47 +112,42 @@ let config = {
 			}
 		},
 
-		// Current Weather - Top Bar
+		// Dynamic Weather - Top Bar (Auto-updates with real location)
 		{
-			module: "weather",
+			module: "MMM-DynamicWeather",
 			position: "top_bar",
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: 28.6139, // New Delhi coordinates
-				lon: 77.2090, // New Delhi coordinates
+				lat: 28.6139, // Fallback coordinates (New Delhi)
+				lon: 77.2090, // Fallback coordinates
 				units: "metric",
 				tempUnits: "metric",
 				windUnits: "metric",
 				updateInterval: 10 * 60 * 1000, // 10 minutes
 				animationSpeed: 1000,
-				showWindDirection: true,
-				showWindDirectionAsArrow: false,
-				showHumidity: true,
-				showFeelsLike: true,
-				showSun: false,
-				showMoonTimes: false,
-				colored: false, // Black and white theme
-				roundTemp: true,
-				degreeLabel: true
+				showDescription: false, // Keep it simple like default weather
+				useLocationFromSimpleLocation: true, // Enable dynamic location
+				locationUpdateDelay: 5000, // Wait 5s after location update
+				debug: false
 			}
 		},
 
-		// Location Display - Top Bar (Chaos Dev IP Geolocation)
+		// Location Display - Top Bar (IP Geolocation)
 		{
 			module: "MMM-SimpleLocation",
 			position: "top_bar",
 			config: {
-				fontSize: 18,
 				dimmed: true,
 				city: "New Delhi", // Fallback city
 				country: "India", // Fallback country
+				fallbackLat: 28.6139, // Fallback latitude
+				fallbackLon: 77.2090, // Fallback longitude
 				showCity: true,
 				showCountry: true,
-				showFlag: false, // Black and white theme
-				lang: "en",
 				useGeolocation: true, // Enable IP geolocation
+				broadcastLocation: true, // Broadcast to weather module
 				updateInterval: 30 * 60 * 1000, // Update every 30 minutes
 				retryAttempts: 3
 			}

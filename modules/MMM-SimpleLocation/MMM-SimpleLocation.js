@@ -19,16 +19,17 @@ Module.register('MMM-SimpleLocation', {
      * @member {Object} defaults - Defines the default config values.
      */
     defaults: {
-        fontSize: 18,
         dimmed: true,
         city: "New Delhi", // Fallback city
         country: "India", // Fallback country
+        fallbackLat: 28.6139, // Fallback latitude (New Delhi)
+        fallbackLon: 77.2090, // Fallback longitude (New Delhi)
         showCity: true,
         showCountry: true,
-        showFlag: false,
         lang: "en",
         updateInterval: 30 * 60 * 1000, // 30 minutes
         useGeolocation: true, // Always use IP geolocation by default
+        broadcastLocation: true, // Broadcast location to other modules
         apiUrl: "https://ipapi.co/json/", // Primary API
         fallbackApis: [
             "http://ip-api.com/json/",
@@ -71,8 +72,14 @@ Module.register('MMM-SimpleLocation', {
             this.locationData = {
                 city: this.config.city,
                 country: this.config.country,
+                latitude: this.config.fallbackLat,
+                longitude: this.config.fallbackLon,
                 source: "static"
             };
+
+            // Broadcast static location data
+            this.broadcastLocationData();
+
             this.updateDom();
         }
     },
@@ -120,12 +127,19 @@ Module.register('MMM-SimpleLocation', {
                     self.locationData = {
                         city: city,
                         country: country,
+                        latitude: data.latitude || data.lat,
+                        longitude: data.longitude || data.lon || data.lng,
                         source: "api",
                         api: apiUrl,
                         lastUpdate: new Date().toISOString()
                     };
                     self.retryCount = 0; // Reset retry count on success
                     Log.info(`🎯 Location detected: ${city}, ${country}`);
+                    Log.info(`📍 Coordinates: ${self.locationData.latitude}, ${self.locationData.longitude}`);
+
+                    // Broadcast location data to other modules
+                    self.broadcastLocationData();
+
                     self.updateDom();
                 } else {
                     throw new Error("Missing city or country in response");
@@ -179,11 +193,55 @@ Module.register('MMM-SimpleLocation', {
         this.locationData = {
             city: this.config.city,
             country: this.config.country,
+            latitude: this.config.fallbackLat || 28.6139, // New Delhi fallback
+            longitude: this.config.fallbackLon || 77.2090, // New Delhi fallback
             source: "fallback",
             lastUpdate: new Date().toISOString()
         };
         Log.warn(`⚠️ Using fallback location: ${this.config.city}, ${this.config.country}`);
+
+        // Broadcast fallback location data
+        this.broadcastLocationData();
+
         this.updateDom();
+    },
+
+    /**
+     * @function broadcastLocationData
+     * @description Broadcasts location data to other modules
+     */
+    broadcastLocationData() {
+        if (this.locationData && this.locationData.latitude && this.locationData.longitude) {
+            const locationPayload = {
+                city: this.locationData.city,
+                country: this.locationData.country,
+                latitude: parseFloat(this.locationData.latitude),
+                longitude: parseFloat(this.locationData.longitude),
+                source: this.locationData.source,
+                timestamp: this.locationData.lastUpdate
+            };
+
+            Log.info(`📡 Broadcasting location data:`, locationPayload);
+
+            // Send notification to all modules
+            this.sendNotification("LOCATION_DATA_UPDATED", locationPayload);
+
+            // Also send specific notification for weather modules
+            this.sendNotification("WEATHER_LOCATION_UPDATE", {
+                lat: locationPayload.latitude,
+                lon: locationPayload.longitude,
+                city: locationPayload.city,
+                country: locationPayload.country
+            });
+
+            // Store in global MM object for other modules to access
+            if (typeof MM !== 'undefined') {
+                MM.currentLocation = locationPayload;
+                Log.info(`🌍 Global location data updated in MM.currentLocation`);
+            }
+        } else {
+            Log.warn(`⚠️ Cannot broadcast location data - missing coordinates`);
+        }
     },
 
     /**
@@ -201,43 +259,21 @@ Module.register('MMM-SimpleLocation', {
 
     /**
      * @function getDom
-     * @description Creates the DOM object for the module
+     * @description Creates the DOM object for the module (simplified, default styling)
      * @override
      * @returns {Element} The DOM element to display
      */
     getDom() {
         const wrapper = document.createElement("div");
-        wrapper.className = `MMM-SimpleLocation ${this.config.dimmed ? "dimmed" : ""}`;
-        wrapper.style.fontSize = this.config.fontSize + "px";
-        wrapper.style.lineHeight = (this.config.fontSize + 2) + "px";
+        wrapper.className = this.config.dimmed ? "dimmed" : "";
 
         if (!this.locationData) {
-            wrapper.innerHTML = `
-                <div class="loading">
-                    <span class="loading-icon">🌍</span>
-                    <span class="loading-text">Detecting location...</span>
-                </div>
-            `;
+            wrapper.innerHTML = "Loading location...";
+            wrapper.className = "dimmed";
             return wrapper;
         }
 
         let locationText = "";
-        let sourceIcon = "";
-
-        // Add source indicator
-        switch(this.locationData.source) {
-            case "api":
-                sourceIcon = "🌐";
-                break;
-            case "static":
-                sourceIcon = "📍";
-                break;
-            case "fallback":
-                sourceIcon = "⚠️";
-                break;
-            default:
-                sourceIcon = "❓";
-        }
 
         if (this.config.showCity && this.locationData.city) {
             locationText += this.locationData.city;
@@ -250,18 +286,11 @@ Module.register('MMM-SimpleLocation', {
             locationText += this.locationData.country;
         }
 
-        const finalText = locationText || "Location unavailable";
-
-        wrapper.innerHTML = `
-            <div class="location-container">
-                <span class="location-icon">${sourceIcon}</span>
-                <span class="location-text">${finalText}</span>
-            </div>
-        `;
+        wrapper.innerHTML = locationText || "Location unavailable";
 
         // Add debug info in console
         if (this.locationData.source === "api") {
-            Log.info(`📍 Displaying: ${finalText} (via ${this.locationData.api})`);
+            Log.info(`📍 Displaying: ${locationText} (via ${this.locationData.api})`);
         }
 
         return wrapper;
@@ -269,11 +298,11 @@ Module.register('MMM-SimpleLocation', {
 
     /**
      * @function getStyles
-     * @description Returns the stylesheets needed for this module
+     * @description Use default module styles (no custom CSS)
      * @override
      * @returns {Array} Array of stylesheet paths
      */
     getStyles() {
-        return ["MMM-SimpleLocation.css"];
+        return []; // Use default MagicMirror styling
     }
 });

@@ -68,6 +68,8 @@ Temporary Items
 !/modules/MMM-ip/**
 !/modules/MMM-SimpleLocation
 !/modules/MMM-SimpleLocation/**
+!/modules/MMM-DynamicWeather
+!/modules/MMM-DynamicWeather/**
 !/modules/MMM-ModulePosition
 !/modules/MMM-ModulePosition/**
 !/modules/MMM-FeedUtilities
