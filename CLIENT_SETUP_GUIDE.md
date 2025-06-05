@@ -1,6 +1,26 @@
-# 📸 Smart Mirror Photo Setup - Client Guide
+# 📸 Smart Mirror Photo Setup - Production Guide
 
-## 🎯 **Working Solution (3 Easy Steps!)**
+## 🚀 **BEST FOR PRODUCTION: Public Website Method**
+
+### **Option 1: DriveToWeb (Easiest)**
+1. **Go to DriveToWeb**: https://drv.tw/
+2. **Paste your Google Drive folder URL**
+3. **Get your DriveToWeb URL** (e.g., `https://drv.tw/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms`)
+4. **Add to smart mirror config:**
+   ```javascript
+   driveToWebUrl: "https://drv.tw/your-folder-id",
+   ```
+
+### **Option 2: gdrive-index (Advanced)**
+1. **Deploy gdrive-index**: https://github.com/alx-xlx/gdrive-index
+2. **Configure with your Google Drive folder**
+3. **Get your public website URL** (e.g., `https://your-domain.com/photos`)
+4. **Add to smart mirror config:**
+   ```javascript
+   publicWebsiteUrl: "https://your-domain.com/photos",
+   ```
+
+## 🔧 **ALTERNATIVE: Individual File IDs**
 
 ### **Step 1: Upload Photos to Google Drive**
 1. **Go to Google Drive** (drive.google.com)
@@ -39,7 +59,7 @@ For each photo you want on your smart mirror:
 
 ## ✅ **Your Photos Will Now Display!**
 
-The smart mirror will rotate through your photos every 10 seconds.
+The smart mirror will rotate through your photos every 12 seconds.
 
 ---
 

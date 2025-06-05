@@ -19,9 +19,18 @@ Module.register('MMM-GoogleDrivePhotos', {
      * @member {Object} defaults - Defines the default config values.
      */
     defaults: {
+        // PRODUCTION OPTION 1: Public website URL (gdrive-index, DriveToWeb, etc.)
+        publicWebsiteUrl: "", // URL to your public Google Drive website
+        driveToWebUrl: "", // DriveToWeb URL (alternative to publicWebsiteUrl)
+
+        // PRODUCTION OPTION 2: Individual file IDs
+        fileIds: [], // Array of individual Google Drive file IDs
+
+        // FALLBACK OPTION: Direct Google Drive folder (limited functionality)
         googleDriveFolderUrl: "", // Shared Google Drive folder URL
         folderId: "", // Extracted folder ID (auto-extracted from URL)
-        fileIds: [], // Array of individual Google Drive file IDs (alternative to folder)
+
+        // Display settings
         slideshowSpeed: 10 * 1000, // 10 seconds per image
         delayUntilRestart: 0, // Delay before restarting slideshow
         fixedImageWidth: 300, // Fixed width for images
@@ -111,6 +120,8 @@ Module.register('MMM-GoogleDrivePhotos', {
         }
 
         this.sendSocketNotification("LOAD_GOOGLE_DRIVE_IMAGES", {
+            publicWebsiteUrl: this.config.publicWebsiteUrl,
+            driveToWebUrl: this.config.driveToWebUrl,
             folderId: this.config.folderId,
             fileIds: this.config.fileIds,
             maxImages: this.config.maxImages,

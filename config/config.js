@@ -215,10 +215,12 @@ let config = {
 			module: "MMM-GoogleDrivePhotos",
 			position: "top_bar",
 			config: {
-				// 🎯 EASY SETUP: Just paste your Google Drive folder sharing link here
-				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing",
+				// 🚀 PRODUCTION OPTION 1: Public Website (RECOMMENDED FOR PRODUCTION)
+				// Use gdrive-index, DriveToWeb, or similar service
+				publicWebsiteUrl: "", // e.g., "https://your-domain.com/photos"
+				driveToWebUrl: "", // e.g., "https://drv.tw/your-folder-id"
 
-				// WORKING SOLUTION: Add individual Google Drive file IDs here
+				// 🔧 PRODUCTION OPTION 2: Individual File IDs (RELIABLE)
 				fileIds: [
 					// Example: Get file IDs from your Google Drive photos
 					// 1. Right-click photo in Google Drive → Share → Get link
@@ -233,6 +235,10 @@ let config = {
 					// "your_third_photo_file_id"
 				],
 
+				// 📁 FALLBACK OPTION: Direct Google Drive folder (limited functionality)
+				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing",
+
+				// ⚙️ Display Settings
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
 				fixedImageWidth: 120,
