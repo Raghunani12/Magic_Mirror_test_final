@@ -244,11 +244,12 @@ body {
     animation: none !important;
 }
 
-/* News Feed Styling */
+/* News Feed Styling - With spacing for image layout */
 .newsfeed {
     background: rgba(0, 0, 0, 0.8);
     border-top: 1px solid rgba(255, 255, 255, 0.2);
     padding: 20px 0;
+    margin-bottom: 20px; /* Space below news before images */
     animation: slideUp 1s ease-out;
 }
 
@@ -282,20 +283,35 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-/* Photo Slideshow Styling */
-.MMM-ImageSlideshow {
-    overflow: hidden;
-    max-width: 120px;
-    max-height: 80px;
+/* Photo Slideshow Styling - Centered Between News and Compliments */
+.region.bottom.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 30px; /* Space above images (gap from news) */
+    margin-bottom: 30px; /* Space below images (gap to compliments) */
+    padding: 20px 0;
 }
 
-/* Image with Color Gradient Overlay */
+.MMM-ImageSlideshow {
+    overflow: hidden;
+    max-width: 300px;
+    max-height: 200px;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Image with Color Gradient Overlay - Larger Size for Center Display */
 .MMM-ImageSlideshow img {
     transition: all 1.5s ease;
     filter: contrast(1.2) brightness(1.1);
-    width: 120px;
-    height: 80px;
+    width: 300px;
+    height: 200px;
     object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
     background: linear-gradient(
         135deg,
         rgba(138, 43, 226, 0.3) 0%,
@@ -341,7 +357,7 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Compliments Styling - Cinzel Font */
+/* Compliments Styling - Cinzel Font with spacing */
 .compliments {
     font-family: 'Cinzel', serif;
     font-size: 16px;
@@ -350,8 +366,14 @@ body {
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
     font-style: normal;
-    margin: 8px 0;
+    margin: 20px 0 8px 0; /* Extra space above compliments after images */
     letter-spacing: 1px;
+}
+
+/* Bottom bar region spacing */
+.region.bottom.bar {
+    margin-top: 20px; /* Additional space above compliments */
+    padding-top: 15px;
 }
 
 /* Hide ALL debug elements */
