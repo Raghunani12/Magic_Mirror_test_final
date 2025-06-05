@@ -139,18 +139,22 @@ let config = {
 			}
 		},
 
-		// Location Display - Top Bar
+		// Location Display - Top Bar (Chaos Dev IP Geolocation)
 		{
-			module: "MMM-ip",
+			module: "MMM-SimpleLocation",
 			position: "top_bar",
 			config: {
 				fontSize: 18,
 				dimmed: true,
+				city: "New Delhi", // Fallback city
+				country: "India", // Fallback country
 				showCity: true,
 				showCountry: true,
 				showFlag: false, // Black and white theme
-				showIP: false,
-				lang: "en"
+				lang: "en",
+				useGeolocation: true, // Enable IP geolocation
+				updateInterval: 30 * 60 * 1000, // Update every 30 minutes
+				retryAttempts: 3
 			}
 		},
 
