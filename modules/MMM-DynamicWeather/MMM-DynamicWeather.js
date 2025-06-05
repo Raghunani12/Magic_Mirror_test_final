@@ -28,7 +28,16 @@ Module.register('MMM-DynamicWeather', {
         windUnits: "metric",
         updateInterval: 10 * 60 * 1000, // 10 minutes
         animationSpeed: 1000,
-        showDescription: false, // Keep it simple
+        showWindDirection: true,
+        showWindDirectionAsArrow: false,
+        showHumidity: true,
+        showFeelsLike: true,
+        showSun: false,
+        showMoonTimes: false,
+        colored: false,
+        roundTemp: true,
+        degreeLabel: true,
+        showDescription: false,
         useLocationFromSimpleLocation: true, // Enable dynamic location updates
         locationUpdateDelay: 5000, // Wait 5 seconds after location update before fetching weather
         debug: false
@@ -188,44 +197,83 @@ Module.register('MMM-DynamicWeather', {
 
     /**
      * @function getDom
-     * @description Creates the DOM object for the module (simplified, default weather styling)
+     * @description Creates the DOM object exactly like the default weather module
      * @override
      * @returns {Element} The DOM element to display
      */
     getDom() {
         const wrapper = document.createElement("div");
-        wrapper.className = "weather";
 
         if (!this.weatherData) {
-            wrapper.innerHTML = "Loading weather...";
-            wrapper.className = "weather dimmed";
+            wrapper.innerHTML = this.translate("LOADING");
+            wrapper.className = "dimmed light small";
             return wrapper;
         }
 
         if (this.weatherData.error) {
-            wrapper.innerHTML = "Weather unavailable";
-            wrapper.className = "weather dimmed";
+            wrapper.innerHTML = "No weather data";
+            wrapper.className = "dimmed light small";
             return wrapper;
         }
 
-        // Create simple weather display using default weather module styling
         const weather = this.weatherData;
+        const large = document.createElement("div");
+        large.className = "large light";
 
-        // Main temperature display
-        const tempElement = document.createElement("div");
-        tempElement.className = "large light";
-        tempElement.innerHTML = Math.round(weather.temperature) + "°";
-        wrapper.appendChild(tempElement);
+        const degreeLabel = this.config.degreeLabel ? "°" : "";
+        const temperature = Math.round(weather.temperature);
 
-        // Weather description (optional)
-        if (this.config.showDescription) {
-            const descElement = document.createElement("div");
-            descElement.className = "small dimmed";
-            descElement.innerHTML = weather.weatherType;
-            wrapper.appendChild(descElement);
+        large.innerHTML = temperature + degreeLabel;
+        wrapper.appendChild(large);
+
+        if (this.config.showDescription && weather.weatherType) {
+            const small = document.createElement("div");
+            small.className = "normal medium";
+            small.innerHTML = this.capFirst(weather.weatherType);
+            wrapper.appendChild(small);
+        }
+
+        if (this.config.showFeelsLike && weather.feelsLike) {
+            const feelsLike = document.createElement("div");
+            feelsLike.className = "dimmed light xsmall";
+            feelsLike.innerHTML = `Feels like ${Math.round(weather.feelsLike)}${degreeLabel}`;
+            wrapper.appendChild(feelsLike);
+        }
+
+        if (this.config.showHumidity && weather.humidity) {
+            const humidity = document.createElement("div");
+            humidity.className = "dimmed light xsmall";
+            humidity.innerHTML = `Humidity: ${weather.humidity}%`;
+            wrapper.appendChild(humidity);
+        }
+
+        if (this.config.showWindSpeed && weather.windSpeed) {
+            const wind = document.createElement("div");
+            wind.className = "dimmed light xsmall";
+            wind.innerHTML = `Wind: ${Math.round(weather.windSpeed)} ${this.config.windUnits}`;
+            wrapper.appendChild(wind);
         }
 
         return wrapper;
+    },
+
+    /**
+     * @function capFirst
+     * @description Capitalizes first letter of string
+     */
+    capFirst(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    },
+
+    /**
+     * @function translate
+     * @description Simple translation function
+     */
+    translate(key) {
+        const translations = {
+            "LOADING": "Loading..."
+        };
+        return translations[key] || key;
     },
 
     /**

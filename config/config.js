@@ -127,7 +127,16 @@ let config = {
 				windUnits: "metric",
 				updateInterval: 10 * 60 * 1000, // 10 minutes
 				animationSpeed: 1000,
-				showDescription: false, // Keep it simple like default weather
+				showWindDirection: true,
+				showWindDirectionAsArrow: false,
+				showHumidity: true,
+				showFeelsLike: true,
+				showSun: false,
+				showMoonTimes: false,
+				colored: false, // Black and white theme
+				roundTemp: true,
+				degreeLabel: true,
+				showDescription: false, // Keep it simple
 				useLocationFromSimpleLocation: true, // Enable dynamic location
 				locationUpdateDelay: 5000, // Wait 5s after location update
 				debug: false
