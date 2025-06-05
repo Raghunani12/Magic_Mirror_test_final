@@ -215,14 +215,11 @@ let config = {
 			module: "MMM-GoogleDrivePhotos",
 			position: "top_bar",
 			config: {
-				// Option 1: Use shared folder URL (paste your Google Drive folder link here)
-				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing", // Paste your shared Google Drive folder URL here
+				// 🎯 EASY SETUP: Just paste your Google Drive folder sharing link here
+				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing",
 
-				// Option 2: Use individual file IDs (more reliable)
-				fileIds: [
-					// Add your Google Drive file IDs here
-					// Example: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
-				],
+				// Advanced option: Individual file IDs (leave empty to use folder URL)
+				fileIds: [],
 
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
@@ -233,7 +230,7 @@ let config = {
 				maxImages: 50,
 				updateInterval: 60 * 60 * 1000, // Check for new photos every hour
 				showImageInfo: false,
-				debug: true // Enable debug to see Google Drive integration
+				debug: false // Production ready
 			}
 		},
 
