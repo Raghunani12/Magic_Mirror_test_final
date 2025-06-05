@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🌍 Chaos Dev IP Geolocation Test</title>
+    <style>
+        body {
+            font-family: 'Roboto', Arial, sans-serif;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+            color: white;
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: rgba(255, 255, 255, 0.1);
+            padding: 30px;
+            border-radius: 15px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5em;
+        }
+        .api-test {
+            margin: 20px 0;
+            padding: 15px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 8px;
+            border-left: 4px solid #4CAF50;
+        }
+        .api-test.error {
+            border-left-color: #f44336;
+        }
+        .api-test.loading {
+            border-left-color: #ff9800;
+        }
+        .result {
+            font-family: 'Courier New', monospace;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+        }
+        button {
+            background: #4CAF50;
+            color: white;
+            border: none;
+            padding: 12px 24px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 16px;
+            margin: 10px 5px;
+            transition: all 0.3s ease;
+        }
+        button:hover {
+            background: #45a049;
+            transform: translateY(-2px);
+        }
+        button:disabled {
+            background: #666;
+            cursor: not-allowed;
+            transform: none;
+        }
+        .summary {
+            margin-top: 30px;
+            padding: 20px;
+            background: rgba(76, 175, 80, 0.2);
+            border-radius: 8px;
+            border: 1px solid rgba(76, 175, 80, 0.5);
+        }
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255, 255, 255, 0.3);
+            border-radius: 50%;
+            border-top-color: #fff;
+            animation: spin 1s ease-in-out infinite;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🌍 Chaos Dev IP Geolocation Test</h1>
+        
+        <p>Testing the same APIs used by MMM-SimpleLocation module:</p>
+        
+        <button onclick="testAllAPIs()">🚀 Test All APIs</button>
+        <button onclick="clearResults()">🧹 Clear Results</button>
+        
+        <div id="api-tests">
+            <div class="api-test" id="test-ipapi">
+                <h3>🎯 Primary API: ipapi.co</h3>
+                <div class="result" id="result-ipapi">Click "Test All APIs" to start</div>
+            </div>
+            
+            <div class="api-test" id="test-ipapi2">
+                <h3>🔄 Fallback 1: ip-api.com</h3>
+                <div class="result" id="result-ipapi2">Click "Test All APIs" to start</div>
+            </div>
+            
+            <div class="api-test" id="test-ipinfo">
+                <h3>🛡️ Fallback 2: ipinfo.io</h3>
+                <div class="result" id="result-ipinfo">Click "Test All APIs" to start</div>
+            </div>
+            
+            <div class="api-test" id="test-ipify">
+                <h3>🔍 Fallback 3: ipify.org (IP only)</h3>
+                <div class="result" id="result-ipify">Click "Test All APIs" to start</div>
+            </div>
+        </div>
+        
+        <div class="summary" id="summary" style="display: none;">
+            <h3>📊 Test Summary</h3>
+            <div id="summary-content"></div>
+        </div>
+    </div>
+
+    <script>
+        const apis = [
+            {
+                name: 'ipapi',
+                url: 'https://ipapi.co/json/',
+                parser: (data) => ({ city: data.city, country: data.country, ip: data.ip })
+            },
+            {
+                name: 'ipapi2',
+                url: 'http://ip-api.com/json/',
+                parser: (data) => ({ city: data.city, country: data.country_name || data.country, ip: data.query })
+            },
+            {
+                name: 'ipinfo',
+                url: 'https://ipinfo.io/json',
+                parser: (data) => ({ city: data.city, country: data.country, ip: data.ip })
+            },
+            {
+                name: 'ipify',
+                url: 'https://api.ipify.org?format=json',
+                parser: (data) => ({ city: 'N/A', country: 'N/A', ip: data.ip })
+            }
+        ];
+
+        let results = {};
+
+        async function testAPI(api) {
+            const testElement = document.getElementById(`test-${api.name}`);
+            const resultElement = document.getElementById(`result-${api.name}`);
+            
+            testElement.className = 'api-test loading';
+            resultElement.innerHTML = '<span class="loading-spinner"></span> Testing...';
+            
+            try {
+                const startTime = Date.now();
+                const response = await fetch(api.url);
+                const data = await response.json();
+                const endTime = Date.now();
+                const duration = endTime - startTime;
+                
+                const parsed = api.parser(data);
+                
+                testElement.className = 'api-test';
+                resultElement.innerHTML = `✅ SUCCESS (${duration}ms)
+City: ${parsed.city}
+Country: ${parsed.country}
+IP: ${parsed.ip}
+
+Raw Response:
+${JSON.stringify(data, null, 2)}`;
+                
+                results[api.name] = { success: true, data: parsed, duration, raw: data };
+                
+            } catch (error) {
+                testElement.className = 'api-test error';
+                resultElement.innerHTML = `❌ ERROR: ${error.message}`;
+                results[api.name] = { success: false, error: error.message };
+            }
+        }
+
+        async function testAllAPIs() {
+            results = {};
+            document.getElementById('summary').style.display = 'none';
+            
+            // Test all APIs in parallel
+            await Promise.all(apis.map(api => testAPI(api)));
+            
+            // Show summary
+            showSummary();
+        }
+
+        function showSummary() {
+            const summaryElement = document.getElementById('summary-content');
+            const successful = Object.values(results).filter(r => r.success);
+            const failed = Object.values(results).filter(r => !r.success);
+            
+            let summaryHTML = `
+<strong>✅ Successful APIs: ${successful.length}/${apis.length}</strong><br>
+<strong>❌ Failed APIs: ${failed.length}/${apis.length}</strong><br><br>`;
+
+            if (successful.length > 0) {
+                const firstSuccess = successful[0];
+                summaryHTML += `<strong>🎯 Your Detected Location:</strong><br>`;
+                summaryHTML += `City: ${firstSuccess.data.city}<br>`;
+                summaryHTML += `Country: ${firstSuccess.data.country}<br>`;
+                summaryHTML += `IP: ${firstSuccess.data.ip}<br><br>`;
+            }
+
+            summaryHTML += `<strong>🚀 Recommendation for MMM-SimpleLocation:</strong><br>`;
+            if (successful.length > 0) {
+                summaryHTML += `✅ IP Geolocation is working! Your location should display correctly.`;
+            } else {
+                summaryHTML += `⚠️ All APIs failed. Use static location configuration.`;
+            }
+
+            summaryElement.innerHTML = summaryHTML;
+            document.getElementById('summary').style.display = 'block';
+        }
+
+        function clearResults() {
+            apis.forEach(api => {
+                const testElement = document.getElementById(`test-${api.name}`);
+                const resultElement = document.getElementById(`result-${api.name}`);
+                testElement.className = 'api-test';
+                resultElement.innerHTML = 'Click "Test All APIs" to start';
+            });
+            document.getElementById('summary').style.display = 'none';
+            results = {};
+        }
+
+        // Auto-test on page load
+        window.addEventListener('load', () => {
+            setTimeout(testAllAPIs, 1000);
+        });
+    </script>
+</body>
+</html>
