@@ -354,6 +354,68 @@ body {
     opacity: 0 !important;
 }
 
+/* MMM-ModulePosition Layout - Optimized Positioning */
+.region.top.bar .module {
+    position: absolute;
+    z-index: 100;
+}
+
+/* Clock - Top Left */
+.region.top.bar .module.clock {
+    top: 20px;
+    left: 20px;
+    width: 300px;
+}
+
+/* Calendar - Left Side */
+.region.top.bar .module.calendar {
+    top: 120px;
+    left: 20px;
+    width: 280px;
+    max-height: 400px;
+}
+
+/* Weather - Top Right */
+.region.top.bar .module.weather {
+    top: 20px;
+    right: 20px;
+    width: 250px;
+}
+
+/* Image Slideshow - Under Calendar */
+.region.top.bar .module.MMM-ImageSlideshow {
+    top: 540px;
+    left: 20px;
+    width: 120px;
+    height: 80px;
+}
+
+/* Location - Top Center */
+.region.top.bar .module.MMM-ip {
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+}
+
+/* News Feed - Bottom */
+.region.top.bar .module.newsfeed {
+    bottom: 100px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    max-width: 1000px;
+}
+
+/* Compliments - Bottom Center */
+.region.top.bar .module.compliments {
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    max-width: 800px;
+}
+
 /* Region Specific Styling */
 .region.top.left {
     text-align: left;

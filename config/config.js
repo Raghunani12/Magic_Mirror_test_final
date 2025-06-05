@@ -38,10 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Left
+		// Clock and Date - Top Bar
 		{
 			module: "clock",
-			position: "top_left",
+			position: "top_bar",
 			config: {
 				timeFormat: 24,
 				showDate: true,
@@ -58,11 +58,11 @@ let config = {
 			}
 		},
 
-		// Your Google Calendar - Top Left
+		// Your Google Calendar - Top Bar
 		{
 			module: "calendar",
 			header: "My Calendar",
-			position: "top_left",
+			position: "top_bar",
 			config: {
 				calendars: [
 					{
@@ -99,10 +99,10 @@ let config = {
 			}
 		},
 
-		// Current Weather - Top Right
+		// Current Weather - Top Bar
 		{
 			module: "weather",
-			position: "top_right",
+			position: "top_bar",
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
@@ -126,10 +126,10 @@ let config = {
 			}
 		},
 
-		// Location Display - Top Center
+		// Location Display - Top Bar
 		{
 			module: "MMM-ip",
-			position: "top_center",
+			position: "top_bar",
 			config: {
 				fontSize: 18,
 				dimmed: true,
@@ -141,10 +141,10 @@ let config = {
 			}
 		},
 
-		// News Feed - Bottom Bar
+		// News Feed - Top Bar
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "top_bar",
 			config: {
 				feeds: [
 					{
@@ -189,10 +189,10 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Bottom Left
+		// Photo Slideshow - Top Bar
 		{
 			module: "MMM-ImageSlideshow",
-			position: "bottom_right",
+			position: "top_bar",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds
@@ -206,10 +206,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Lower Third
+		// Compliments - Top Bar
 		{
 			module: "compliments",
-			position: "lower_third",
+			position: "top_bar",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -240,6 +240,20 @@ let config = {
 						"Tomorrow awaits your brilliance!"
 					]
 				}
+			}
+		},
+
+		// MMM-ModulePosition - Layout Control (MUST BE LAST!)
+		{
+			module: "MMM-ModulePosition",
+			position: "fullscreen_below",
+			config: {
+				text: "Drag & Resize Modules",
+				easeAmount: 0.3,
+				FPS: 15,
+				minimum_size: 50,
+				grid: 10,
+				showAlerts: true
 			}
 		}
 	]
