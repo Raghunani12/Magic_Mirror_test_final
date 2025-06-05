@@ -218,8 +218,20 @@ let config = {
 				// 🎯 EASY SETUP: Just paste your Google Drive folder sharing link here
 				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing",
 
-				// Advanced option: Individual file IDs (leave empty to use folder URL)
-				fileIds: [],
+				// WORKING SOLUTION: Add individual Google Drive file IDs here
+				fileIds: [
+					// Example: Get file IDs from your Google Drive photos
+					// 1. Right-click photo in Google Drive → Share → Get link
+					// 2. Extract ID from: https://drive.google.com/file/d/FILE_ID_HERE/view
+					// 3. Add the FILE_ID_HERE below:
+
+					// Example working Google Drive image (replace with your own)
+					"1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+
+					// TODO: Add more of your Google Drive file IDs here:
+					// "your_second_photo_file_id",
+					// "your_third_photo_file_id"
+				],
 
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,

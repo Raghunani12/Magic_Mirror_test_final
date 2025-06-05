@@ -1,29 +1,45 @@
 # 📸 Smart Mirror Photo Setup - Client Guide
 
-## 🎯 **Super Simple Setup (2 Steps Only!)**
+## 🎯 **Working Solution (3 Easy Steps!)**
 
-### **Step 1: Share Your Google Drive Folder**
+### **Step 1: Upload Photos to Google Drive**
 1. **Go to Google Drive** (drive.google.com)
-2. **Create a folder** with your photos (or use existing folder)
-3. **Right-click the folder** → "Share"
-4. **Change to "Anyone with the link can view"**
-5. **Copy the sharing link**
+2. **Upload your photos** to any folder
+3. **Make sure photos are JPG, PNG, or GIF format**
 
-### **Step 2: Update Your Smart Mirror**
-1. **Open the configuration file** on your smart mirror
-2. **Find this line:**
-   ```javascript
-   googleDriveFolderUrl: "PASTE_YOUR_LINK_HERE",
+### **Step 2: Get Photo File IDs**
+For each photo you want on your smart mirror:
+
+1. **Right-click the photo** in Google Drive
+2. **Click "Share"** → "Get link"
+3. **Change to "Anyone with the link can view"**
+4. **Copy the link** - it looks like:
    ```
-3. **Replace with your folder link:**
+   https://drive.google.com/file/d/1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms/view
+   ```
+5. **Extract the file ID**: `1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms`
+
+### **Step 3: Update Your Smart Mirror**
+1. **Open your smart mirror configuration**
+2. **Find the fileIds section:**
    ```javascript
-   googleDriveFolderUrl: "https://drive.google.com/drive/folders/YOUR_FOLDER_ID",
+   fileIds: [
+       // Add your file IDs here
+   ],
+   ```
+3. **Add your file IDs:**
+   ```javascript
+   fileIds: [
+       "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms",
+       "1234567890abcdefghijklmnopqrstuvwxyz",
+       "another_file_id_from_your_photos"
+   ],
    ```
 4. **Restart your smart mirror**
 
-## ✅ **That's It!**
+## ✅ **Your Photos Will Now Display!**
 
-Your smart mirror will now display photos from your Google Drive folder and automatically check for new photos every 2 hours.
+The smart mirror will rotate through your photos every 10 seconds.
 
 ---
 

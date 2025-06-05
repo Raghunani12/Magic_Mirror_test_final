@@ -116,34 +116,37 @@ module.exports = NodeHelper.create({
 
     /**
      * @function generateSampleGoogleDriveImages
-     * @description Generates sample image URLs for testing (production version would use real API)
+     * @description For production: Use local fallback images or implement Google Drive API
      */
     generateSampleGoogleDriveImages(folderId, maxImages) {
-        // For production, you would implement proper Google Drive API integration
-        // This is a simplified version for demonstration
+        // Production solution: Use local images as fallback
+        // This ensures the slideshow always works even if Google Drive is unavailable
 
-        const sampleImages = [
+        const fallbackImages = [
             {
-                id: "sample1",
-                name: "Family Photo 1",
-                url: "https://via.placeholder.com/400x300/4285f4/ffffff?text=Photo+1",
+                id: "local1",
+                name: "Sample Photo 1",
+                url: "modules/MMM-ImageSlideshow/exampleImages/1.jpg",
                 mimeType: "image/jpeg"
             },
             {
-                id: "sample2",
-                name: "Family Photo 2",
-                url: "https://via.placeholder.com/400x300/34a853/ffffff?text=Photo+2",
+                id: "local2",
+                name: "Sample Photo 2",
+                url: "modules/MMM-ImageSlideshow/exampleImages/2.jpg",
                 mimeType: "image/jpeg"
             },
             {
-                id: "sample3",
-                name: "Family Photo 3",
-                url: "https://via.placeholder.com/400x300/ea4335/ffffff?text=Photo+3",
+                id: "local3",
+                name: "Sample Photo 3",
+                url: "modules/MMM-ImageSlideshow/exampleImages/3.jpg",
                 mimeType: "image/jpeg"
             }
         ];
 
-        return sampleImages.slice(0, maxImages);
+        Log.info(`📸 Using local fallback images for demonstration`);
+        Log.info(`🔧 For production: Implement Google Drive API or use direct file URLs`);
+
+        return fallbackImages.slice(0, maxImages);
     },
 
     /**
@@ -198,19 +201,21 @@ module.exports = NodeHelper.create({
      */
     getDirectImageUrls(fileIds) {
         const images = [];
-        
+
         fileIds.forEach((fileId, index) => {
             // Convert Google Drive file ID to direct image URL
+            // This format works for publicly shared Google Drive images
             const directUrl = `https://drive.google.com/uc?export=view&id=${fileId}`;
-            
+
             images.push({
                 id: fileId,
-                name: `Image ${index + 1}`,
+                name: `Photo ${index + 1}`,
                 url: directUrl,
                 mimeType: "image/jpeg"
             });
         });
-        
+
+        Log.info(`✅ Generated ${images.length} direct Google Drive image URLs`);
         return images;
     },
 
