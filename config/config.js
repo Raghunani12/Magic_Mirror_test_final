@@ -210,16 +210,16 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Center Position (Between News)
+		// Photo Slideshow - Static Images (Working Now)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "middle_center",
+			position: "top_bar",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 300, // Larger size for center display
-				fixedImageHeight: 200, // Proportional height
+				fixedImageWidth: 120,
+				fixedImageHeight: 80,
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false, // Set to true for black/white theme
