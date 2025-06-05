@@ -210,15 +210,15 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Centered Between News and Compliments
+		// Photo Slideshow - Center Position (Between News)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "bottom_center",
+			position: "middle_center",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 300, // Consistent size for center display
+				fixedImageWidth: 300, // Larger size for center display
 				fixedImageHeight: 200, // Proportional height
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
@@ -227,10 +227,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Bottom (Under Images)
+		// Compliments - Top Bar
 		{
 			module: "compliments",
-			position: "bottom_bar",
+			position: "top_bar",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
