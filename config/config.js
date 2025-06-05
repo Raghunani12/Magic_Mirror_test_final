@@ -216,7 +216,7 @@ let config = {
 			position: "top_bar",
 			config: {
 				// Option 1: Use shared folder URL (paste your Google Drive folder link here)
-				googleDriveFolderUrl: "", // Paste your shared Google Drive folder URL here
+				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing", // Paste your shared Google Drive folder URL here
 
 				// Option 2: Use individual file IDs (more reliable)
 				fileIds: [
