@@ -70,6 +70,8 @@ Temporary Items
 !/modules/MMM-SimpleLocation/**
 !/modules/MMM-DynamicWeather
 !/modules/MMM-DynamicWeather/**
+!/modules/MMM-GoogleDrivePhotos
+!/modules/MMM-GoogleDrivePhotos/**
 !/modules/MMM-ModulePosition
 !/modules/MMM-ModulePosition/**
 !/modules/MMM-FeedUtilities

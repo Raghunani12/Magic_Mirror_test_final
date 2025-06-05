@@ -210,20 +210,30 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Top Bar
+		// Google Drive Photos - Top Bar
 		{
-			module: "MMM-ImageSlideshow",
+			module: "MMM-GoogleDrivePhotos",
 			position: "top_bar",
 			config: {
-				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
-				slideshowSpeed: 12 * 1000, // 12 seconds
+				// Option 1: Use shared folder URL (paste your Google Drive folder link here)
+				googleDriveFolderUrl: "", // Paste your shared Google Drive folder URL here
+
+				// Option 2: Use individual file IDs (more reliable)
+				fileIds: [
+					// Add your Google Drive file IDs here
+					// Example: "1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
+				],
+
+				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
 				fixedImageWidth: 120,
 				fixedImageHeight: 80,
 				randomizeImageOrder: true,
-				treatAllPathsAsOne: false,
-				makeImagesGrayscale: false,
-				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
+				makeImagesGrayscale: false, // Set to true for black/white theme
+				maxImages: 50,
+				updateInterval: 60 * 60 * 1000, // Check for new photos every hour
+				showImageInfo: false,
+				debug: false
 			}
 		},
 
