@@ -210,45 +210,20 @@ let config = {
 			}
 		},
 
-		// Google Drive Photos - Top Bar
+		// Photo Slideshow - Static Images (Working Now)
 		{
-			module: "MMM-GoogleDrivePhotos",
+			module: "MMM-ImageSlideshow",
 			position: "top_bar",
 			config: {
-				// 🚀 PRODUCTION OPTION 1: Public Website (RECOMMENDED FOR PRODUCTION)
-				// Use gdrive-index, DriveToWeb, or similar service
-				publicWebsiteUrl: "", // e.g., "https://your-domain.com/photos"
-				driveToWebUrl: "", // e.g., "https://drv.tw/your-folder-id"
-
-				// 🔧 PRODUCTION OPTION 2: Individual File IDs (RELIABLE)
-				fileIds: [
-					// Example: Get file IDs from your Google Drive photos
-					// 1. Right-click photo in Google Drive → Share → Get link
-					// 2. Extract ID from: https://drive.google.com/file/d/FILE_ID_HERE/view
-					// 3. Add the FILE_ID_HERE below:
-
-					// Example working Google Drive image (replace with your own)
-					"1BxiMVs0XRA5nFMdKvBdBZjgmUUqptlbs74OgvE2upms"
-
-					// TODO: Add more of your Google Drive file IDs here:
-					// "your_second_photo_file_id",
-					// "your_third_photo_file_id"
-				],
-
-				// 📁 FALLBACK OPTION: Direct Google Drive folder (limited functionality)
-				googleDriveFolderUrl: "https://drive.google.com/drive/folders/1__u6j-dy5MepZE-AWgaGgI19QvNelpCN?usp=sharing",
-
-				// ⚙️ Display Settings
+				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
 				fixedImageWidth: 120,
 				fixedImageHeight: 80,
 				randomizeImageOrder: true,
+				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false, // Set to true for black/white theme
-				maxImages: 50,
-				updateInterval: 60 * 60 * 1000, // Check for new photos every hour
-				showImageInfo: false,
-				debug: false // Production ready
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
 			}
 		},
 
