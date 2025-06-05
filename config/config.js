@@ -58,10 +58,10 @@ let config = {
 			}
 		},
 
-		// Your Google Calendar - Top Bar
+		// Google + Outlook Calendars - Top Bar
 		{
 			module: "calendar",
-			header: "My Calendar",
+			header: "My Calendars",
 			position: "top_bar",
 			config: {
 				calendars: [
@@ -69,7 +69,20 @@ let config = {
 						fetchInterval: 5 * 60 * 1000, // 5 minutes
 						symbol: "calendar-check",
 						url: "https://calendar.google.com/calendar/ical/raghunani1437%40gmail.com/public/basic.ics",
-						name: "Personal Calendar",
+						name: "Google Calendar",
+						color: "#4285f4", // Google blue
+						auth: {
+							user: "",
+							pass: "",
+							method: "basic"
+						}
+					},
+					{
+						fetchInterval: 5 * 60 * 1000, // 5 minutes
+						symbol: "calendar",
+						url: "https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/7f1119da-7ece-4109-9a68-ea4e521b47ef/cid-46F8628E581F7C3D/calendar.ics",
+						name: "Outlook Calendar",
+						color: "#0078d4", // Outlook blue
 						auth: {
 							user: "",
 							pass: "",
@@ -243,7 +256,7 @@ let config = {
 			}
 		},
 
-		// MMM-ModulePosition - Layout Control (MUST BE LAST!)
+		// MMM-ModulePosition - Layout Control (ACTIVE)
 		{
 			module: "MMM-ModulePosition",
 			position: "fullscreen_below",
