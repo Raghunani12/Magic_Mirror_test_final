@@ -66,9 +66,9 @@
                     
                     <!-- Loading Information -->
                     <div class="jarvis-info">
-                        <h1 class="jarvis-title">MAGIC MIRROR</h1>
+                        <h1 class="jarvis-title">Hopper Automations</h1>
                         <div class="jarvis-subtitle">Advanced Personal Assistant</div>
-                        <div class="jarvis-version">Version 2.31.0 - Jarvis Protocol</div>
+                        <div class="jarvis-version">Version 2.31.0 - hopper Protocol</div>
                         
                         <div class="jarvis-status">
                             <div class="jarvis-status-text" id="jarvis-status">Initializing Systems...</div>
