@@ -751,44 +751,6 @@ body.grid-enabled {
 
 
 
-/* ===== CLOCK VISIBILITY FIX ===== */
-.clock {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 100 !important;
-}
-
-.clock .time {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 4rem !important;
-    font-weight: 300 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
-    margin: 0 !important;
-    padding: 10px !important;
-}
-
-.clock .date {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 1.2rem !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    margin-top: 5px !important;
-}
-
-/* Ensure top_left region is visible */
-.region.top.left {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 100 !important;
-    position: relative !important;
-}
-
 /* ===== JARVIS WELCOME INTEGRATION ===== */
 body.jarvis-welcome {
     animation: jarvis-system-boot 2s ease-out;

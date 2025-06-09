@@ -145,11 +145,6 @@
                     color: #00d4ff;
                     opacity: 0;
                     transition: opacity 0.5s ease;
-                    pointer-events: none;
-                }
-
-                #jarvis-preloader.jarvis-active {
-                    pointer-events: auto;
                 }
 
                 #jarvis-preloader.jarvis-active {
@@ -697,39 +692,13 @@
         fadeOut() {
             this.container.style.opacity = '0';
             this.container.style.transition = 'opacity 1s ease-out';
-            this.container.style.pointerEvents = 'none';
 
             setTimeout(() => {
-                // Completely remove the preloader
-                if (this.container && this.container.parentNode) {
-                    this.container.parentNode.removeChild(this.container);
-                }
-
-                // Ensure no lingering styles
-                document.body.style.overflow = '';
-
-                // Force refresh of all modules
-                this.refreshModules();
+                this.container.remove();
 
                 // Trigger welcome animation for Magic Mirror
                 this.triggerWelcomeSequence();
             }, 1000);
-        }
-
-        /**
-         * Force refresh all modules to ensure they display
-         */
-        refreshModules() {
-            if (typeof MM !== 'undefined' && MM.getModules) {
-                MM.getModules().forEach(module => {
-                    if (module.updateDom) {
-                        module.updateDom();
-                    }
-                    if (module.show) {
-                        module.show();
-                    }
-                });
-            }
         }
 
         /**
