@@ -707,46 +707,6 @@
         triggerWelcomeSequence() {
             // Add welcome class to body for any additional animations
             document.body.classList.add('jarvis-welcome');
-
-            // Create a subtle welcome notification
-            const welcome = document.createElement('div');
-            welcome.style.cssText = `
-                position: fixed;
-                top: 20px;
-                right: 20px;
-                background: linear-gradient(135deg, rgba(0, 212, 255, 0.9), rgba(0, 153, 204, 0.9));
-                color: white;
-                padding: 15px 25px;
-                border-radius: 25px;
-                font-family: 'Orbitron', monospace;
-                font-size: 14px;
-                z-index: 9999;
-                box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3);
-                animation: slideInRight 0.5s ease-out;
-                opacity: 0;
-                transform: translateX(100%);
-            `;
-            welcome.innerHTML = '🎤 JARVIS Online - Voice Control Ready';
-
-            document.body.appendChild(welcome);
-
-            // Animate in
-            setTimeout(() => {
-                welcome.style.opacity = '1';
-                welcome.style.transform = 'translateX(0)';
-                welcome.style.transition = 'all 0.5s ease-out';
-            }, 100);
-
-            // Remove after delay
-            setTimeout(() => {
-                welcome.style.opacity = '0';
-                welcome.style.transform = 'translateX(100%)';
-                setTimeout(() => {
-                    if (welcome.parentNode) {
-                        welcome.parentNode.removeChild(welcome);
-                    }
-                }, 500);
-            }, 4000);
         }
     }
 
