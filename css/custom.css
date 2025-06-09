@@ -1,182 +1,294 @@
-/* Professional Smart Mirror - Black & White Animated Theme
- * Sleek, Modern, and Minimalist Design
- * With Wizard World Font for Magical Compliments
- */
+/* ===== FULLY RESPONSIVE MAGICMIRROR DASHBOARD ===== */
+/* Handles 4:3, 16:9, 21:9, 9:16, rotated displays, and custom resolutions */
 
-/* Import Wizard World Font */
-@import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;500;600;700&family=Uncial+Antiqua&family=MedievalSharp&display=swap');
+/* Import Google Font - Nunito Sans */
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap');
 
-/* Global Styling */
+/* ===== GLOBAL FOUNDATION ===== */
 
-
-
-
-body {
+html, body {
+    font-family: 'Nunito Sans', sans-serif;
     margin: 0;
-    height: 100vh;
+    padding: 0;
     background: #000000;
     background-image:
         radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
         radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
     color: #ffffff;
-    font-family: 'Cinzel', serif;
     font-weight: 300;
-    font-size: 14px;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden;
+    overflow-x: hidden;
+    min-height: 100vh;
     animation: backgroundPulse 30s ease-in-out infinite;
 }
 
-@keyframes backgroundPulse {
-    0%, 100% {
-        background-image:
-            radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
-            radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
-    }
-    50% {
-        background-image:
-            radial-gradient(circle at 75% 25%, #111111 0%, transparent 50%),
-            radial-gradient(circle at 25% 75%, #0a0a0a 0%, transparent 50%);
-    }
-}
-
-/* Header Styling - Top Bar with Responsive Layout */
-.region.top.bar {
-    background: rgba(0, 0, 0, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 10px 20px;
-    animation: slideDown 1s ease-out;
+/* Responsive Body Layout - Flexbox Foundation */
+body {
     display: flex;
     flex-direction: column;
-    gap: 10px;
-    min-height: 60px;
-    overflow: hidden;
+    align-items: center;
+    justify-content: flex-start;
+    padding: clamp(1vh, 2vh, 3vh) clamp(1vw, 2vw, 3vw);
+    gap: clamp(1vh, 2vh, 3vh);
 }
 
-/* Top bar modules layout */
-.region.top.bar .module {
-    margin-bottom: 5px;
-    flex-shrink: 0;
+/* All modules use responsive font sizing */
+.module {
+    font-size: clamp(14px, 2.5vw, 28px);
+    width: 100%;
+    box-sizing: border-box;
 }
 
-/* Location module in top bar - compact */
-.region.top.bar .MMM-SimpleLocation {
-    font-size: 12px;
-    opacity: 0.8;
+/* Region Foundation - Responsive Container */
+.region {
+    width: 100%;
+    max-width: 1280px;
+    margin-bottom: clamp(1vh, 2vh, 3vh);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+/* ===== LAYER 1: TOP CENTER - CLOCK & LOCATION ===== */
+
+/* Clock Module - Always at the very top, centered */
+.region.top.center {
+    order: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(0.5rem, 1vh, 1.5rem);
+}
+
+.responsive-clock {
     text-align: center;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    width: fit-content;
+    margin: 0 auto;
+    padding-bottom: clamp(0.25rem, 0.5vh, 0.75rem);
 }
 
-/* News feed in top bar - scrolling ticker */
-.region.top.bar .newsfeed {
-    font-size: 11px;
-    max-height: 25px;
-    overflow: hidden;
-    text-align: center;
-}
-
-@keyframes slideDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Module Headers */
-.module-header {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    margin-bottom: 10px;
-    padding-bottom: 5px;
-    letter-spacing: 1px;
-    text-transform: uppercase;
-}
-
-@keyframes glow {
-    from { text-shadow: 0 0 10px rgba(255, 255, 255, 0.3); }
-    to { text-shadow: 0 0 20px rgba(255, 255, 255, 0.6), 0 0 30px rgba(255, 255, 255, 0.4); }
-}
-
-/* Clock Styling */
-.clock {
-    font-family: 'Cinzel', serif;
-    font-size: 32px;
-    font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    margin-bottom: 10px;
-    letter-spacing: 1px;
+.responsive-clock .time {
+    font-size: clamp(2rem, 8vw, 6rem) !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 clamp(10px, 2vw, 30px) rgba(255, 255, 255, 0.6) !important;
     line-height: 1.1;
 }
 
-.clock .time {
-    display: block;
-    font-family: 'Cinzel', serif;
-    font-weight: 400;
+.responsive-clock .date {
+    font-size: clamp(0.8rem, 2.5vw, 1.5rem) !important;
+    font-weight: 400 !important;
+    opacity: 0.9;
+    margin-top: clamp(0.25rem, 0.5vh, 0.75rem);
 }
 
-.clock .date {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    font-weight: 300;
-    opacity: 0.85;
-    margin-top: 5px;
-    letter-spacing: 0.5px;
+/* SimpleLocation - Below Clock */
+.responsive-location {
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+}
+
+.responsive-location .MMM-SimpleLocation {
+    font-size: clamp(1rem, 3vw, 1.8rem) !important;
+    opacity: 0.9;
+    color: #ffffff;
+    text-shadow: 0 0 clamp(5px, 1vw, 15px) rgba(255, 255, 255, 0.4);
+}
+
+/* ===== LAYER 2: CALENDAR & WEATHER FLEXBOX ROW ===== */
+
+.region.middle.center {
+    order: 2;
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: clamp(1rem, 2vw, 3rem);
+    align-items: flex-start;
+}
+
+/* Calendar & Weather Wrapper */
+.calendar-weather-item {
+    flex: 1 1 45%;
+    min-width: clamp(250px, 40vw, 400px);
+    max-width: 100%;
+    box-sizing: border-box;
+}
+
+.responsive-calendar,
+.responsive-weather {
+    padding: clamp(0.5rem, 1vw, 1.5rem);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: clamp(8px, 1vw, 16px);
+    backdrop-filter: blur(5px);
+}
+
+/* ===== LAYER 3: IMAGE SLIDER ===== */
+
+.region.lower.third {
+    order: 3;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(1rem, 2vh, 3rem);
+}
+
+/* Image Slider - Responsive Sizing */
+.responsive-image-slider {
+    width: clamp(200px, 90vw, 600px);
+    max-width: 90vw;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.responsive-image-slider img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    border-radius: clamp(8px, 1vw, 16px);
+    box-shadow: 0 clamp(4px, 1vw, 12px) clamp(20px, 4vw, 48px) rgba(0, 0, 0, 0.4);
+}
+
+/* ===== LAYER 4: COMPLIMENTS ===== */
+
+.responsive-compliments {
+    text-align: center;
+    margin: 0 auto;
+    width: fit-content;
+    max-width: 90%;
+    padding: clamp(0.75rem, 2vw, 2rem) clamp(1rem, 3vw, 3rem);
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: clamp(12px, 2vw, 25px);
+    backdrop-filter: blur(10px);
+}
+
+.responsive-compliments .compliments {
+    font-size: clamp(1.2rem, 4vw, 2.5rem) !important;
+    font-weight: 400 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 clamp(8px, 2vw, 20px) rgba(255, 255, 255, 0.5) !important;
     line-height: 1.3;
+    text-align: center;
+}
+
+/* ===== LAYER 5: NEWS (BOTTOM) ===== */
+
+.region.bottom.bar {
+    order: 5;
+    width: 100%;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: clamp(0.5rem, 2vw, 1.5rem) clamp(1rem, 5vw, 3rem);
+    margin-top: auto;
+    backdrop-filter: blur(10px);
+}
+
+.responsive-news {
+    width: 100%;
+    text-align: center;
+}
+
+.responsive-news .newsfeed {
+    font-size: clamp(0.9rem, 2.5vw, 1.4rem) !important;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    animation: none !important;
+    line-height: 1.4;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
 }
 
-/* Remove any blinking or pulsing animations from clock */
-.clock,
-.clock .time,
-.clock .date,
-.clock .week {
-    animation: none !important;
+/* ===== RESPONSIVE MEDIA QUERIES ===== */
+
+/* Small Screens (Mobile, Narrow Mirrors) - Stack Calendar & Weather */
+@media (max-width: 600px) {
+    .region.middle.center {
+        flex-direction: column;
+        gap: clamp(1rem, 3vw, 2rem);
+    }
+
+    .calendar-weather-item {
+        flex: 1 1 100%;
+        min-width: 100%;
+        max-width: 100%;
+    }
+
+    .responsive-clock .time {
+        font-size: clamp(1.8rem, 12vw, 4rem) !important;
+    }
+
+    .responsive-compliments .compliments {
+        font-size: clamp(1rem, 6vw, 2rem) !important;
+    }
+
+    .responsive-image-slider {
+        width: clamp(150px, 95vw, 400px);
+    }
 }
 
-/* Calendar Styling */
-.calendar {
-    font-family: 'Cinzel', serif;
-    padding: 8px;
-    margin: 5px 0;
+/* Medium Screens (Tablets, Small Mirrors) */
+@media (min-width: 601px) and (max-width: 1024px) {
+    .calendar-weather-item {
+        flex: 1 1 48%;
+        min-width: clamp(280px, 45vw, 450px);
+    }
 }
 
-.calendar .event {
-    margin: 4px 0;
-    padding: 3px 0;
-    transition: all 0.3s ease;
+/* Large Screens (Big Mirrors, TVs) */
+@media (min-width: 1025px) {
+    .calendar-weather-item {
+        flex: 1 1 45%;
+        min-width: clamp(350px, 40vw, 500px);
+    }
+
+    .responsive-clock .time {
+        font-size: clamp(3rem, 6vw, 8rem) !important;
+    }
 }
 
-.calendar .event:hover {
-    transform: translateX(2px);
+/* Portrait Orientation (9:16, Vertical Mirrors) */
+@media (orientation: portrait) {
+    body {
+        padding: clamp(1vh, 1.5vh, 2vh) clamp(2vw, 3vw, 4vw);
+        gap: clamp(1vh, 1.5vh, 2vh);
+    }
+
+    .region.middle.center {
+        flex-direction: column;
+    }
+
+    .calendar-weather-item {
+        flex: 1 1 100%;
+        min-width: 100%;
+    }
 }
 
-.calendar .event .time {
-    font-family: 'Cinzel', serif;
-    color: #ffffff;
-    font-weight: 300;
-    opacity: 0.8;
-    font-size: 10px;
-    margin-bottom: 2px;
+/* Landscape Orientation (21:9, Wide Mirrors) */
+@media (orientation: landscape) and (min-aspect-ratio: 2/1) {
+    .region.middle.center {
+        gap: clamp(2rem, 4vw, 6rem);
+    }
+
+    .calendar-weather-item {
+        flex: 1 1 45%;
+        min-width: clamp(300px, 35vw, 450px);
+    }
 }
 
-.calendar .event .title {
-    font-family: 'Cinzel', serif;
-    color: #ffffff;
-    font-weight: 400;
-    font-size: 12px;
-    line-height: 1.3;
-    margin-top: 1px;
-}
+/* Ultra-wide Screens (21:9+) */
+@media (min-aspect-ratio: 21/9) {
+    .region {
+        max-width: 1600px;
+    }
 
-.calendar .event .symbol {
-    color: #ffffff;
-    opacity: 0.7;
-    margin-right: 4px;
-    font-size: 10px;
+    .calendar-weather-item {
+        flex: 1 1 40%;
+        min-width: clamp(350px, 30vw, 500px);
+    }
 }
 
 /* Calendar source differentiation */
@@ -1171,6 +1283,73 @@ body.jarvis-welcome .weather .weathericon {
     backdrop-filter: blur(10px) !important;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
     letter-spacing: 1px !important;
+}
+
+/* ===== RESPONSIVE UTILITIES ===== */
+
+/* Ensure no horizontal overflow on any screen */
+* {
+    box-sizing: border-box;
+}
+
+/* Responsive text wrapping */
+.module {
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
+/* Responsive images */
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Hide scrollbars but allow scrolling if needed */
+::-webkit-scrollbar {
+    width: 0;
+    background: transparent;
+}
+
+/* ===== ACCESSIBILITY & PERFORMANCE ===== */
+
+/* Reduce motion for users who prefer it */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+    .module {
+        border: 1px solid rgba(255, 255, 255, 0.3);
+    }
+
+    .responsive-clock {
+        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
+    }
+}
+
+/* ===== LEGACY OVERRIDES ===== */
+
+/* Override any old positioning */
+.region {
+    position: relative !important;
+    top: auto !important;
+    left: auto !important;
+    right: auto !important;
+    bottom: auto !important;
+    transform: none !important;
+}
+
+/* Ensure modules are visible */
+.module {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 }
 
 /* Print Styles */
