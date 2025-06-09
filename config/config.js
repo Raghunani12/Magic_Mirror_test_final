@@ -136,15 +136,15 @@ let config = {
 
 		// Weather - Right Side (Same Row as Calendar)
 		{
-			module: "MMM-DynamicWeather",
+			module: "weather",
 			position: "middle_center",
 			header: "Current Weather",
 			classes: "responsive-weather calendar-weather-item",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: 28.6139, // Fallback coordinates (New Delhi)
-				lon: 77.2090, // Fallback coordinates
+				lat: 17.3850, // Hyderabad coordinates
+				lon: 78.4867, // Hyderabad coordinates
 				units: "metric",
 				tempUnits: "metric",
 				windUnits: "metric",
@@ -159,10 +159,10 @@ let config = {
 				colored: false, // Black and white theme
 				roundTemp: true,
 				degreeLabel: true,
-				showDescription: false, // Keep it simple
+				showDescription: true, // Show description
 				useLocationFromSimpleLocation: true, // Enable dynamic location
 				locationUpdateDelay: 5000, // Wait 5s after location update
-				debug: false
+				debug: true // Enable debug to see what's happening
 			}
 		},
 
