@@ -38,10 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Left
+		// Clock and Date - Top Center (Main Focus)
 		{
 			module: "clock",
-			position: "top_left",
+			position: "top_center",
 			config: {
 				timeFormat: 24,
 				showDate: true,
@@ -210,10 +210,10 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Static Images (Working Now)
+		// Photo Slideshow - Bottom Left (Better Positioning)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "top_bar",
+			position: "bottom_left",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
@@ -227,10 +227,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Top Bar
+		// Compliments - Lower Third (Center Focus)
 		{
 			module: "compliments",
-			position: "top_bar",
+			position: "lower_third",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -264,7 +264,8 @@ let config = {
 			}
 		},
 
-		// MMM-ModulePosition - Layout Control (ACTIVE)
+		// MMM-ModulePosition - Layout Control (COMMENTED OUT FOR STABLE LAYOUT)
+		/*
 		{
 			module: "MMM-ModulePosition",
 			position: "fullscreen_below",
@@ -277,6 +278,7 @@ let config = {
 				showAlerts: true
 			}
 		},
+		*/
 
 		// WSL Voice Control - Browser-Based (WSL Compatible)
 		{

@@ -41,12 +41,38 @@ body {
     }
 }
 
-/* Header Styling */
+/* Header Styling - Top Bar with Responsive Layout */
 .region.top.bar {
     background: rgba(0, 0, 0, 0.8);
     border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 0;
+    padding: 10px 20px;
     animation: slideDown 1s ease-out;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    min-height: 60px;
+    overflow: hidden;
+}
+
+/* Top bar modules layout */
+.region.top.bar .module {
+    margin-bottom: 5px;
+    flex-shrink: 0;
+}
+
+/* Location module in top bar - compact */
+.region.top.bar .MMM-SimpleLocation {
+    font-size: 12px;
+    opacity: 0.8;
+    text-align: center;
+}
+
+/* News feed in top bar - scrolling ticker */
+.region.top.bar .newsfeed {
+    font-size: 11px;
+    max-height: 25px;
+    overflow: hidden;
+    text-align: center;
 }
 
 @keyframes slideDown {
@@ -385,6 +411,34 @@ body {
     opacity: 1 !important;
 }
 
+/* Anti-overlap protection */
+.region {
+    box-sizing: border-box;
+}
+
+.module {
+    box-sizing: border-box;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+/* Ensure proper spacing between regions */
+.region.top.center {
+    margin-top: 0;
+    margin-bottom: 20px;
+}
+
+.region.top.bar {
+    margin-bottom: 10px;
+}
+
+/* Prevent content overflow */
+.region.top.bar .module {
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 /* Enhanced MMM-ModulePosition visibility */
 .drag {
     border: 2px dashed rgba(66, 134, 244, 0.8) !important;
@@ -584,23 +638,30 @@ body.grid-enabled {
     padding-top: 20px;
 }
 
-/* Ensure clock is always visible in top left */
-.region.top.left .clock {
+.region.top.right {
+    text-align: right;
+    animation: slideInRight 1s ease-out;
+    padding-right: 20px;
+    padding-top: 20px;
+}
+
+/* Top Center - Clock Focus Area */
+.region.top.center {
+    text-align: center;
+    animation: slideInDown 1s ease-out;
+    padding-top: 20px;
+    z-index: 200;
+}
+
+/* Ensure clock is always visible and prominent in top center */
+.region.top.center .clock {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
     position: relative !important;
-    z-index: 100 !important;
-}
-
-.region.top.right {
-    text-align: right;
-    animation: slideInRight 1s ease-out;
-}
-
-.region.top.center {
-    text-align: center;
-    animation: slideInDown 1s ease-out;
+    z-index: 200 !important;
+    margin: 0 auto;
+    max-width: 100%;
 }
 
 .region.bottom.bar {
@@ -642,7 +703,7 @@ body.grid-enabled {
     }
 
     .clock {
-        font-size: 60px;
+        font-size: 28px;
     }
 
     .weather .temperature {
@@ -655,12 +716,30 @@ body.grid-enabled {
 
     .compliments {
         font-family: 'Cinzel', serif;
-        font-size: 30px;
-        letter-spacing: 2px;
+        font-size: 24px;
+        letter-spacing: 1.5px;
     }
 
     .module-header {
-        font-size: 20px;
+        font-size: 18px;
+    }
+
+    /* Responsive top bar */
+    .region.top.bar {
+        padding: 8px 15px;
+        min-height: 50px;
+    }
+
+    .region.top.center {
+        padding-top: 15px;
+    }
+
+    /* Responsive regions */
+    .region.top.left,
+    .region.top.right {
+        padding-top: 15px;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 }
 
@@ -670,30 +749,56 @@ body.grid-enabled {
     }
 
     .clock {
-        font-size: 48px;
+        font-size: 24px;
     }
 
     .weather .temperature {
-        font-size: 36px;
+        font-size: 32px;
     }
 
     .weather .weathericon {
-        font-size: 44px;
+        font-size: 36px;
     }
 
     .compliments {
-        font-size: 26px;
+        font-size: 20px;
         font-family: 'Cinzel', serif;
-        letter-spacing: 1.5px;
+        letter-spacing: 1px;
     }
 
     .MMM-ImageSlideshow {
-        max-width: 280px;
-        max-height: 180px;
+        max-width: 100px;
+        max-height: 70px;
     }
 
     .module-header {
-        font-size: 18px;
+        font-size: 16px;
+    }
+
+    /* Mobile responsive layout */
+    .region.top.bar {
+        padding: 5px 10px;
+        min-height: 40px;
+        font-size: 10px;
+    }
+
+    .region.top.center {
+        padding-top: 10px;
+    }
+
+    .region.top.left,
+    .region.top.right {
+        padding: 10px;
+    }
+
+    /* Compact news feed on mobile */
+    .region.top.bar .newsfeed {
+        font-size: 9px;
+        max-height: 20px;
+    }
+
+    .region.top.bar .MMM-SimpleLocation {
+        font-size: 10px;
     }
 }
 
