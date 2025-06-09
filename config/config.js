@@ -38,11 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock - Top Center (Always at the very top)
+		// Clock - Top Center
 		{
 			module: "clock",
 			position: "top_center",
-			classes: "responsive-clock",
 			config: {
 				timeFormat: 24,
 				showDate: true,
@@ -59,11 +58,10 @@ let config = {
 			}
 		},
 
-		// SimpleLocation - Below Clock (Centered)
+		// SimpleLocation - Below Clock (Upper Third)
 		{
 			module: "MMM-SimpleLocation",
-			position: "top_center",
-			classes: "responsive-location",
+			position: "upper_third",
 			config: {
 				dimmed: true,
 				city: "New Delhi", // Fallback city
@@ -79,12 +77,11 @@ let config = {
 			}
 		},
 
-		// Calendar - Left Side (Responsive Flexbox)
+		// Calendar - Left Side
 		{
 			module: "calendar",
 			header: "My Calendars",
-			position: "middle_center",
-			classes: "responsive-calendar calendar-weather-item",
+			position: "top_left",
 			config: {
 				calendars: [
 					{
@@ -112,7 +109,7 @@ let config = {
 						}
 					}
 				],
-				maximumEntries: 8,
+				maximumEntries: 6,
 				maximumNumberOfDays: 60,
 				displaySymbol: true,
 				defaultSymbol: "calendar",
@@ -134,12 +131,11 @@ let config = {
 			}
 		},
 
-		// Weather - Right Side (Same Row as Calendar)
+		// Weather - Right Side (Same Line as Calendar)
 		{
 			module: "weather",
-			position: "middle_center",
+			position: "top_right",
 			header: "Current Weather",
-			classes: "responsive-weather calendar-weather-item",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -162,17 +158,16 @@ let config = {
 				showDescription: true, // Show description
 				useLocationFromSimpleLocation: true, // Enable dynamic location
 				locationUpdateDelay: 5000, // Wait 5s after location update
-				debug: true // Enable debug to see what's happening
+				debug: false
 			}
 		},
 
 
 
-		// News Feed - Bottom Layer (Responsive)
+		// News Feed - Bottom
 		{
 			module: "newsfeed",
 			position: "bottom_bar",
-			classes: "responsive-news",
 			config: {
 				feeds: [
 					{
@@ -217,17 +212,16 @@ let config = {
 			}
 		},
 
-		// Image Slideshow - Third Layer (Centered)
+		// Image Slideshow - Left Side (with padding)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "lower_third",
-			classes: "responsive-image-slider",
+			position: "bottom_left",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 0, // Let CSS handle responsive sizing
-				fixedImageHeight: 0, // Let CSS handle responsive sizing
+				fixedImageWidth: 150,
+				fixedImageHeight: 100,
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false, // Set to true for black/white theme
@@ -235,11 +229,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Fourth Layer (Centered)
+		// Compliments - Center
 		{
 			module: "compliments",
-			position: "lower_third",
-			classes: "responsive-compliments",
+			position: "bottom_center",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
