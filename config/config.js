@@ -38,7 +38,7 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Left (Clean & Minimalistic)
+		// Clock and Date - Top Left (Primary Position)
 		{
 			module: "clock",
 			position: "top_left",
@@ -46,77 +46,126 @@ let config = {
 				timeFormat: 24,
 				showDate: true,
 				showWeek: false,
-				dateFormat: "MMM Do",
+				dateFormat: "dddd, MMMM Do YYYY",
 				displayType: "digital",
 				clockBold: false,
 				showPeriod: false,
 				showSunTimes: false,
-				showMoonTimes: false
+				showMoonTimes: false,
+				lat: null,
+				lon: null,
+				timezone: null
 			}
 		},
 
-		// Weather - Top Right (Clean Display)
-		{
-			module: "MMM-DynamicWeather",
-			position: "top_right",
-			config: {
-				weatherProvider: "openmeteo",
-				type: "current",
-				units: "metric",
-				tempUnits: "metric",
-				updateInterval: 10 * 60 * 1000,
-				animationSpeed: 1000,
-				showWindDirection: false,
-				showHumidity: false,
-				showFeelsLike: false,
-				showSun: false,
-				colored: false,
-				roundTemp: true,
-				degreeLabel: true,
-				showDescription: false,
-				useLocationFromSimpleLocation: true,
-				debug: false
-			}
-		},
-
-		// Calendar - Left Side (Organized)
+		// Google + Outlook Calendars - Middle Center
 		{
 			module: "calendar",
-			header: "Calendar",
-			position: "top_left",
+			header: "My Calendars",
+			position: "middle_center",
 			config: {
 				calendars: [
 					{
-						fetchInterval: 5 * 60 * 1000,
+						fetchInterval: 5 * 60 * 1000, // 5 minutes
 						symbol: "calendar-check",
 						url: "https://calendar.google.com/calendar/ical/raghunani1437%40gmail.com/public/basic.ics",
-						name: "Google Calendar"
+						name: "Google Calendar",
+						color: "#4285f4", // Google blue
+						auth: {
+							user: "",
+							pass: "",
+							method: "basic"
+						}
 					},
 					{
-						fetchInterval: 5 * 60 * 1000,
+						fetchInterval: 5 * 60 * 1000, // 5 minutes
 						symbol: "calendar",
 						url: "https://outlook.live.com/owa/calendar/00000000-0000-0000-0000-000000000000/35d23965-43f8-4e5e-8162-9a29b9f6ec76/cid-46F8628E581F7C3D/calendar.ics",
-						name: "Outlook Calendar"
+						name: "Outlook Calendar",
+						color: "#0078d4", // Outlook blue
+						auth: {
+							user: "",
+							pass: "",
+							method: "basic"
+						}
 					}
 				],
-				maximumEntries: 8,
-				maximumNumberOfDays: 30,
-				displaySymbol: false,
-				showLocation: false,
+				maximumEntries: 10,
+				maximumNumberOfDays: 60,
+				displaySymbol: true,
+				defaultSymbol: "calendar",
+				showLocation: true,
+				displayRepeatingCountTitle: false,
 				dateFormat: "MMM Do",
 				timeFormat: "HH:mm",
 				urgency: 7,
 				getRelative: 6,
 				fadePoint: 0.25,
-				colored: false,
-				tableClass: "small"
+				hidePrivate: false,
+				hideOngoing: false,
+				colored: false, // Black and white theme
+				coloredSymbolOnly: false,
+				tableClass: "small",
+				broadcastEvents: true,
+				excludedEvents: [],
+				sliceMultiDayEvents: false
 			}
 		},
 
-		// News Feed - Bottom Bar (Minimalistic)
+		// Dynamic Weather - Top Right (Auto-updates with real location)
+		{
+			module: "MMM-DynamicWeather",
+			position: "top_right",
+			header: "Current Weather",
+			config: {
+				weatherProvider: "openmeteo",
+				type: "current",
+				lat: 28.6139, // Fallback coordinates (New Delhi)
+				lon: 77.2090, // Fallback coordinates
+				units: "metric",
+				tempUnits: "metric",
+				windUnits: "metric",
+				updateInterval: 10 * 60 * 1000, // 10 minutes
+				animationSpeed: 1000,
+				showWindDirection: true,
+				showWindDirectionAsArrow: false,
+				showHumidity: true,
+				showFeelsLike: true,
+				showSun: false,
+				showMoonTimes: false,
+				colored: false, // Black and white theme
+				roundTemp: true,
+				degreeLabel: true,
+				showDescription: false, // Keep it simple
+				useLocationFromSimpleLocation: true, // Enable dynamic location
+				locationUpdateDelay: 5000, // Wait 5s after location update
+				debug: false
+			}
+		},
+
+		// Location Display - Top Center (IP Geolocation)
+		{
+			module: "MMM-SimpleLocation",
+			position: "top_center",
+			config: {
+				dimmed: true,
+				city: "New Delhi", // Fallback city
+				country: "India", // Fallback country
+				fallbackLat: 28.6139, // Fallback latitude
+				fallbackLon: 77.2090, // Fallback longitude
+				showCity: true,
+				showCountry: true,
+				useGeolocation: true, // Enable IP geolocation
+				broadcastLocation: true, // Broadcast to weather module
+				updateInterval: 30 * 60 * 1000, // Update every 30 minutes
+				retryAttempts: 3
+			}
+		},
+
+		// News Feed - Bottom Center
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "bottom_center",
 			config: {
 				feeds: [
 					{
@@ -124,83 +173,130 @@ let config = {
 						url: "http://feeds.bbci.co.uk/news/rss.xml"
 					},
 					{
+						title: "Reuters",
+						url: "http://feeds.reuters.com/reuters/topNews"
+					},
+					{
+						title: "CNN",
+						url: "http://rss.cnn.com/rss/edition.rss"
+					},
+					{
 						title: "TechCrunch",
 						url: "http://feeds.feedburner.com/TechCrunch/"
 					}
 				],
-				showSourceTitle: false,
-				showPublishDate: false,
+				showSourceTitle: true,
+				showPublishDate: true,
+				broadcastNewsFeeds: true,
+				broadcastNewsUpdates: true,
 				showDescription: false,
 				wrapTitle: true,
+				wrapDescription: true,
 				truncDescription: true,
-				lengthDescription: 200,
-				reloadInterval: 5 * 60 * 1000,
-				updateInterval: 15 * 1000,
+				lengthDescription: 300,
+				hideLoading: false,
+				reloadInterval: 5 * 60 * 1000, // 5 minutes
+				updateInterval: 15 * 1000, // 15 seconds
 				animationSpeed: 2000,
-				maxNewsItems: 5,
+				maxNewsItems: 0,
+				ignoreOldItems: false,
+				ignoreOlderThan: 24 * 60 * 60 * 1000, // 1 day
+				removeStartTags: "",
+				removeEndTags: "",
+				startTags: [],
+				endTags: [],
+				prohibitedWords: [],
 				scrollLength: 500
 			}
 		},
 
-		// Compliments - Lower Third (Centered)
+		// Photo Slideshow - Static Images (Working Now)
+		{
+			module: "MMM-ImageSlideshow",
+			position: "bottom_left",
+			config: {
+				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
+				slideshowSpeed: 12 * 1000, // 12 seconds per image
+				delayUntilRestart: 0,
+				fixedImageWidth: 120,
+				fixedImageHeight: 80,
+				randomizeImageOrder: true,
+				treatAllPathsAsOne: false,
+				makeImagesGrayscale: false, // Set to true for black/white theme
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
+			}
+		},
+
+		// Compliments - Bottom Right
 		{
 			module: "compliments",
-			position: "lower_third",
+			position: "bottom_right",
 			config: {
-				updateInterval: 30000,
-				fadeSpeed: 2000,
+				updateInterval: 45000, // 45 seconds
+				fadeSpeed: 3000,
 				compliments: {
 					anytime: [
-						"Looking great today!",
-						"Stay focused!",
-						"You've got this!"
+						"Looking sharp today!",
+						"You're making great progress!",
+						"Stay focused and achieve greatness!",
+						"Your dedication is inspiring!",
+						"Excellence is your standard!"
 					],
 					morning: [
-						"Good morning!",
-						"Ready for today?"
+						"Good morning! Ready to conquer the day?",
+						"Rise and shine, champion!",
+						"Today holds endless possibilities!",
+						"Start strong, finish stronger!"
 					],
 					afternoon: [
-						"Keep going!",
-						"Almost there!"
+						"Afternoon momentum building!",
+						"Keep pushing forward!",
+						"You're in your prime time!",
+						"Productivity at its peak!"
 					],
 					evening: [
-						"Well done today!",
-						"Time to relax!"
+						"Evening reflection time!",
+						"Another day of achievements!",
+						"Well-earned rest ahead!",
+						"Tomorrow awaits your brilliance!"
 					]
 				}
 			}
 		},
 
-		// Location Display - Top Center (Minimal)
+		// MMM-ModulePosition - Layout Control (ACTIVE)
 		{
-			module: "MMM-SimpleLocation",
-			position: "top_center",
+			module: "MMM-ModulePosition",
+			position: "fullscreen_below",
 			config: {
-				dimmed: true,
-				showCity: true,
-				showCountry: false,
-				useGeolocation: true,
-				broadcastLocation: true,
-				updateInterval: 30 * 60 * 1000
+				text: "Drag & Resize Modules",
+				easeAmount: 0.3,
+				FPS: 15,
+				minimum_size: 50,
+				grid: 10,
+				showAlerts: true
 			}
 		},
 
-		// WSL Voice Control - Hidden Helper
+		// WSL Voice Control - Browser-Based (WSL Compatible)
 		{
 			module: "MMM-WSLVoice",
-			position: "fullscreen_below",
+			position: "bottom_bar",
 			config: {
-				debug: false,
+				debug: false, // Set to true for troubleshooting
 				enableVisualFeedback: true,
-				feedbackDuration: 2000,
-				bridgePort: 3001,
+				feedbackDuration: 3000,
+				bridgePort: 3001, // Port for voice control web interface
 				commands: {
+					// Natural language commands (case insensitive)
 					"magic mirror show weather": "WEATHER_SHOW",
 					"magic mirror hide weather": "WEATHER_HIDE",
 					"magic mirror show calendar": "CALENDAR_SHOW",
 					"magic mirror hide calendar": "CALENDAR_HIDE",
 					"magic mirror show news": "NEWS_SHOW",
 					"magic mirror hide news": "NEWS_HIDE",
+					"magic mirror show photos": "PHOTOS_SHOW",
+					"magic mirror hide photos": "PHOTOS_HIDE",
 					"magic mirror refresh": "REFRESH_MIRROR",
 					"magic mirror good morning": "GOOD_MORNING",
 					"magic mirror good night": "GOOD_NIGHT"
