@@ -276,6 +276,80 @@ let config = {
 				grid: 10,
 				showAlerts: true
 			}
+		},
+
+		// Voice Control - Offline Privacy-Focused (NEW)
+		{
+			module: "MMM-voice",
+			position: "bottom_bar",
+			config: {
+				microphone: 1, // Will be detected during installation
+				keyword: "MAGIC MIRROR", // Wake word (UPPERCASE only)
+				timeout: 15, // Seconds to listen after wake word
+				speed: 1000, // Animation speed
+				confirmationSound: true, // Audio feedback
+				debug: false, // Set to true for troubleshooting
+				// Voice commands for your modules
+				commands: {
+					// Module control commands
+					"HIDE MODULES": "HIDE_MODULES",
+					"SHOW MODULES": "SHOW_MODULES",
+					"WAKE UP": "WAKE_UP",
+					"GO TO SLEEP": "GO_TO_SLEEP",
+
+					// Weather commands
+					"SHOW WEATHER": "WEATHER_SHOW",
+					"HIDE WEATHER": "WEATHER_HIDE",
+					"UPDATE WEATHER": "WEATHER_UPDATE",
+
+					// Calendar commands
+					"SHOW CALENDAR": "CALENDAR_SHOW",
+					"HIDE CALENDAR": "CALENDAR_HIDE",
+					"NEXT EVENT": "CALENDAR_NEXT",
+
+					// News commands
+					"SHOW NEWS": "NEWS_SHOW",
+					"HIDE NEWS": "NEWS_HIDE",
+					"NEXT NEWS": "NEWS_NEXT",
+
+					// Photo commands
+					"SHOW PHOTOS": "PHOTOS_SHOW",
+					"HIDE PHOTOS": "PHOTOS_HIDE",
+					"NEXT PHOTO": "PHOTOS_NEXT",
+
+					// Compliments commands
+					"SHOW COMPLIMENTS": "COMPLIMENTS_SHOW",
+					"HIDE COMPLIMENTS": "COMPLIMENTS_HIDE",
+
+					// System commands
+					"REFRESH": "REFRESH_MIRROR",
+					"RESTART": "RESTART_MIRROR"
+				}
+			}
+		},
+
+		// Voice Helper - Enhanced Integration (NEW)
+		{
+			module: "MMM-VoiceHelper",
+			position: "fullscreen_below", // Hidden helper module
+			config: {
+				debug: false, // Set to true for troubleshooting
+				enableAudioFeedback: true,
+				enableVisualFeedback: true,
+				commandTimeout: 5000,
+				feedbackDuration: 3000,
+				customCommands: {
+					// Add your custom voice commands here
+					"GOOD MORNING": {
+						action: "show_modules",
+						modules: ["clock", "weather", "calendar"]
+					},
+					"GOOD NIGHT": {
+						action: "hide_modules",
+						modules: ["newsfeed", "MMM-ImageSlideshow"]
+					}
+				}
+			}
 		}
 	]
 };
