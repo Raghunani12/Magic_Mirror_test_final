@@ -38,10 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Bar
+		// Clock and Date - Top Left
 		{
 			module: "clock",
-			position: "top_bar",
+			position: "top_left",
 			config: {
 				timeFormat: 24,
 				showDate: true,

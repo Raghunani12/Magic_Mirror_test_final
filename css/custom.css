@@ -378,6 +378,13 @@ body {
     /* Remove conflicting positioning to allow drag and drop */
 }
 
+/* Prevent MMM-ModulePosition from hiding the clock */
+.module.clock {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
 /* Enhanced MMM-ModulePosition visibility */
 .drag {
     border: 2px dashed rgba(66, 134, 244, 0.8) !important;
@@ -573,6 +580,17 @@ body.grid-enabled {
 .region.top.left {
     text-align: left;
     animation: slideInLeft 1s ease-out;
+    padding-left: 20px;
+    padding-top: 20px;
+}
+
+/* Ensure clock is always visible in top left */
+.region.top.left .clock {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 100 !important;
 }
 
 .region.top.right {
