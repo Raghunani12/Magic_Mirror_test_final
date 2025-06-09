@@ -38,10 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Bar
+		// Clock and Date - Top Left (Primary Position)
 		{
 			module: "clock",
-			position: "top_bar",
+			position: "top_left",
 			config: {
 				timeFormat: 24,
 				showDate: true,
@@ -58,11 +58,11 @@ let config = {
 			}
 		},
 
-		// Google + Outlook Calendars - Top Bar
+		// Google + Outlook Calendars - Middle Center
 		{
 			module: "calendar",
 			header: "My Calendars",
-			position: "top_bar",
+			position: "middle_center",
 			config: {
 				calendars: [
 					{
@@ -112,10 +112,10 @@ let config = {
 			}
 		},
 
-		// Dynamic Weather - Top Bar (Auto-updates with real location)
+		// Dynamic Weather - Top Right (Auto-updates with real location)
 		{
 			module: "MMM-DynamicWeather",
-			position: "top_bar",
+			position: "top_right",
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
@@ -143,10 +143,10 @@ let config = {
 			}
 		},
 
-		// Location Display - Top Bar (IP Geolocation)
+		// Location Display - Top Center (IP Geolocation)
 		{
 			module: "MMM-SimpleLocation",
-			position: "top_bar",
+			position: "top_center",
 			config: {
 				dimmed: true,
 				city: "New Delhi", // Fallback city
@@ -162,10 +162,10 @@ let config = {
 			}
 		},
 
-		// News Feed - Top Bar
+		// News Feed - Bottom Center
 		{
 			module: "newsfeed",
-			position: "top_bar",
+			position: "bottom_center",
 			config: {
 				feeds: [
 					{
@@ -213,7 +213,7 @@ let config = {
 		// Photo Slideshow - Static Images (Working Now)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "top_bar",
+			position: "bottom_left",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
@@ -227,10 +227,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Top Bar
+		// Compliments - Bottom Right
 		{
 			module: "compliments",
-			position: "top_bar",
+			position: "bottom_right",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
