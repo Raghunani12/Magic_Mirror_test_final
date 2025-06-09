@@ -1,4 +1,4 @@
-/* ===== FIXED LAYOUT MAGIC MIRROR - NO SCROLLING ===== */
+/* ===== MAGIC MIRROR FIXED LAYOUT - YOUR EXACT REQUIREMENTS ===== */
 
 /* Import Google Font - Nunito Sans */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap');
@@ -23,7 +23,7 @@ html, body {
     animation: backgroundPulse 30s ease-in-out infinite;
 }
 
-/* Fixed Body Layout - NO FLEXBOX, ABSOLUTE POSITIONING */
+/* Fixed Body Layout - ABSOLUTE POSITIONING ONLY */
 body {
     position: relative;
     height: 100vh;
@@ -31,193 +31,7 @@ body {
     overflow: hidden;
 }
 
-/* ===== YOUR EXACT LAYOUT - FIXED POSITIONING ===== */
-
-/* 1. CLOCK - TOP CENTER */
-.region.top.center {
-    position: absolute;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 1000;
-}
-
-.region.top.center .clock {
-    font-size: 48px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
-    margin-bottom: 10px;
-}
-
-.region.top.center .clock .time {
-    font-size: 48px !important;
-    font-weight: 600 !important;
-}
-
-.region.top.center .clock .date {
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    opacity: 0.9;
-    margin-top: 5px;
-}
-
-/* 2. SIMPLELOCATION - BELOW CLOCK CENTER */
-.region.upper.third {
-    position: absolute;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 900;
-}
-
-.region.upper.third .MMM-SimpleLocation {
-    font-size: 18px !important;
-    opacity: 0.9;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
-}
-
-/* 3. CALENDAR - LEFT SIDE */
-.region.top.left {
-    position: absolute;
-    top: 180px;
-    left: 20px;
-    width: 45%;
-    max-width: 400px;
-    z-index: 800;
-}
-
-.region.top.left .calendar {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.region.top.left .module-header {
-    font-size: 16px !important;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.region.top.left .calendar .event {
-    font-size: 12px;
-    margin: 5px 0;
-    padding: 3px 0;
-}
-
-/* 4. WEATHER - RIGHT SIDE (SAME LINE AS CALENDAR) */
-.region.top.right {
-    position: absolute;
-    top: 180px;
-    right: 20px;
-    width: 45%;
-    max-width: 400px;
-    z-index: 800;
-}
-
-.region.top.right .weather {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-.region.top.right .module-header {
-    font-size: 16px !important;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.region.top.right .weather .temperature {
-    font-size: 36px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
-}
-
-/* 5. IMAGE SLIDER - LEFT SIDE (WITH PADDING) */
-.region.bottom.left {
-    position: absolute;
-    bottom: 200px;
-    left: 40px;
-    width: 200px;
-    z-index: 700;
-}
-
-.region.bottom.left .MMM-ImageSlideshow {
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-.region.bottom.left .MMM-ImageSlideshow img {
-    width: 150px;
-    height: 100px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* 6. COMPLIMENTS - CENTER */
-.region.bottom.center {
-    position: absolute;
-    bottom: 150px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 60%;
-    max-width: 600px;
-    text-align: center;
-    z-index: 600;
-}
-
-.region.bottom.center .compliments {
-    font-size: 28px !important;
-    font-weight: 400 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
-    line-height: 1.3;
-    text-align: center;
-    font-family: 'Nunito Sans', sans-serif !important;
-    padding: 20px 30px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
-}
-
-/* 7. NEWS - BOTTOM */
-.region.bottom.bar {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
-    backdrop-filter: blur(10px);
-    z-index: 500;
-}
-
-.region.bottom.bar .newsfeed {
-    font-size: 14px !important;
-    color: #ffffff;
-    line-height: 1.4;
-    text-align: center;
-    max-height: 60px;
-    overflow: hidden;
-}
+/* ===== CLEAN LAYOUT - NO CONFLICTING RULES ===== */
 
 /* ===== RESPONSIVE ADJUSTMENTS FOR DIFFERENT SCREEN SIZES ===== */
 
@@ -787,159 +601,197 @@ body.grid-enabled {
 }
 */
 
-/* Region Specific Styling */
-/* Calendar - Left Side (Flexible Size) */
-.region.top.left {
-    text-align: left;
-    animation: slideInLeft 1s ease-out;
-    position: fixed !important;
-    top: 200px;
-    left: 20px;
-    width: 45%;
-    z-index: 180;
-}
+/* ===== CLEAN FIXED POSITIONING - YOUR EXACT LAYOUT ===== */
 
-.region.top.left .calendar-left {
-    max-width: 100%;
-    font-size: 14px;
-}
-
-/* Weather - Right Side (Same Line as Calendar) */
-.region.top.right {
-    text-align: right;
-    animation: slideInRight 1s ease-out;
-    position: fixed !important;
-    top: 200px;
-    right: 20px;
-    width: 45%;
-    z-index: 180;
-}
-
-.region.top.right .weather-right {
-    max-width: 100%;
-    font-size: 14px;
-}
-
-/* ===== CUSTOM LAYOUT AS REQUESTED ===== */
-
-/* Top Center - Clock (Main Focus) */
+/* 1. CLOCK - TOP CENTER */
 .region.top.center {
-    text-align: center;
-    animation: slideInDown 1s ease-out;
-    padding-top: 30px;
-    z-index: 200;
     position: fixed !important;
-    top: 0;
+    top: 20px;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+    z-index: 1000;
     width: auto;
 }
 
-/* Clock Styling - Always Visible */
 .region.top.center .clock {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    position: relative !important;
-    z-index: 200 !important;
-    margin: 0 auto;
     font-size: 48px !important;
     font-weight: 600 !important;
     color: #ffffff !important;
     text-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
+    margin-bottom: 10px;
 }
 
-/* Upper Third - SimpleLocation (Below Clock, Center) */
+.region.top.center .clock .time {
+    font-size: 48px !important;
+    font-weight: 600 !important;
+}
+
+.region.top.center .clock .date {
+    font-size: 16px !important;
+    font-weight: 400 !important;
+    opacity: 0.9;
+    margin-top: 5px;
+}
+
+/* 2. SIMPLELOCATION - BELOW CLOCK CENTER */
 .region.upper.third {
-    text-align: center;
     position: fixed !important;
     top: 120px;
     left: 50%;
     transform: translateX(-50%);
+    text-align: center;
+    z-index: 900;
     width: auto;
-    z-index: 190;
 }
 
 .region.upper.third .MMM-SimpleLocation {
-    font-size: 16px;
+    font-size: 18px !important;
     opacity: 0.9;
     color: #ffffff;
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
 }
 
-/* Image Slider - Left Side with Padding (Above Compliments) */
+/* 3. CALENDAR - LEFT SIDE */
+.region.top.left {
+    position: fixed !important;
+    top: 180px;
+    left: 20px;
+    width: 45%;
+    max-width: 400px;
+    z-index: 800;
+}
+
+.region.top.left .calendar {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.region.top.left .module-header {
+    font-size: 16px !important;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+/* 4. WEATHER - RIGHT SIDE (SAME LINE AS CALENDAR) */
+.region.top.right {
+    position: fixed !important;
+    top: 180px;
+    right: 20px;
+    width: 45%;
+    max-width: 400px;
+    z-index: 800;
+}
+
+.region.top.right .weather {
+    background: rgba(0, 0, 0, 0.3);
+    border-radius: 12px;
+    padding: 15px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    text-align: center;
+}
+
+.region.top.right .module-header {
+    font-size: 16px !important;
+    margin-bottom: 10px;
+    text-align: center;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.region.top.right .weather .temperature {
+    font-size: 36px !important;
+    font-weight: 600 !important;
+    color: #ffffff !important;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+}
+
+/* 5. IMAGE SLIDER - LEFT SIDE (WITH PADDING) */
 .region.bottom.left {
-    text-align: left;
-    animation: slideInLeft 1s ease-out 0.5s both;
     position: fixed !important;
     bottom: 200px;
     left: 40px;
     width: 200px;
-    z-index: 170;
+    z-index: 700;
 }
 
-.region.bottom.left .image-slider-left {
-    padding: 20px;
-    border-radius: 10px;
+.region.bottom.left .MMM-ImageSlideshow {
+    padding: 15px;
     background: rgba(0, 0, 0, 0.3);
-    backdrop-filter: blur(5px);
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Compliments - Center (Above News) */
+.region.bottom.left .MMM-ImageSlideshow img {
+    width: 150px;
+    height: 100px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+}
+
+/* 6. COMPLIMENTS - CENTER */
 .region.bottom.center {
-    text-align: center;
-    animation: fadeIn 1s ease-out 1s both;
     position: fixed !important;
-    bottom: 120px;
+    bottom: 150px;
     left: 50%;
     transform: translateX(-50%);
     width: 60%;
-    z-index: 160;
+    max-width: 600px;
+    text-align: center;
+    z-index: 600;
 }
 
 .region.bottom.center .compliments {
-    font-family: 'Cinzel', serif !important;
-    font-size: 24px !important;
+    font-size: 28px !important;
     font-weight: 400 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
-    padding: 15px 30px;
+    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
+    line-height: 1.3;
+    text-align: center;
+    font-family: 'Nunito Sans', sans-serif !important;
+    padding: 20px 30px;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 25px;
+    border-radius: 20px;
     backdrop-filter: blur(10px);
 }
 
-/* News Feed - Bottom (As Requested) */
+/* 7. NEWS - BOTTOM */
 .region.bottom.bar {
-    text-align: center;
-    animation: slideUp 1s ease-out;
     position: fixed !important;
     bottom: 0;
     left: 0;
     right: 0;
     width: 100%;
-    z-index: 150;
     background: rgba(0, 0, 0, 0.8);
-    padding: 10px 0;
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 15px 20px;
+    backdrop-filter: blur(10px);
+    z-index: 500;
 }
 
 .region.bottom.bar .newsfeed {
-    font-size: 14px;
+    font-size: 14px !important;
     color: #ffffff;
-    max-height: 40px;
+    line-height: 1.4;
+    text-align: center;
+    max-height: 60px;
     overflow: hidden;
 }
 
-/* Voice Control - Bottom Right */
+/* 8. VOICE CONTROL - BOTTOM RIGHT */
 .region.bottom.right {
-    text-align: right;
-    animation: slideInRight 1s ease-out 0.5s both;
     position: fixed !important;
     bottom: 200px;
     right: 40px;
     width: 200px;
-    z-index: 170;
+    z-index: 700;
 }
 
 .region.bottom.right .MMM-WSLVoice {
@@ -1345,17 +1197,7 @@ img {
     }
 }
 
-/* ===== LEGACY OVERRIDES ===== */
-
-/* Override any old positioning */
-.region {
-    position: relative !important;
-    top: auto !important;
-    left: auto !important;
-    right: auto !important;
-    bottom: auto !important;
-    transform: none !important;
-}
+/* ===== LEGACY OVERRIDES REMOVED - USING FIXED POSITIONING ===== */
 
 /* Ensure modules are visible */
 .module {
