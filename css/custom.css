@@ -569,52 +569,42 @@ body.grid-enabled {
 }
 */
 
-/* Region Specific Styling */
+/* ===== CLEAN REGION LAYOUT ===== */
+
+/* Remove excessive animations for minimalistic feel */
 .region.top.left {
     text-align: left;
-    animation: slideInLeft 1s ease-out;
 }
 
 .region.top.right {
     text-align: right;
-    animation: slideInRight 1s ease-out;
 }
 
 .region.top.center {
     text-align: center;
-    animation: slideInDown 1s ease-out;
 }
 
 .region.bottom.bar {
     text-align: center;
-    animation: slideUp 1s ease-out;
-}
-
-.region.bottom.left {
-    text-align: left;
-    animation: slideInLeft 1s ease-out 0.5s both;
 }
 
 .region.lower.third {
     text-align: center;
-    animation: fadeIn 1s ease-out 1s both;
 }
 
-/* Module Container Styling */
+/* Simple module appearance */
 .module {
-    animation: moduleAppear 1s ease-out;
-    transition: all 0.3s ease;
+    margin-bottom: 20px;
+    transition: opacity 0.3s ease;
 }
 
-@keyframes moduleAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
+/* Clean spacing */
+.region.top .module:last-child {
+    margin-bottom: 0;
+}
+
+.region.bottom .module:first-child {
+    margin-top: 0;
 }
 
 /* Responsive Design */
@@ -691,36 +681,17 @@ body.grid-enabled {
     }
 }
 
-/* Interactive Hover Effects */
-.calendar:hover,
-.weather:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-    transition: all 0.4s ease;
-}
+/* ===== MINIMAL INTERACTIONS ===== */
 
-.MMM-ip:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-/* Loading States */
+/* Subtle loading state */
 .loading {
-    opacity: 0.5;
-    animation: loadingPulse 2s ease-in-out infinite;
+    opacity: 0.6;
 }
 
-@keyframes loadingPulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.02);
-    }
+/* Clean focus states */
+.module:focus {
+    outline: 1px solid rgba(255, 255, 255, 0.3);
+    outline-offset: 2px;
 }
 
 /* Scrollbar Styling */
@@ -751,42 +722,73 @@ body.grid-enabled {
 
 
 
-/* ===== CLOCK VISIBILITY FIX ===== */
+/* ===== MINIMALISTIC CLEAN LAYOUT ===== */
+
+/* Clock - Clean and Simple */
 .clock {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 100 !important;
+    font-family: 'Roboto', sans-serif;
 }
 
 .clock .time {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 4rem !important;
-    font-weight: 300 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.3) !important;
-    margin: 0 !important;
-    padding: 10px !important;
+    font-size: 3rem;
+    font-weight: 300;
+    color: #ffffff;
+    margin: 0;
+    line-height: 1;
 }
 
 .clock .date {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    font-size: 1.2rem !important;
-    color: rgba(255, 255, 255, 0.8) !important;
-    margin-top: 5px !important;
+    font-size: 1rem;
+    color: rgba(255, 255, 255, 0.7);
+    margin-top: 5px;
+    font-weight: 300;
 }
 
-/* Ensure top_left region is visible */
-.region.top.left {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 100 !important;
-    position: relative !important;
+/* Weather - Minimal Display */
+.weather {
+    font-family: 'Roboto', sans-serif;
+}
+
+.weather .temperature {
+    font-size: 2.5rem;
+    font-weight: 300;
+}
+
+.weather .weathericon {
+    font-size: 2rem;
+}
+
+/* Calendar - Clean List */
+.calendar {
+    font-family: 'Roboto', sans-serif;
+}
+
+.calendar .event {
+    margin-bottom: 5px;
+    font-size: 0.9rem;
+}
+
+/* News - Simple Ticker */
+.newsfeed {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.9rem;
+}
+
+/* Compliments - Elegant */
+.compliments {
+    font-family: 'Cinzel', serif;
+    font-size: 1.5rem;
+    font-weight: 300;
+    text-align: center;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+/* Location - Subtle */
+.MMM-SimpleLocation {
+    font-family: 'Roboto', sans-serif;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
 }
 
 /* ===== JARVIS WELCOME INTEGRATION ===== */
