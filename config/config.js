@@ -38,7 +38,7 @@ let config = {
 	},
 
 	modules: [
-		// Clock and Date - Top Center (Main Focus)
+		// Clock - Top Center (Main Focus)
 		{
 			module: "clock",
 			position: "top_center",
@@ -58,11 +58,31 @@ let config = {
 			}
 		},
 
-		// Google + Outlook Calendars - Top Bar
+		// Location Display - Upper Third (Below Clock, Center)
+		{
+			module: "MMM-SimpleLocation",
+			position: "upper_third",
+			config: {
+				dimmed: true,
+				city: "New Delhi", // Fallback city
+				country: "India", // Fallback country
+				fallbackLat: 28.6139, // Fallback latitude
+				fallbackLon: 77.2090, // Fallback longitude
+				showCity: true,
+				showCountry: true,
+				useGeolocation: true, // Enable IP geolocation
+				broadcastLocation: true, // Broadcast to weather module
+				updateInterval: 30 * 60 * 1000, // Update every 30 minutes
+				retryAttempts: 3
+			}
+		},
+
+		// Google + Outlook Calendars - Left Side (Flexible Size)
 		{
 			module: "calendar",
 			header: "My Calendars",
-			position: "top_bar",
+			position: "top_left",
+			classes: "calendar-left",
 			config: {
 				calendars: [
 					{
@@ -112,11 +132,12 @@ let config = {
 			}
 		},
 
-		// Dynamic Weather - Top Bar (Auto-updates with real location)
+		// Dynamic Weather - Right Side (Same Line as Calendar)
 		{
 			module: "MMM-DynamicWeather",
-			position: "top_bar",
+			position: "top_right",
 			header: "Current Weather",
+			classes: "weather-right",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
@@ -143,29 +164,12 @@ let config = {
 			}
 		},
 
-		// Location Display - Top Bar (IP Geolocation)
-		{
-			module: "MMM-SimpleLocation",
-			position: "top_bar",
-			config: {
-				dimmed: true,
-				city: "New Delhi", // Fallback city
-				country: "India", // Fallback country
-				fallbackLat: 28.6139, // Fallback latitude
-				fallbackLon: 77.2090, // Fallback longitude
-				showCity: true,
-				showCountry: true,
-				useGeolocation: true, // Enable IP geolocation
-				broadcastLocation: true, // Broadcast to weather module
-				updateInterval: 30 * 60 * 1000, // Update every 30 minutes
-				retryAttempts: 3
-			}
-		},
 
-		// News Feed - Top Bar
+
+		// News Feed - Bottom (As Requested)
 		{
 			module: "newsfeed",
-			position: "top_bar",
+			position: "bottom_bar",
 			config: {
 				feeds: [
 					{
@@ -210,10 +214,11 @@ let config = {
 			}
 		},
 
-		// Photo Slideshow - Bottom Left (Better Positioning)
+		// Photo Slideshow - Above Compliments (Left Side with Padding)
 		{
 			module: "MMM-ImageSlideshow",
 			position: "bottom_left",
+			classes: "image-slider-left",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
@@ -227,10 +232,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Lower Third (Center Focus)
+		// Compliments - Above News (Center Focus)
 		{
 			module: "compliments",
-			position: "lower_third",
+			position: "bottom_center",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -283,7 +288,7 @@ let config = {
 		// WSL Voice Control - Browser-Based (WSL Compatible)
 		{
 			module: "MMM-WSLVoice",
-			position: "bottom_bar",
+			position: "bottom_right",
 			config: {
 				debug: false, // Set to true for troubleshooting
 				enableVisualFeedback: true,
