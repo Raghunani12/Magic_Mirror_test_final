@@ -1,21 +1,22 @@
+/* MAIN CSS - RESPONSIVE ROOT VARIABLES WITH CLAMP() */
 :root {
   --color-text: #999;
   --color-text-dimmed: #666;
   --color-text-bright: #fff;
   --color-background: #000;
-  --font-primary: "Roboto Condensed";
-  --font-secondary: "Roboto";
-  --font-size: 20px;
-  --font-size-xsmall: 0.75rem;
-  --font-size-small: 1rem;
-  --font-size-medium: 1.5rem;
-  --font-size-large: 3.25rem;
-  --font-size-xlarge: 3.75rem;
-  --gap-body-top: 60px;
-  --gap-body-right: 60px;
-  --gap-body-bottom: 60px;
-  --gap-body-left: 60px;
-  --gap-modules: 30px;
+  --font-primary: "Nunito Sans", "Roboto Condensed", sans-serif;
+  --font-secondary: "Nunito Sans", "Roboto", sans-serif;
+  --font-size: clamp(1rem, 2vw, 1.2rem);
+  --font-size-xsmall: clamp(0.6rem, 1.2vw, 0.8rem);
+  --font-size-small: clamp(0.8rem, 1.5vw, 1rem);
+  --font-size-medium: clamp(1.2rem, 2.5vw, 1.5rem);
+  --font-size-large: clamp(2rem, 4vw, 3rem);
+  --font-size-xlarge: clamp(2.5rem, 5vw, 4rem);
+  --gap-body-top: clamp(1rem, 3vh, 2rem);
+  --gap-body-right: clamp(1rem, 3vw, 2rem);
+  --gap-body-bottom: clamp(1rem, 3vh, 2rem);
+  --gap-body-left: clamp(1rem, 3vw, 2rem);
+  --gap-modules: clamp(0.5rem, 2vh, 1.5rem);
 }
 
 html {
