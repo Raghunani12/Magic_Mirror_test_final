@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover">
+    <title>MagicMirror Responsive Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <style>
+        /* Test overlay to show responsive breakpoints */
+        .responsive-indicator {
+            position: fixed;
+            top: 10px;
+            left: 10px;
+            background: rgba(255, 0, 0, 0.8);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            z-index: 10000;
+            font-family: monospace;
+        }
+        
+        /* Show different indicators for different screen sizes */
+        .responsive-indicator::before {
+            content: "Desktop (>1024px)";
+        }
+        
+        @media (max-width: 1024px) {
+            .responsive-indicator::before {
+                content: "Tablet (≤1024px)";
+            }
+        }
+        
+        @media (max-width: 768px) {
+            .responsive-indicator::before {
+                content: "Mobile Large (≤768px)";
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .responsive-indicator::before {
+                content: "Mobile Small (≤480px)";
+            }
+        }
+        
+        @media (max-width: 320px) {
+            .responsive-indicator::before {
+                content: "Mobile Tiny (≤320px)";
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="responsive-indicator"></div>
+    
+    <!-- Header Region -->
+    <div class="region top center">
+        <div class="container">
+            <div class="module clock">
+                <div class="clock">
+                    <div class="time">14:30</div>
+                    <div class="date">Monday, January 6th 2025</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Location Region -->
+    <div class="region upper third">
+        <div class="container">
+            <div class="module MMM-SimpleLocation">
+                <div class="MMM-SimpleLocation">New Delhi, India</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Top Left - Calendar -->
+    <div class="region top left">
+        <div class="container">
+            <div class="module calendar">
+                <header class="module-header">My Calendars</header>
+                <div class="calendar">
+                    <div class="event">
+                        <div class="title">Team Meeting</div>
+                        <div class="time">15:00</div>
+                    </div>
+                    <div class="event">
+                        <div class="title">Project Review</div>
+                        <div class="time">16:30</div>
+                    </div>
+                    <div class="event">
+                        <div class="title">Client Call</div>
+                        <div class="time">Tomorrow 10:00</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Top Right - Weather -->
+    <div class="region top right">
+        <div class="container">
+            <div class="module weather">
+                <header class="module-header">Current Weather</header>
+                <div class="weather">
+                    <div class="current">
+                        <div class="weathericon">☀️</div>
+                        <div class="temperature">24°C</div>
+                        <div class="description">Sunny</div>
+                        <div class="humidity">Humidity: 65%</div>
+                        <div class="wind">Wind: 12 km/h</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Left - Image Slideshow -->
+    <div class="region bottom left">
+        <div class="container">
+            <div class="module MMM-ImageSlideshow">
+                <div class="MMM-ImageSlideshow">
+                    <img src="photos/joker.jpg" alt="Sample Image" style="width: 100%; height: auto; max-width: 150px;">
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Center - Compliments -->
+    <div class="region bottom center">
+        <div class="container">
+            <div class="module compliments">
+                <div class="compliments">Looking sharp today! Ready to conquer the day?</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Bottom Right - Voice Control -->
+    <div class="region bottom right">
+        <div class="container">
+            <div class="module MMM-WSLVoice">
+                <div class="MMM-WSLVoice">Voice Control Ready</div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Footer - News -->
+    <div class="region bottom bar">
+        <div class="container">
+            <div class="module newsfeed">
+                <div class="newsfeed">
+                    <div class="newsfeed-title">Breaking: MagicMirror is now fully responsive and works perfectly on all devices without any overlapping!</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        // Simple script to test responsiveness
+        function updateTime() {
+            const now = new Date();
+            const timeElement = document.querySelector('.clock .time');
+            const dateElement = document.querySelector('.clock .date');
+            
+            if (timeElement) {
+                timeElement.textContent = now.toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'});
+            }
+            
+            if (dateElement) {
+                dateElement.textContent = now.toLocaleDateString('en-US', { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric' 
+                });
+            }
+        }
+        
+        // Update time every second
+        setInterval(updateTime, 1000);
+        updateTime();
+        
+        // Log viewport dimensions for testing
+        function logViewport() {
+            console.log(`Viewport: ${window.innerWidth}x${window.innerHeight}`);
+        }
+        
+        window.addEventListener('resize', logViewport);
+        logViewport();
+    </script>
+</body>
+</html>
