@@ -131,16 +131,16 @@ let config = {
 			}
 		},
 
-		// Dynamic Weather - Right Side (Same Line as Calendar)
+		// Weather - Right Side (Same Line as Calendar)
 		{
-			module: "MMM-DynamicWeather",
+			module: "weather",
 			position: "top_right",
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: 28.6139, // Fallback coordinates (New Delhi)
-				lon: 77.2090, // Fallback coordinates (New Delhi)
+				lat: 17.3850, // Hyderabad coordinates
+				lon: 78.4867, // Hyderabad coordinates
 				units: "metric",
 				tempUnits: "metric",
 				windUnits: "metric",
@@ -150,16 +150,15 @@ let config = {
 				showWindDirectionAsArrow: false,
 				showHumidity: true,
 				showFeelsLike: true,
-				showWindSpeed: true, // Show wind speed
 				showSun: false,
 				showMoonTimes: false,
 				colored: false, // Black and white theme
 				roundTemp: true,
 				degreeLabel: true,
-				showDescription: true, // Show weather description
-				useLocationFromSimpleLocation: true, // Enable dynamic location updates
-				locationUpdateDelay: 5000, // Wait 5s after location update before fetching weather
-				debug: false // Set to true for troubleshooting
+				showDescription: true, // Show description
+				useLocationFromSimpleLocation: true, // Enable dynamic location
+				locationUpdateDelay: 5000, // Wait 5s after location update
+				debug: false
 			}
 		},
 
@@ -213,7 +212,7 @@ let config = {
 			}
 		},
 
-		// Image Slideshow - Left Side (with padding) - PERCENTAGE BASED RESPONSIVE
+		// Image Slideshow - Left Side (with padding)
 		{
 			module: "MMM-ImageSlideshow",
 			position: "bottom_left",
@@ -221,16 +220,12 @@ let config = {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 0, // Use CSS percentage-based sizing instead
-				fixedImageHeight: 0, // Use CSS percentage-based sizing instead
+				fixedImageWidth: 150,
+				fixedImageHeight: 100,
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false, // Set to true for black/white theme
-				validImageFileExtensions: "bmp,jpg,jpeg,gif,png",
-				backgroundOpacity: 0.3, // Enhanced background opacity
-				transitionImages: true, // Smooth transitions
-				maxWidth: "12vw", // PERCENTAGE BASED - INCREASED for better visibility
-				maxHeight: "8vh" // PERCENTAGE BASED - INCREASED for better visibility
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
 			}
 		},
 

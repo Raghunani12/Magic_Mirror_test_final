@@ -1,7 +1,6 @@
-/* CLOCK - PERCENTAGE BASED RESPONSIVE STYLING */
 .clock-grid {
   display: inline-flex;
-  gap: 1.2vw; /* PERCENTAGE BASED */
+  gap: 15px;
 }
 
 .clock-grid-left {
@@ -25,8 +24,6 @@
   position: relative;
   border-radius: 50%;
   background-size: 100%;
-  width: 8vw; /* PERCENTAGE BASED */
-  height: 8vw; /* PERCENTAGE BASED */
 }
 
 .clock-face {
@@ -38,11 +35,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  width: 0.5vw; /* PERCENTAGE BASED */
-  height: 0.5vw; /* PERCENTAGE BASED */
-  margin: -0.25vw 0 0 -0.25vw;
+  width: 6px;
+  height: 6px;
+  margin: -3px 0 0 -3px;
   background: var(--color-text-bright);
-  border-radius: 50%;
+  border-radius: 3px;
   content: "";
   display: block;
 }
@@ -53,11 +50,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -0.2vw 0 -0.2vw -25%; /* PERCENTAGE BASED */
-  padding: 0.2vw 0 0.2vw 25%; /* PERCENTAGE BASED */
+  margin: -2px 0 -2px -25%; /* numbers must match negative length & thickness */
+  padding: 2px 0 2px 25%; /* indicator length & thickness */
   background: var(--color-text-bright);
   transform-origin: 100% 50%;
-  border-radius: 0.3vw 0 0 0.3vw;
+  border-radius: 3px 0 0 3px;
 }
 
 .clock-minute {
@@ -66,11 +63,11 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -35% -0.2vw 0; /* PERCENTAGE BASED */
-  padding: 35% 0.2vw 0; /* PERCENTAGE BASED */
+  margin: -35% -2px 0; /* numbers must match negative length & thickness */
+  padding: 35% 2px 0; /* indicator length & thickness */
   background: var(--color-text-bright);
   transform-origin: 50% 100%;
-  border-radius: 0.3vw 0 0 0.3vw;
+  border-radius: 3px 0 0 3px;
 }
 
 .clock-second {
@@ -79,10 +76,13 @@
   position: absolute;
   top: 50%;
   left: 50%;
-  margin: -38% -0.1vw 0 0; /* PERCENTAGE BASED */
-  padding: 38% 0.1vw 0 0; /* PERCENTAGE BASED */
+  margin: -38% -1px 0 0; /* numbers must match negative length & thickness */
+  padding: 38% 1px 0 0; /* indicator length & thickness */
+
   /* background: #888888 !important; */
+
   /* use this instead of secondsColor */
+
   /* have to use !important, because the code explicitly sets the color currently */
   transform-origin: 50% 100%;
 }
@@ -90,7 +90,6 @@
 .module.clock .sun,
 .module.clock .moon {
   display: flex;
-  font-size: 1vw; /* PERCENTAGE BASED */
 }
 
 .module.clock .sun > *,
@@ -100,59 +99,12 @@
 
 .module.clock .clock-hour-digital {
   color: var(--color-text-bright);
-  font-size: 4vw; /* PERCENTAGE BASED */
-  font-weight: 600;
 }
 
 .module.clock .clock-minute-digital {
   color: var(--color-text-bright);
-  font-size: 4vw; /* PERCENTAGE BASED */
-  font-weight: 600;
 }
 
 .module.clock .clock-second-digital {
   color: var(--color-text-dimmed);
-  font-size: 2vw; /* PERCENTAGE BASED */
-}
-
-/* DIGITAL CLOCK STYLING */
-.module.clock .time {
-  font-size: 4vw; /* PERCENTAGE BASED */
-  font-weight: 600;
-  color: #ffffff;
-  text-shadow: 0 0 2vh rgba(255, 255, 255, 0.6);
-  margin-bottom: 1vh;
-}
-
-.module.clock .date {
-  font-size: 1.2vw; /* PERCENTAGE BASED */
-  font-weight: 400;
-  opacity: 0.9;
-  margin-top: 0.5vh;
-  color: #ffffff;
-}
-
-/* RESPONSIVE CLOCK ADJUSTMENTS */
-@media (max-width: 768px) {
-  .clock-circle {
-    width: 15vw;
-    height: 15vw;
-  }
-
-  .module.clock .time {
-    font-size: 8vw;
-  }
-
-  .module.clock .date {
-    font-size: 3vw;
-  }
-
-  .module.clock .clock-hour-digital,
-  .module.clock .clock-minute-digital {
-    font-size: 8vw;
-  }
-
-  .module.clock .clock-second-digital {
-    font-size: 4vw;
-  }
 }

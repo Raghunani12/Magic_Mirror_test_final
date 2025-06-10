@@ -89,17 +89,14 @@ Module.register('MMM-DynamicWeather', {
      */
     notificationReceived(notification, payload, sender) {
         if (this.config.useLocationFromSimpleLocation) {
-            if (notification === "LOCATION_DATA_UPDATED" ||
-                notification === "WEATHER_LOCATION_UPDATE" ||
-                notification === "DYNAMIC_WEATHER_LOCATION_UPDATE") {
-                Log.info(`🌍 Received location update from ${sender?.name || 'unknown'} via ${notification}:`, payload);
+            if (notification === "LOCATION_DATA_UPDATED" || notification === "WEATHER_LOCATION_UPDATE") {
+                Log.info(`🌍 Received location update from ${sender?.name || 'unknown'}:`, payload);
                 this.updateLocation(payload);
             }
         }
-
+        
         // Handle other weather-related notifications
         if (notification === "WEATHER_REFRESH") {
-            Log.info(`🔄 Received weather refresh request`);
             this.getWeatherData();
         }
     },
@@ -200,13 +197,12 @@ Module.register('MMM-DynamicWeather', {
 
     /**
      * @function getDom
-     * @description Creates the DOM object with enhanced weather display
+     * @description Creates the DOM object exactly like the default weather module
      * @override
      * @returns {Element} The DOM element to display
      */
     getDom() {
         const wrapper = document.createElement("div");
-        wrapper.className = "weather";
 
         if (!this.weatherData) {
             wrapper.innerHTML = this.translate("LOADING");
@@ -221,159 +217,44 @@ Module.register('MMM-DynamicWeather', {
         }
 
         const weather = this.weatherData;
+        const large = document.createElement("div");
+        large.className = "large light";
 
-        // Create current weather container
-        const current = document.createElement("div");
-        current.className = "current";
+        const degreeLabel = this.config.degreeLabel ? "°" : "";
+        const temperature = Math.round(weather.temperature);
 
-        // Weather icon
-        const weatherIcon = document.createElement("div");
-        weatherIcon.className = "weathericon";
-        weatherIcon.innerHTML = this.getWeatherIcon(weather.weatherCode);
-        current.appendChild(weatherIcon);
+        large.innerHTML = temperature + degreeLabel;
+        wrapper.appendChild(large);
 
-        // Temperature
-        const temperature = document.createElement("div");
-        temperature.className = "temperature";
-        const degreeLabel = this.config.degreeLabel ? "°C" : "°";
-        temperature.innerHTML = Math.round(weather.temperature) + degreeLabel;
-        current.appendChild(temperature);
-
-        // Weather description
         if (this.config.showDescription && weather.weatherType) {
-            const description = document.createElement("div");
-            description.className = "description";
-            description.innerHTML = this.capFirst(this.getWeatherDescription(weather.weatherCode));
-            current.appendChild(description);
+            const small = document.createElement("div");
+            small.className = "normal medium";
+            small.innerHTML = this.capFirst(weather.weatherType);
+            wrapper.appendChild(small);
         }
 
-        // Feels like temperature
         if (this.config.showFeelsLike && weather.feelsLike) {
             const feelsLike = document.createElement("div");
-            feelsLike.className = "feelslike";
+            feelsLike.className = "dimmed light xsmall";
             feelsLike.innerHTML = `Feels like ${Math.round(weather.feelsLike)}${degreeLabel}`;
-            current.appendChild(feelsLike);
+            wrapper.appendChild(feelsLike);
         }
 
-        // Humidity
         if (this.config.showHumidity && weather.humidity) {
             const humidity = document.createElement("div");
-            humidity.className = "humidity";
+            humidity.className = "dimmed light xsmall";
             humidity.innerHTML = `Humidity: ${weather.humidity}%`;
-            current.appendChild(humidity);
+            wrapper.appendChild(humidity);
         }
 
-        // Wind speed and direction
         if (this.config.showWindSpeed && weather.windSpeed) {
             const wind = document.createElement("div");
-            wind.className = "wind";
-            let windText = `Wind: ${Math.round(weather.windSpeed)} km/h`;
-
-            if (this.config.showWindDirection && weather.windDirection) {
-                const direction = this.getWindDirection(weather.windDirection);
-                windText += ` ${direction}`;
-            }
-
-            wind.innerHTML = windText;
-            current.appendChild(wind);
+            wind.className = "dimmed light xsmall";
+            wind.innerHTML = `Wind: ${Math.round(weather.windSpeed)} ${this.config.windUnits}`;
+            wrapper.appendChild(wind);
         }
 
-        // Location info (if available and different from fallback)
-        if (this.locationReceived && this.currentLocation && this.currentLocation.source !== "config") {
-            const location = document.createElement("div");
-            location.className = "location dimmed light xsmall";
-            location.innerHTML = `📍 ${this.currentLocation.city}`;
-            current.appendChild(location);
-        }
-
-        wrapper.appendChild(current);
         return wrapper;
-    },
-
-    /**
-     * @function getWeatherIcon
-     * @description Returns weather icon based on weather code
-     */
-    getWeatherIcon(weatherCode) {
-        const icons = {
-            0: '☀️',      // Clear sky
-            1: '🌤️',      // Mainly clear
-            2: '⛅',      // Partly cloudy
-            3: '☁️',      // Overcast
-            45: '🌫️',     // Fog
-            48: '🌫️',     // Depositing rime fog
-            51: '🌦️',     // Light drizzle
-            53: '🌧️',     // Moderate drizzle
-            55: '🌧️',     // Dense drizzle
-            56: '🌨️',     // Light freezing drizzle
-            57: '🌨️',     // Dense freezing drizzle
-            61: '🌧️',     // Slight rain
-            63: '🌧️',     // Moderate rain
-            65: '🌧️',     // Heavy rain
-            66: '🌨️',     // Light freezing rain
-            67: '🌨️',     // Heavy freezing rain
-            71: '❄️',     // Slight snow fall
-            73: '🌨️',     // Moderate snow fall
-            75: '❄️',     // Heavy snow fall
-            77: '❄️',     // Snow grains
-            80: '🌦️',     // Slight rain showers
-            81: '🌧️',     // Moderate rain showers
-            82: '⛈️',     // Violent rain showers
-            85: '🌨️',     // Slight snow showers
-            86: '❄️',     // Heavy snow showers
-            95: '⛈️',     // Thunderstorm
-            96: '⛈️',     // Thunderstorm with slight hail
-            99: '⛈️'      // Thunderstorm with heavy hail
-        };
-        return icons[weatherCode] || '☁️';
-    },
-
-    /**
-     * @function getWeatherDescription
-     * @description Returns weather description based on weather code
-     */
-    getWeatherDescription(weatherCode) {
-        const descriptions = {
-            0: 'Clear sky',
-            1: 'Mainly clear',
-            2: 'Partly cloudy',
-            3: 'Overcast',
-            45: 'Fog',
-            48: 'Depositing rime fog',
-            51: 'Light drizzle',
-            53: 'Moderate drizzle',
-            55: 'Dense drizzle',
-            56: 'Light freezing drizzle',
-            57: 'Dense freezing drizzle',
-            61: 'Slight rain',
-            63: 'Moderate rain',
-            65: 'Heavy rain',
-            66: 'Light freezing rain',
-            67: 'Heavy freezing rain',
-            71: 'Slight snow fall',
-            73: 'Moderate snow fall',
-            75: 'Heavy snow fall',
-            77: 'Snow grains',
-            80: 'Slight rain showers',
-            81: 'Moderate rain showers',
-            82: 'Violent rain showers',
-            85: 'Slight snow showers',
-            86: 'Heavy snow showers',
-            95: 'Thunderstorm',
-            96: 'Thunderstorm with slight hail',
-            99: 'Thunderstorm with heavy hail'
-        };
-        return descriptions[weatherCode] || 'Unknown';
-    },
-
-    /**
-     * @function getWindDirection
-     * @description Converts wind direction degrees to compass direction
-     */
-    getWindDirection(degrees) {
-        const directions = ['N', 'NNE', 'NE', 'ENE', 'E', 'ESE', 'SE', 'SSE', 'S', 'SSW', 'SW', 'WSW', 'W', 'WNW', 'NW', 'NNW'];
-        const index = Math.round(degrees / 22.5) % 16;
-        return directions[index];
     },
 
     /**
@@ -390,7 +271,7 @@ Module.register('MMM-DynamicWeather', {
      */
     translate(key) {
         const translations = {
-            "LOADING": "Loading weather..."
+            "LOADING": "Loading..."
         };
         return translations[key] || key;
     },

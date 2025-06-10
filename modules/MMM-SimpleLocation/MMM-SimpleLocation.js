@@ -231,13 +231,8 @@ Module.register('MMM-SimpleLocation', {
                 lat: locationPayload.latitude,
                 lon: locationPayload.longitude,
                 city: locationPayload.city,
-                country: locationPayload.country,
-                source: locationPayload.source,
-                timestamp: locationPayload.timestamp
+                country: locationPayload.country
             });
-
-            // Send additional notification for MMM-DynamicWeather compatibility
-            this.sendNotification("DYNAMIC_WEATHER_LOCATION_UPDATE", locationPayload);
 
             // Store in global MM object for other modules to access
             if (typeof MM !== 'undefined') {
