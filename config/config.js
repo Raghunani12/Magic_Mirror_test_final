@@ -131,16 +131,16 @@ let config = {
 			}
 		},
 
-		// Weather - Right Side (Same Line as Calendar)
+		// Dynamic Weather - Right Side (Same Line as Calendar)
 		{
-			module: "weather",
+			module: "MMM-DynamicWeather",
 			position: "top_right",
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
 				type: "current",
-				lat: 17.3850, // Hyderabad coordinates
-				lon: 78.4867, // Hyderabad coordinates
+				lat: 28.6139, // Fallback coordinates (New Delhi)
+				lon: 77.2090, // Fallback coordinates (New Delhi)
 				units: "metric",
 				tempUnits: "metric",
 				windUnits: "metric",
@@ -150,15 +150,16 @@ let config = {
 				showWindDirectionAsArrow: false,
 				showHumidity: true,
 				showFeelsLike: true,
+				showWindSpeed: true, // Show wind speed
 				showSun: false,
 				showMoonTimes: false,
 				colored: false, // Black and white theme
 				roundTemp: true,
 				degreeLabel: true,
-				showDescription: true, // Show description
-				useLocationFromSimpleLocation: true, // Enable dynamic location
-				locationUpdateDelay: 5000, // Wait 5s after location update
-				debug: false
+				showDescription: true, // Show weather description
+				useLocationFromSimpleLocation: true, // Enable dynamic location updates
+				locationUpdateDelay: 5000, // Wait 5s after location update before fetching weather
+				debug: false // Set to true for troubleshooting
 			}
 		},
 
