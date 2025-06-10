@@ -213,7 +213,7 @@ let config = {
 			}
 		},
 
-		// Image Slideshow - Left Side (with padding)
+		// Image Slideshow - Left Side (with padding) - PERCENTAGE BASED RESPONSIVE
 		{
 			module: "MMM-ImageSlideshow",
 			position: "bottom_left",
@@ -221,12 +221,16 @@ let config = {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 150,
-				fixedImageHeight: 100,
+				fixedImageWidth: 0, // Use CSS percentage-based sizing instead
+				fixedImageHeight: 0, // Use CSS percentage-based sizing instead
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
 				makeImagesGrayscale: false, // Set to true for black/white theme
-				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
+				validImageFileExtensions: "bmp,jpg,jpeg,gif,png",
+				backgroundOpacity: 0.3, // Enhanced background opacity
+				transitionImages: true, // Smooth transitions
+				maxWidth: "12vw", // PERCENTAGE BASED - INCREASED for better visibility
+				maxHeight: "8vh" // PERCENTAGE BASED - INCREASED for better visibility
 			}
 		},
 

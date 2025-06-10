@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Responsive MagicMirror Test</title>
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/custom.css">
+    <style>
+        .test-controls {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.9);
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            z-index: 10000;
+            border: 2px solid #00ff00;
+        }
+        
+        .test-button {
+            margin: 5px;
+            padding: 8px 12px;
+            background: #0096ff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 11px;
+        }
+        
+        .test-button:hover {
+            background: #0080dd;
+        }
+        
+        .screen-info {
+            position: fixed;
+            bottom: 10px;
+            right: 10px;
+            background: rgba(0, 0, 0, 0.8);
+            color: white;
+            padding: 10px;
+            border-radius: 8px;
+            font-family: monospace;
+            font-size: 11px;
+            z-index: 10000;
+        }
+        
+        .demo-container {
+            width: 100%;
+            height: 100vh;
+            transition: all 0.5s ease;
+            transform-origin: top left;
+        }
+        
+        /* Test different screen sizes */
+        .mobile-view {
+            width: 375px;
+            height: 667px;
+            transform: scale(0.8);
+            border: 2px solid #ff6b6b;
+            margin: 20px;
+        }
+        
+        .tablet-view {
+            width: 768px;
+            height: 1024px;
+            transform: scale(0.6);
+            border: 2px solid #4ecdc4;
+            margin: 20px;
+        }
+        
+        .desktop-view {
+            width: 1920px;
+            height: 1080px;
+            transform: scale(0.4);
+            border: 2px solid #45b7d1;
+            margin: 20px;
+        }
+        
+        .fullscreen-view {
+            width: 100%;
+            height: 100vh;
+            transform: scale(1);
+            border: none;
+            margin: 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="test-controls">
+        <h4>📱 Responsive Test Controls</h4>
+        <button class="test-button" onclick="setView('mobile')">📱 Mobile (375px)</button>
+        <button class="test-button" onclick="setView('tablet')">📱 Tablet (768px)</button>
+        <button class="test-button" onclick="setView('desktop')">🖥️ Desktop (1920px)</button>
+        <button class="test-button" onclick="setView('fullscreen')">🖼️ Fullscreen</button>
+        <br>
+        <button class="test-button" onclick="toggleInfo()">ℹ️ Toggle Info</button>
+        <button class="test-button" onclick="measureElements()">📏 Measure</button>
+    </div>
+    
+    <div class="screen-info" id="screenInfo">
+        <div id="screenData">Loading...</div>
+    </div>
+    
+    <div class="demo-container fullscreen-view" id="demoContainer">
+        <!-- Simulated MagicMirror Layout -->
+        
+        <!-- Clock - Top Center -->
+        <div class="region top center">
+            <div class="module clock">
+                <div class="time">14:30</div>
+                <div class="date">Friday, December 15th 2023</div>
+            </div>
+        </div>
+        
+        <!-- Location - Upper Third -->
+        <div class="region upper third">
+            <div class="module MMM-SimpleLocation">
+                📍 New York, USA
+            </div>
+        </div>
+        
+        <!-- Calendar - Left Side -->
+        <div class="region top left">
+            <div class="module calendar">
+                <header class="module-header">My Calendar</header>
+                <div class="event">
+                    <div class="symbol">📅</div>
+                    <div class="title">Team Meeting</div>
+                    <div class="time">15:00</div>
+                </div>
+                <div class="event">
+                    <div class="symbol">🎂</div>
+                    <div class="title">Birthday Party</div>
+                    <div class="time">18:00</div>
+                </div>
+                <div class="event">
+                    <div class="symbol">✈️</div>
+                    <div class="title">Flight to London</div>
+                    <div class="time">Tomorrow 09:00</div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Weather - Right Side -->
+        <div class="region top right">
+            <div class="module weather">
+                <header class="module-header">Current Weather</header>
+                <div class="weathericon">☀️</div>
+                <div class="temperature">24°C</div>
+                <div class="description">Sunny</div>
+                <div class="humidity">Humidity: 65%</div>
+                <div class="wind">Wind: 12 km/h NE</div>
+            </div>
+        </div>
+        
+        <!-- Image Slideshow - Bottom Left -->
+        <div class="region bottom left">
+            <div class="module MMM-ImageSlideshow">
+                <img src="modules/MMM-ImageSlideshow/exampleImages/matrix.jpg" alt="Sample Image" style="width: 12vw; height: 8vh; object-fit: cover; border-radius: 0.8vh;">
+            </div>
+        </div>
+        
+        <!-- Compliments - Bottom Center -->
+        <div class="region bottom center">
+            <div class="module compliments">
+                Looking sharp today! Ready to conquer the day?
+            </div>
+        </div>
+        
+        <!-- News - Bottom Bar -->
+        <div class="region bottom bar">
+            <div class="module newsfeed">
+                <div class="newsfeed-title">
+                    🌍 Breaking: Scientists discover new responsive CSS technology that makes MagicMirror displays perfectly adapt to any screen size...
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function setView(viewType) {
+            const container = document.getElementById('demoContainer');
+            container.className = `demo-container ${viewType}-view`;
+            updateScreenInfo();
+        }
+        
+        function updateScreenInfo() {
+            const container = document.getElementById('demoContainer');
+            const rect = container.getBoundingClientRect();
+            const screenData = document.getElementById('screenData');
+            
+            screenData.innerHTML = `
+                <strong>Screen Info:</strong><br>
+                Window: ${window.innerWidth} × ${window.innerHeight}px<br>
+                Container: ${Math.round(rect.width)} × ${Math.round(rect.height)}px<br>
+                Scale: ${getComputedStyle(container).transform}<br>
+                View: ${container.className.split(' ')[1]}<br>
+                <br>
+                <strong>Font Sizes (vw/vh):</strong><br>
+                Clock: 4vw = ${(window.innerWidth * 0.04).toFixed(1)}px<br>
+                News: 1.4vw = ${(window.innerWidth * 0.014).toFixed(1)}px<br>
+                Images: 12vw×8vh = ${(window.innerWidth * 0.12).toFixed(1)}×${(window.innerHeight * 0.08).toFixed(1)}px
+            `;
+        }
+        
+        function toggleInfo() {
+            const info = document.getElementById('screenInfo');
+            info.style.display = info.style.display === 'none' ? 'block' : 'none';
+        }
+        
+        function measureElements() {
+            const elements = [
+                { name: 'Clock', selector: '.clock .time' },
+                { name: 'News', selector: '.newsfeed-title' },
+                { name: 'Calendar', selector: '.calendar .title' },
+                { name: 'Weather', selector: '.weather .temperature' },
+                { name: 'Image', selector: '.MMM-ImageSlideshow img' }
+            ];
+            
+            let measurements = 'Element Measurements:\n';
+            elements.forEach(el => {
+                const element = document.querySelector(el.selector);
+                if (element) {
+                    const rect = element.getBoundingClientRect();
+                    const style = getComputedStyle(element);
+                    measurements += `${el.name}: ${Math.round(rect.width)}×${Math.round(rect.height)}px (${style.fontSize})\n`;
+                }
+            });
+            
+            alert(measurements);
+        }
+        
+        // Initialize
+        window.addEventListener('load', updateScreenInfo);
+        window.addEventListener('resize', updateScreenInfo);
+        
+        // Auto-update screen info every 2 seconds
+        setInterval(updateScreenInfo, 2000);
+        
+        console.log('📱 Responsive MagicMirror Test Environment');
+        console.log('🎯 Test different screen sizes using the control buttons');
+        console.log('📏 All measurements are now percentage-based (vw/vh)');
+        console.log('✅ Layout maintains proportions across all devices');
+    </script>
+</body>
+</html>

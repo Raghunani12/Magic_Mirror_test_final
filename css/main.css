@@ -1,21 +1,22 @@
+/* MAIN CSS - PERCENTAGE BASED RESPONSIVE ROOT VARIABLES */
 :root {
   --color-text: #999;
   --color-text-dimmed: #666;
   --color-text-bright: #fff;
   --color-background: #000;
-  --font-primary: "Roboto Condensed";
-  --font-secondary: "Roboto";
-  --font-size: 20px;
-  --font-size-xsmall: 0.75rem;
-  --font-size-small: 1rem;
-  --font-size-medium: 1.5rem;
-  --font-size-large: 3.25rem;
-  --font-size-xlarge: 3.75rem;
-  --gap-body-top: 60px;
-  --gap-body-right: 60px;
-  --gap-body-bottom: 60px;
-  --gap-body-left: 60px;
-  --gap-modules: 30px;
+  --font-primary: "Nunito Sans", "Roboto Condensed", sans-serif;
+  --font-secondary: "Nunito Sans", "Roboto", sans-serif;
+  --font-size: 1.5vw; /* PERCENTAGE BASED */
+  --font-size-xsmall: 0.8vw; /* PERCENTAGE BASED */
+  --font-size-small: 1vw; /* PERCENTAGE BASED */
+  --font-size-medium: 1.5vw; /* PERCENTAGE BASED */
+  --font-size-large: 3.5vw; /* PERCENTAGE BASED */
+  --font-size-xlarge: 4vw; /* PERCENTAGE BASED */
+  --gap-body-top: 4vh; /* PERCENTAGE BASED */
+  --gap-body-right: 4vw; /* PERCENTAGE BASED */
+  --gap-body-bottom: 4vh; /* PERCENTAGE BASED */
+  --gap-body-left: 4vw; /* PERCENTAGE BASED */
+  --gap-modules: 2vh; /* PERCENTAGE BASED */
 }
 
 html {
@@ -118,10 +119,10 @@ header {
   font-size: var(--font-size-xsmall);
   font-family: var(--font-primary), Arial, Helvetica, sans-serif;
   font-weight: 400;
-  border-bottom: 1px solid var(--color-text-dimmed);
-  line-height: 15px;
-  padding-bottom: 5px;
-  margin-bottom: 10px;
+  border-bottom: 0.1vh solid var(--color-text-dimmed); /* PERCENTAGE BASED */
+  line-height: 1.2;
+  padding-bottom: 0.5vh; /* PERCENTAGE BASED */
+  margin-bottom: 1vh; /* PERCENTAGE BASED */
   color: var(--color-text);
 }
 

@@ -208,12 +208,14 @@ body {
     animation: none !important;
 }
 
-/* News Feed Styling */
+/* News Feed Styling - PERCENTAGE BASED RESPONSIVE */
 .newsfeed {
     background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px 0;
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.2);
+    padding: 1.5vh 0;
     animation: slideUp 1s ease-out;
+    width: 100%;
+    max-width: 100%;
 }
 
 @keyframes slideUp {
@@ -225,20 +227,20 @@ body {
     font-family: 'Cinzel', serif;
     color: #ffffff;
     font-weight: 400;
-    margin-right: 8px;
+    margin-right: 0.8vw;
     opacity: 0.7;
     text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 8px;
+    letter-spacing: 0.1vw;
+    font-size: 1.2vw; /* INCREASED from 0.8vw for better readability */
 }
 
 .newsfeed .newsfeed-title {
     font-family: 'Cinzel', serif;
     font-weight: 400;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 1vh rgba(255, 255, 255, 0.3);
     animation: scrollText 30s linear infinite;
-    font-size: 10px;
+    font-size: 1.4vw; /* INCREASED from 1vw for better readability */
 }
 
 @keyframes scrollText {
@@ -246,19 +248,21 @@ body {
     100% { transform: translateX(-100%); }
 }
 
-/* Photo Slideshow Styling */
+/* Photo Slideshow Styling - PERCENTAGE BASED RESPONSIVE */
 .MMM-ImageSlideshow {
     overflow: hidden;
-    max-width: 120px;
-    max-height: 80px;
+    max-width: 12vw; /* INCREASED from 8vw for better visibility */
+    max-height: 8vh; /* INCREASED from 6vh for better visibility */
+    width: 12vw; /* INCREASED from 8vw */
+    height: 8vh; /* INCREASED from 6vh */
 }
 
 /* Image with Color Gradient Overlay */
 .MMM-ImageSlideshow img {
     transition: all 1.5s ease;
     filter: contrast(1.2) brightness(1.1);
-    width: 120px;
-    height: 80px;
+    width: 12vw; /* INCREASED from 8vw for better visibility */
+    height: 8vh; /* INCREASED from 6vh for better visibility */
     object-fit: cover;
     background: linear-gradient(
         135deg,
@@ -269,17 +273,18 @@ body {
         rgba(255, 69, 0, 0.3) 100%
     );
     background-blend-mode: overlay;
+    border-radius: 0.8vh;
 }
 
 /* Hover effect for enhanced colors */
 .MMM-ImageSlideshow img:hover {
     filter: contrast(1.3) brightness(1.2) saturate(1.2);
     box-shadow:
-        inset 0 0 0 3px rgba(138, 43, 226, 0.4),
-        inset 0 0 30px rgba(30, 144, 255, 0.3),
-        inset 0 0 50px rgba(0, 191, 255, 0.3),
-        inset 0 0 70px rgba(255, 20, 147, 0.3),
-        inset 0 0 90px rgba(255, 69, 0, 0.3);
+        inset 0 0 0 0.3vh rgba(138, 43, 226, 0.4),
+        inset 0 0 3vh rgba(30, 144, 255, 0.3),
+        inset 0 0 5vh rgba(0, 191, 255, 0.3),
+        inset 0 0 7vh rgba(255, 20, 147, 0.3),
+        inset 0 0 9vh rgba(255, 69, 0, 0.3);
 }
 
 @keyframes imageZoom {
@@ -287,17 +292,18 @@ body {
     50% { transform: scale(1.05); }
 }
 
-/* Location Display Styling */
-.MMM-ip {
+/* Location Display Styling - PERCENTAGE BASED RESPONSIVE */
+.MMM-ip,
+.MMM-SimpleLocation {
     font-family: 'Cinzel', serif;
     text-align: center;
     font-weight: 400;
     color: hsl(0, 0%, 100%);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.808);
-    letter-spacing: 1px;
-    font-size: 10px;
-    padding: 4px 8px;
-    margin: 2px 0;
+    text-shadow: 0 0 1vh rgba(255, 255, 255, 0.808);
+    letter-spacing: 0.1vw;
+    font-size: 1.2vw; /* PERCENTAGE BASED */
+    padding: 0.4vh 0.8vw;
+    margin: 0.2vh 0;
 }
 
 @keyframes slideInDown {
@@ -305,17 +311,21 @@ body {
     to { transform: translateY(0); opacity: 1; }
 }
 
-/* Compliments Styling - Cinzel Font */
+/* Compliments Styling - PERCENTAGE BASED RESPONSIVE */
 .compliments {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-size: 2vw; /* PERCENTAGE BASED */
     font-weight: 400;
     text-align: center;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+    text-shadow: 0 0 1vh rgba(255, 255, 255, 0.3);
     font-style: normal;
-    margin: 8px 0;
-    letter-spacing: 1px;
+    margin: 0.8vh 0;
+    letter-spacing: 0.1vw;
+    padding: 1.5vh 2vw;
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 1.5vh;
+    backdrop-filter: blur(1vh);
 }
 
 /* Hide ALL debug elements */
@@ -603,10 +613,10 @@ body.grid-enabled {
 
 /* ===== CLEAN FIXED POSITIONING - YOUR EXACT LAYOUT ===== */
 
-/* 1. CLOCK - TOP CENTER */
+/* 1. CLOCK - TOP CENTER - PERCENTAGE BASED RESPONSIVE */
 .region.top.center {
     position: fixed !important;
-    top: 20px;
+    top: 1.5vh; /* PERCENTAGE BASED */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -615,29 +625,29 @@ body.grid-enabled {
 }
 
 .region.top.center .clock {
-    font-size: 48px !important;
+    font-size: 4vw !important; /* PERCENTAGE BASED */
     font-weight: 600 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
-    margin-bottom: 10px;
+    text-shadow: 0 0 2vh rgba(255, 255, 255, 0.6) !important;
+    margin-bottom: 1vh;
 }
 
 .region.top.center .clock .time {
-    font-size: 48px !important;
+    font-size: 4vw !important; /* PERCENTAGE BASED */
     font-weight: 600 !important;
 }
 
 .region.top.center .clock .date {
-    font-size: 16px !important;
+    font-size: 1.2vw !important; /* PERCENTAGE BASED */
     font-weight: 400 !important;
     opacity: 0.9;
-    margin-top: 5px;
+    margin-top: 0.5vh;
 }
 
-/* 2. SIMPLELOCATION - BELOW CLOCK CENTER */
+/* 2. SIMPLELOCATION - BELOW CLOCK CENTER - PERCENTAGE BASED RESPONSIVE */
 .region.upper.third {
     position: fixed !important;
-    top: 120px;
+    top: 9vh; /* PERCENTAGE BASED */
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -646,123 +656,123 @@ body.grid-enabled {
 }
 
 .region.upper.third .MMM-SimpleLocation {
-    font-size: 18px !important;
+    font-size: 1.4vw !important; /* PERCENTAGE BASED */
     opacity: 0.9;
     color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    text-shadow: 0 0 1vh rgba(255, 255, 255, 0.4);
 }
 
-/* 3. CALENDAR - LEFT SIDE */
+/* 3. CALENDAR - LEFT SIDE - PERCENTAGE BASED RESPONSIVE */
 .region.top.left {
     position: fixed !important;
-    top: 180px;
-    left: 20px;
+    top: 14vh; /* PERCENTAGE BASED */
+    left: 1.5vw; /* PERCENTAGE BASED */
     width: 45%;
-    max-width: 400px;
+    max-width: 30vw; /* PERCENTAGE BASED */
     z-index: 800;
 }
 
 .region.top.left .calendar {
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.2vh;
+    padding: 1.5vh 1.2vw;
+    backdrop-filter: blur(1vh);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
 }
 
 .region.top.left .module-header {
-    font-size: 16px !important;
-    margin-bottom: 10px;
+    font-size: 1.2vw !important; /* PERCENTAGE BASED */
+    margin-bottom: 1vh;
     text-align: center;
     color: #ffffff;
     font-weight: 600;
 }
 
-/* 4. WEATHER - RIGHT SIDE (SAME LINE AS CALENDAR) */
+/* 4. WEATHER - RIGHT SIDE (SAME LINE AS CALENDAR) - PERCENTAGE BASED RESPONSIVE */
 .region.top.right {
     position: fixed !important;
-    top: 180px;
-    right: 20px;
+    top: 14vh; /* PERCENTAGE BASED */
+    right: 1.5vw; /* PERCENTAGE BASED */
     width: 45%;
-    max-width: 400px;
+    max-width: 30vw; /* PERCENTAGE BASED */
     z-index: 800;
 }
 
 .region.top.right .weather {
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.2vh;
+    padding: 1.5vh 1.2vw;
+    backdrop-filter: blur(1vh);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
     text-align: center;
 }
 
 .region.top.right .module-header {
-    font-size: 16px !important;
-    margin-bottom: 10px;
+    font-size: 1.2vw !important; /* PERCENTAGE BASED */
+    margin-bottom: 1vh;
     text-align: center;
     color: #ffffff;
     font-weight: 600;
 }
 
 .region.top.right .weather .temperature {
-    font-size: 36px !important;
+    font-size: 2.8vw !important; /* PERCENTAGE BASED */
     font-weight: 600 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
+    text-shadow: 0 0 1.5vh rgba(255, 255, 255, 0.5) !important;
 }
 
-/* 5. IMAGE SLIDER - LEFT SIDE (WITH PADDING) */
+/* 5. IMAGE SLIDER - LEFT SIDE (WITH PADDING) - PERCENTAGE BASED RESPONSIVE */
 .region.bottom.left {
     position: fixed !important;
-    bottom: 200px;
-    left: 40px;
-    width: 200px;
+    bottom: 15vh; /* PERCENTAGE BASED */
+    left: 3vw; /* PERCENTAGE BASED */
+    width: 15vw; /* PERCENTAGE BASED - INCREASED from 12vw */
     z-index: 700;
 }
 
 .region.bottom.left .MMM-ImageSlideshow {
-    padding: 15px;
+    padding: 1.5vh 1.2vw;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    border-radius: 1.2vh;
+    backdrop-filter: blur(1vh);
+    border: 0.1vh solid rgba(255, 255, 255, 0.1);
 }
 
 .region.bottom.left .MMM-ImageSlideshow img {
-    width: 150px;
-    height: 100px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
+    width: 12vw; /* PERCENTAGE BASED - INCREASED from 10vw */
+    height: 8vh; /* PERCENTAGE BASED - INCREASED from 6vh */
+    border-radius: 0.8vh;
+    box-shadow: 0 0.4vh 1.5vh rgba(0, 0, 0, 0.4);
 }
 
-/* 6. COMPLIMENTS - CENTER */
+/* 6. COMPLIMENTS - CENTER - PERCENTAGE BASED RESPONSIVE */
 .region.bottom.center {
     position: fixed !important;
-    bottom: 150px;
+    bottom: 11vh; /* PERCENTAGE BASED */
     left: 50%;
     transform: translateX(-50%);
     width: 60%;
-    max-width: 600px;
+    max-width: 45vw; /* PERCENTAGE BASED */
     text-align: center;
     z-index: 600;
 }
 
 .region.bottom.center .compliments {
-    font-size: 28px !important;
+    font-size: 2.2vw !important; /* PERCENTAGE BASED */
     font-weight: 400 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
+    text-shadow: 0 0 1.5vh rgba(255, 255, 255, 0.6) !important;
     line-height: 1.3;
     text-align: center;
     font-family: 'Nunito Sans', sans-serif !important;
-    padding: 20px 30px;
+    padding: 2vh 2.5vw;
     background: rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
+    border-radius: 2vh;
+    backdrop-filter: blur(1vh);
 }
 
-/* 7. NEWS - BOTTOM */
+/* 7. NEWS - BOTTOM - PERCENTAGE BASED RESPONSIVE */
 .region.bottom.bar {
     position: fixed !important;
     bottom: 0;
@@ -770,37 +780,37 @@ body.grid-enabled {
     right: 0;
     width: 100%;
     background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
-    backdrop-filter: blur(10px);
+    border-top: 0.1vh solid rgba(255, 255, 255, 0.1);
+    padding: 1.5vh 2vw;
+    backdrop-filter: blur(1vh);
     z-index: 500;
 }
 
 .region.bottom.bar .newsfeed {
-    font-size: 14px !important;
+    font-size: 1.4vw !important; /* PERCENTAGE BASED - INCREASED from 1.2vw */
     color: #ffffff;
     line-height: 1.4;
     text-align: center;
-    max-height: 60px;
+    max-height: 6vh;
     overflow: hidden;
 }
 
-/* 8. VOICE CONTROL - BOTTOM RIGHT */
+/* 8. VOICE CONTROL - BOTTOM RIGHT - PERCENTAGE BASED RESPONSIVE */
 .region.bottom.right {
     position: fixed !important;
-    bottom: 200px;
-    right: 40px;
-    width: 200px;
+    bottom: 15vh; /* PERCENTAGE BASED */
+    right: 3vw; /* PERCENTAGE BASED */
+    width: 15vw; /* PERCENTAGE BASED */
     z-index: 700;
 }
 
 .region.bottom.right .MMM-WSLVoice {
-    font-size: 12px;
+    font-size: 1vw; /* PERCENTAGE BASED */
     opacity: 0.8;
-    padding: 10px;
+    padding: 1vh 1vw;
     background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
+    border-radius: 0.8vh;
+    backdrop-filter: blur(0.5vh);
 }
 
 /* ===== RESPONSIVE ADJUSTMENTS ===== */
@@ -962,33 +972,40 @@ body.grid-enabled {
         transform: none;
     }
 
-    /* Mobile Image Slider */
+    /* Mobile Image Slider - PERCENTAGE BASED RESPONSIVE */
     .region.bottom.left {
-        width: 120px;
-        left: 20px;
-        bottom: 160px;
+        width: 20vw; /* PERCENTAGE BASED - INCREASED for mobile */
+        left: 2vw;
+        bottom: 12vh;
     }
 
     .MMM-ImageSlideshow {
-        max-width: 100px;
-        max-height: 70px;
+        max-width: 18vw; /* PERCENTAGE BASED - INCREASED for mobile */
+        max-height: 12vh; /* PERCENTAGE BASED - INCREASED for mobile */
+        width: 18vw;
+        height: 12vh;
     }
 
-    /* Mobile Voice Control */
+    .MMM-ImageSlideshow img {
+        width: 18vw; /* PERCENTAGE BASED - INCREASED for mobile */
+        height: 12vh; /* PERCENTAGE BASED - INCREASED for mobile */
+    }
+
+    /* Mobile Voice Control - PERCENTAGE BASED RESPONSIVE */
     .region.bottom.right {
-        width: 120px;
-        right: 20px;
-        bottom: 160px;
+        width: 20vw; /* PERCENTAGE BASED */
+        right: 2vw;
+        bottom: 12vh;
     }
 
-    /* Mobile News */
+    /* Mobile News - PERCENTAGE BASED RESPONSIVE */
     .region.bottom.bar .newsfeed {
-        font-size: 12px;
-        max-height: 30px;
+        font-size: 3vw; /* PERCENTAGE BASED - INCREASED for mobile readability */
+        max-height: 6vh;
     }
 
     .region.bottom.bar {
-        padding: 8px 0;
+        padding: 1.5vh 0;
     }
 }
 
