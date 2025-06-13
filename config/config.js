@@ -164,10 +164,10 @@ let config = {
 
 
 
-		// News Feed - Bottom (Production-Ready Proportional)
+		// News Feed - Bottom (Production-Ready Proportional) - TEMP: Testing visibility
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "middle_center", // TEMP: Changed from bottom_bar for testing
 			config: {
 				feeds: [
 					{

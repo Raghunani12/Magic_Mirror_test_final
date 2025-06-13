@@ -189,10 +189,21 @@ html, body {
     width: 100vw;
     height: clamp(30px, 4vh, 50px);
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(255, 0, 0, 0.8) !important; /* DEBUG: Red background to see container */
+    border: 3px solid yellow !important; /* DEBUG: Yellow border */
     display: flex;
     align-items: center;
+}
+
+/* DEBUG: Make sure the region exists */
+.region.bottom.bar::before {
+    content: "NEWS REGION LOADED" !important;
+    color: white !important;
+    font-size: 12px !important;
+    position: absolute !important;
+    top: 5px !important;
+    left: 10px !important;
+    z-index: 1000 !important;
 }
 
 /* Main newsfeed container - Proportional */
@@ -204,6 +215,19 @@ html, body {
     display: flex;
     align-items: center;
     padding: 0 2vw;
+    background: rgba(0, 255, 0, 0.5) !important; /* DEBUG: Green background */
+    border: 2px solid blue !important; /* DEBUG: Blue border */
+}
+
+/* DEBUG: Show if newsfeed module exists */
+.region.bottom.bar .newsfeed::before {
+    content: "NEWSFEED MODULE LOADED" !important;
+    color: white !important;
+    font-size: 10px !important;
+    position: absolute !important;
+    top: 0 !important;
+    right: 10px !important;
+    z-index: 1001 !important;
 }
 
 /* Scrolling ticker container - Responsive */
@@ -467,6 +491,36 @@ html, body {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
+}
+
+/* ===== FORCE NEWSFEED MODULE TO BE VISIBLE ===== */
+.module.newsfeed,
+.region.bottom.bar .module,
+.region.bottom.bar .newsfeed,
+.region.middle.center .module,
+.region.middle.center .newsfeed,
+.newsfeed {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+    position: relative !important;
+    z-index: 1000 !important;
+}
+
+/* TEMP: Make middle center newsfeed highly visible for testing */
+.region.middle.center {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    background: rgba(255, 0, 0, 0.9) !important;
+    border: 5px solid yellow !important;
+    padding: 20px !important;
+    z-index: 9999 !important;
+    font-size: 20px !important;
+    color: white !important;
+    max-width: 80vw !important;
+    text-align: center !important;
 }
 
 /* ===== ACCESSIBILITY ===== */
