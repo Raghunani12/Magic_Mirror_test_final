@@ -179,26 +179,27 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM BAR (Fixed with visible scrolling) */
+/* 7. NEWS - BOTTOM CENTER (Fixed positioning with visible scrolling) */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 60px;
-    left: 0;
-    right: 0;
-    text-align: left;
+    bottom: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     z-index: 500;
-    width: 100%;
-    height: 55px;
+    width: 90%;
+    height: 40px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.3);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(0, 0, 0, 0.5);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .region.bottom.bar .newsfeed {
     font-size: 14px !important;
     color: #ffffff !important;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     white-space: nowrap;
     overflow: hidden;
     width: 100%;
@@ -208,40 +209,25 @@ html, body {
 .region.bottom.bar .newsfeed .newsticker {
     display: inline-block;
     white-space: nowrap;
-    animation: scroll-right-to-left 45s linear infinite;
-    padding-right: 50px;
+    animation: news-scroll 30s linear infinite;
+    position: absolute;
+    left: 100%;
+    width: max-content;
 }
 
-/* News scrolling animation - Right to Left */
-@keyframes scroll-right-to-left {
+/* News scrolling animation - Right to Left (Fixed) */
+@keyframes news-scroll {
     0% {
-        transform: translateX(100vw);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-200%);
     }
 }
 
 /* Pause animation on hover */
 .region.bottom.bar .newsfeed:hover .newsticker {
     animation-play-state: paused;
-}
-
-/* Ensure news content is visible */
-.region.bottom.bar .module {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-.region.bottom.bar .newsfeed .article {
-    display: inline !important;
-    margin-right: 50px;
-}
-
-.region.bottom.bar .newsfeed .title {
-    display: inline !important;
-    margin-right: 20px;
 }
 
 /* ===== RESPONSIVE FIXES FOR MOBILE DEVICES ===== */
@@ -318,20 +304,16 @@ html, body {
         padding: 10px 15px !important;
     }
 
-    .region.bottom.bar {
-        height: 30px !important;
-        bottom: 20px !important;
-    }
-
     .region.bottom.bar .newsfeed {
         font-size: 10px !important;
         height: 30px !important;
         line-height: 30px;
         overflow: hidden;
+        padding: 0 5px;
     }
 
     .region.bottom.bar .newsfeed .newsticker {
-        animation: scroll-right-to-left 30s linear infinite;
+        animation: news-scroll 25s linear infinite;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -439,42 +421,25 @@ html, body {
 .newsfeed {
     width: 100%;
     overflow: hidden;
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
 }
 
 .newsfeed .newsticker {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
-    animation: scroll-right-to-left 45s linear infinite;
-}
-
-/* Make sure news articles are visible */
-.newsfeed .article {
-    display: inline !important;
-    margin-right: 30px;
-    color: #ffffff !important;
-}
-
-.newsfeed .title {
-    display: inline !important;
-    color: #ffffff !important;
-    font-weight: normal !important;
-}
-
-.newsfeed .description {
-    display: none; /* Hide description to save space */
+    animation: news-scroll 30s linear infinite;
+    position: absolute;
+    left: 100%;
+    width: max-content;
 }
 
 /* Enhanced news scrolling animation */
-@keyframes scroll-right-to-left {
+@keyframes news-scroll {
     0% {
-        transform: translateX(100vw);
+        transform: translateX(0%);
     }
     100% {
-        transform: translateX(-100%);
+        transform: translateX(-200%);
     }
 }
 
