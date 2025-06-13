@@ -65,9 +65,6 @@ Module.register("newsfeed", {
 	// Define start sequence.
 	start () {
 		Log.info(`Starting module: ${this.name}`);
-		console.log("🔥 NEWSFEED DEBUG: Module starting...");
-		console.log("🔥 NEWSFEED DEBUG: Position:", this.data.position);
-		console.log("🔥 NEWSFEED DEBUG: Config:", this.config);
 
 		// Set locale.
 		moment.locale(config.language);
@@ -81,20 +78,14 @@ Module.register("newsfeed", {
 		this.registerFeeds();
 
 		this.isShowingDescription = this.config.showDescription;
-		console.log("🔥 NEWSFEED DEBUG: Module started, feeds registered");
 	},
 
 	// Override socket notification handler.
 	socketNotificationReceived (notification, payload) {
-		console.log("🔥 NEWSFEED DEBUG: Socket notification received:", notification);
-
 		if (notification === "NEWS_ITEMS") {
-			console.log("🔥 NEWSFEED DEBUG: News items received, feeds:", Object.keys(payload));
 			this.generateFeed(payload);
-			console.log("🔥 NEWSFEED DEBUG: Generated news items:", this.newsItems.length);
 
 			if (!this.loaded) {
-				console.log("🔥 NEWSFEED DEBUG: First load, scheduling updates");
 				if (this.config.hideLoading) {
 					this.show();
 				}
@@ -103,9 +94,7 @@ Module.register("newsfeed", {
 
 			this.loaded = true;
 			this.error = null;
-			console.log("🔥 NEWSFEED DEBUG: Module loaded successfully");
 		} else if (notification === "NEWSFEED_ERROR") {
-			console.log("🔥 NEWSFEED DEBUG: Error received:", payload);
 			this.error = this.translate(payload.error_type);
 			this.scheduleUpdateInterval();
 		}
@@ -123,10 +112,6 @@ Module.register("newsfeed", {
 
 	//Override template data and return whats used for the current template
 	getTemplateData () {
-		console.log("🔥 NEWSFEED DEBUG: Getting template data...");
-		console.log("🔥 NEWSFEED DEBUG: Active item:", this.activeItem, "Total items:", this.newsItems.length);
-		console.log("🔥 NEWSFEED DEBUG: Loaded:", this.loaded, "Error:", this.error);
-
 		if (this.activeItem >= this.newsItems.length) {
 			this.activeItem = 0;
 		}
@@ -139,14 +124,12 @@ Module.register("newsfeed", {
 			};
 		}
 		if (this.error) {
-			console.log("🔥 NEWSFEED DEBUG: Returning error template");
 			this.activeItemHash = undefined;
 			return {
 				error: this.error
 			};
 		}
 		if (this.newsItems.length === 0) {
-			console.log("🔥 NEWSFEED DEBUG: No news items - returning empty template");
 			this.activeItemHash = undefined;
 			return {
 				empty: true
@@ -154,7 +137,6 @@ Module.register("newsfeed", {
 		}
 
 		const item = this.newsItems[this.activeItem];
-		console.log("🔥 NEWSFEED DEBUG: Current item:", item);
 		this.activeItemHash = item.hash;
 
 		const items = this.newsItems.map(function (item) {
@@ -162,7 +144,7 @@ Module.register("newsfeed", {
 			return item;
 		});
 
-		const templateData = {
+		return {
 			loaded: true,
 			config: this.config,
 			sourceTitle: item.sourceTitle,
@@ -172,9 +154,6 @@ Module.register("newsfeed", {
 			description: item.description,
 			items: items
 		};
-
-		console.log("🔥 NEWSFEED DEBUG: Template data:", templateData);
-		return templateData;
 	},
 
 	getActiveItemURL () {

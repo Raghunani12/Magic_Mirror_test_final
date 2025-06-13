@@ -26,11 +26,7 @@
         {% endif %}
     {% endif %}
 {% endmacro %}
-<!-- DEBUG: Template is being rendered -->
-<div style="background: purple; color: white; font-size: 12px; padding: 2px;">TEMPLATE RENDERED - Loaded: {{ loaded }}, Empty: {{ empty }}, Error: {{ error }}</div>
-
 {% if loaded %}
-    <div style="background: orange; color: white; font-size: 10px;">LOADED STATE - Items: {{ items|length }}, Title: {{ title }}</div>
     {% if config.showAsList %}
         <ul class="newsfeed-list">
             {% for item in items %}
@@ -59,18 +55,14 @@
             {% endfor %}
         </ul>
     {% else %}
-        <div style="background: cyan; color: black; font-size: 10px;">TICKER MODE</div>
         <div class="newsfeed-ticker">{% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}{% if sourceTitle and config.showSourceTitle %}{{ escapeText(sourceTitle, config.dangerouslyDisableAutoEscaping) }}{% if config.showPublishDate %}, {% else %}: {% endif %}{% endif %}{% if config.showPublishDate %}{{ publishDate }}: {% endif %}{% endif %}{{ escapeTitle(title, url, config.dangerouslyDisableAutoEscaping, config.showTitleAsUrl) }}{% if config.showDescription %} - {% if config.truncDescription %}{{ escapeText(description | truncate(150) , config.dangerouslyDisableAutoEscaping) }}{% else %}{{ escapeText(description | truncate(150), config.dangerouslyDisableAutoEscaping) }}{% endif %}{% endif %} • • • </div>
     {% endif %}
 {% elseif empty %}
-    <div style="background: red; color: white; font-size: 12px;">EMPTY STATE</div>
     <div class="small dimmed">{{ "NEWSFEED_NO_ITEMS" | translate | safe }}</div>
 {% elseif error %}
-    <div style="background: red; color: white; font-size: 12px;">ERROR STATE: {{ error }}</div>
     <div class="small dimmed">
         {{ "MODULE_CONFIG_ERROR" | translate({MODULE_NAME: "Newsfeed", ERROR: error}) | safe }}
     </div>
 {% else %}
-    <div style="background: yellow; color: black; font-size: 12px;">LOADING STATE</div>
     <div class="small dimmed">{{ "LOADING" | translate | safe }}</div>
 {% endif %}
