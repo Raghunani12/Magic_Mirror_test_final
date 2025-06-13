@@ -163,13 +163,12 @@ html, body {
 /* 6. COMPLIMENTS - BOTTOM CENTER (Moved higher to avoid news overlap) */
 .region.bottom.center {
     position: fixed !important;
-    bottom: 80px !important; /* Higher to ensure no overlap with news bar */
-    left: 50% !important;
-    transform: translateX(-50%) !important;
-    text-align: center !important;
-    z-index: 600 !important;
-    width: 60% !important;
-    max-height: 60px !important; /* Limit height to prevent overlap */
+    bottom: 130px; /* Moved higher to avoid news overlap */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
+    z-index: 600;
+    width: 60%;
 }
 
 .region.bottom.center .compliments {
@@ -181,36 +180,30 @@ html, body {
 }
 
 /* 7. NEWS - BOTTOM BAR (Production-Ready Proportional Design) */
-/* CRITICAL: Override main.css bottom: 100% that pushes bottom_bar off-screen */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 0 !important; /* Override main.css bottom: 100% */
-    left: 0 !important;
-    right: 0 !important;
-    top: auto !important; /* Ensure no top positioning */
-    transform: none !important; /* Remove any transforms */
-    z-index: 1500 !important; /* Higher z-index to ensure visibility */
-    width: 100vw !important;
-    height: clamp(30px, 4vh, 50px) !important;
-    overflow: hidden !important;
-    background: rgba(0, 0, 0, 0.9) !important; /* Darker for visibility */
-    border-top: 2px solid rgba(255, 255, 255, 0.3) !important; /* More visible border */
-    display: flex !important;
-    align-items: center !important;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    z-index: 500;
+    width: 100vw;
+    height: clamp(30px, 4vh, 50px);
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.8);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
 }
 
 /* Main newsfeed container - Proportional */
 .region.bottom.bar .newsfeed {
-    height: 100% !important;
-    width: 100% !important;
-    overflow: hidden !important;
-    position: relative !important;
-    display: flex !important;
-    align-items: center !important;
-    padding: 0 2vw !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    z-index: 1600 !important;
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
 }
 
 /* Scrolling ticker container - Responsive */
@@ -476,54 +469,14 @@ html, body {
     opacity: 1 !important;
 }
 
-/* ===== CRITICAL: FORCE NEWSFEED MODULE VISIBILITY ===== */
-/* Override any MagicMirror core hiding rules */
+/* ===== ENSURE NEWSFEED MODULE IS VISIBLE ===== */
 .module.newsfeed,
 .region.bottom.bar .module,
 .region.bottom.bar .newsfeed,
-.region.bottom.bar,
-.newsfeed,
-.module.newsfeed .module-content,
-.region.bottom.bar .module-content {
+.newsfeed {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;
-    position: relative !important;
-    z-index: 1700 !important;
-    pointer-events: auto !important;
-}
-
-/* CRITICAL: Override main.css module hiding rules */
-.module.newsfeed.hidden {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    pointer-events: auto !important;
-}
-
-/* CRITICAL: Ensure bottom bar region is not affected by main.css bottom positioning */
-.region.bottom.bar.region {
-    bottom: 0 !important;
-    top: auto !important;
-    transform: none !important;
-}
-
-/* TEMPORARY DEBUG: Make newsfeed highly visible for testing */
-.region.bottom.bar {
-    background: rgba(255, 0, 0, 0.9) !important; /* Bright red background */
-    border: 5px solid yellow !important; /* Yellow border */
-    min-height: 50px !important; /* Ensure minimum height */
-}
-
-.region.bottom.bar::before {
-    content: "🔥 NEWSFEED REGION VISIBLE 🔥" !important;
-    color: white !important;
-    font-size: 14px !important;
-    font-weight: bold !important;
-    position: absolute !important;
-    top: 5px !important;
-    left: 10px !important;
-    z-index: 2000 !important;
 }
 
 /* ===== ACCESSIBILITY ===== */

@@ -65,9 +65,6 @@ Module.register("newsfeed", {
 	// Define start sequence.
 	start () {
 		Log.info(`Starting module: ${this.name}`);
-		console.log("🔥🔥🔥 NEWSFEED MODULE STARTING 🔥🔥🔥");
-		console.log("Position:", this.data.position);
-		console.log("Identifier:", this.identifier);
 
 		// Set locale.
 		moment.locale(config.language);
@@ -81,12 +78,6 @@ Module.register("newsfeed", {
 		this.registerFeeds();
 
 		this.isShowingDescription = this.config.showDescription;
-
-		// Force immediate DOM update
-		setTimeout(() => {
-			this.updateDom(0);
-			console.log("🔥 NEWSFEED: Forced DOM update");
-		}, 1000);
 	},
 
 	// Override socket notification handler.
