@@ -179,64 +179,38 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM BAR (Clean styling for proper news display) */
+/* 7. NEWS - BOTTOM BAR (Fixed for scrolling ticker) */
 .region.bottom.bar {
     position: fixed !important;
     bottom: 10px;
     left: 0;
     right: 0;
-    text-align: left;
     z-index: 500;
     width: 100%;
     height: 40px;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.2);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 /* Main newsfeed container */
 .region.bottom.bar .newsfeed {
-    font-size: 14px !important;
-    color: #ffffff !important;
     height: 40px;
     line-height: 40px;
-    white-space: nowrap;
     overflow: hidden;
-    padding: 0 10px;
-    display: block;
+    position: relative;
     width: 100%;
 }
 
-/* Style for the entire newsfeed content - this targets the main div wrapper */
-.region.bottom.bar .newsfeed > div {
+/* Scrolling ticker container */
+.region.bottom.bar .newsfeed .newsfeed-ticker {
     display: inline-block;
     white-space: nowrap;
     animation: scroll-news 60s linear infinite;
     padding-left: 100%;
+    font-size: 14px;
     color: #ffffff;
-}
-
-/* News source styling */
-.region.bottom.bar .newsfeed .newsfeed-source {
-    color: #cccccc !important;
-    font-size: 12px !important;
-    display: inline !important;
-    margin-right: 10px;
-}
-
-/* News title styling */
-.region.bottom.bar .newsfeed .newsfeed-title {
-    color: #ffffff !important;
-    font-size: 14px !important;
-    display: inline !important;
     font-weight: 400;
-    margin-right: 20px;
-}
-
-/* News description styling (if enabled) */
-.region.bottom.bar .newsfeed .newsfeed-desc {
-    color: #cccccc !important;
-    font-size: 12px !important;
-    display: inline !important;
-    margin-left: 10px;
 }
 
 /* News scrolling animation - Right to Left */
@@ -325,24 +299,18 @@ html, body {
         padding: 10px 15px !important;
     }
 
+    .region.bottom.bar {
+        height: 30px !important;
+    }
+
     .region.bottom.bar .newsfeed {
-        font-size: 10px !important;
         height: 30px !important;
         line-height: 30px;
-        overflow: hidden;
-        padding: 0 5px;
     }
 
-    .region.bottom.bar .newsfeed > div {
+    .region.bottom.bar .newsfeed .newsfeed-ticker {
         animation: scroll-news 45s linear infinite;
-    }
-
-    .region.bottom.bar .newsfeed .newsfeed-title {
         font-size: 10px !important;
-    }
-
-    .region.bottom.bar .newsfeed .newsfeed-source {
-        font-size: 9px !important;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -447,7 +415,7 @@ html, body {
 }
 
 /* Pause animation on hover for better readability */
-.region.bottom.bar .newsfeed:hover > div {
+.region.bottom.bar .newsfeed:hover .newsfeed-ticker {
     animation-play-state: paused;
 }
 

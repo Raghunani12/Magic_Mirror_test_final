@@ -65,6 +65,7 @@ Module.register("newsfeed", {
 	// Define start sequence.
 	start () {
 		Log.info(`Starting module: ${this.name}`);
+		console.log("🔥 NEWSFEED: Module starting, config:", this.config);
 
 		// Set locale.
 		moment.locale(config.language);
@@ -78,12 +79,17 @@ Module.register("newsfeed", {
 		this.registerFeeds();
 
 		this.isShowingDescription = this.config.showDescription;
+		console.log("🔥 NEWSFEED: Module started successfully");
 	},
 
 	// Override socket notification handler.
 	socketNotificationReceived (notification, payload) {
+		console.log("🔥 NEWSFEED: Socket notification:", notification);
+
 		if (notification === "NEWS_ITEMS") {
+			console.log("🔥 NEWSFEED: Received news items:", Object.keys(payload).length, "feeds");
 			this.generateFeed(payload);
+			console.log("🔥 NEWSFEED: Generated", this.newsItems.length, "news items");
 
 			if (!this.loaded) {
 				if (this.config.hideLoading) {
@@ -94,7 +100,9 @@ Module.register("newsfeed", {
 
 			this.loaded = true;
 			this.error = null;
+			console.log("🔥 NEWSFEED: Module loaded and ready");
 		} else if (notification === "NEWSFEED_ERROR") {
+			console.log("🔥 NEWSFEED: Error received:", payload);
 			this.error = this.translate(payload.error_type);
 			this.scheduleUpdateInterval();
 		}

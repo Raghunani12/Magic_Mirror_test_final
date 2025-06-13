@@ -22,3 +22,29 @@ iframe.newsfeed-fullarticle {
   text-align: justify;
   margin-bottom: 0.5em;
 }
+
+/* Default newsfeed styling for non-bottom_bar positions */
+.newsfeed {
+  color: var(--color-text-bright);
+}
+
+.newsfeed .newsfeed-source {
+  color: var(--color-text-dimmed);
+  font-size: var(--font-size-small);
+}
+
+.newsfeed .newsfeed-title {
+  color: var(--color-text-bright);
+  font-size: var(--font-size);
+}
+
+.newsfeed .newsfeed-desc {
+  color: var(--color-text);
+  font-size: var(--font-size-small);
+}
+
+/* Ensure ticker content is visible */
+.newsfeed-ticker {
+  color: inherit;
+  font-size: inherit;
+}
