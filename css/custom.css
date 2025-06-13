@@ -31,12 +31,38 @@ body {
     overflow: hidden;
 }
 
+/* Ensure desktop/tablet layout remains unchanged */
+@media (min-width: 801px) {
+    body {
+        display: block !important;
+        flex-direction: initial !important;
+    }
+
+    .region {
+        position: fixed !important;
+    }
+}
+
 /* ===== CLEAN LAYOUT - NO CONFLICTING RULES ===== */
+
+/* Hide Voice Control Module Completely - Always Invisible but Active */
+.MMM-WSLVoice,
+.region.bottom.right .MMM-WSLVoice,
+.module.MMM-WSLVoice {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+    width: 0 !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    overflow: hidden !important;
+}
 
 /* ===== RESPONSIVE ADJUSTMENTS FOR DIFFERENT SCREEN SIZES ===== */
 
-/* Small Screens - Stack Calendar & Weather Vertically */
-@media (max-width: 800px) {
+/* Small Screens - Keep Desktop/Tablet Layout */
+@media (max-width: 1200px) and (min-width: 801px) {
     .region.top.left {
         top: 180px;
         left: 10px;
@@ -339,7 +365,7 @@ body {
 
 /* MMM-ModulePosition - Enhanced drag and drop visibility */
 .region.top.bar .module {
-    /* Remove conflicting positioning to allow drag and drop */
+    position: relative; /* Allow drag and drop */
 }
 
 /* ===== CLOCK VISIBILITY FIXES ===== */
@@ -909,86 +935,265 @@ body.grid-enabled {
 }
 
 @media (max-width: 800px) {
+    /* Mobile Layout - Vertical Stack Without Overlapping */
     body {
         font-size: 14px;
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
     }
 
-    /* Mobile Clock */
-    .region.top.center .clock {
-        font-size: 28px !important;
-        padding-top: 20px;
+    /* Reset all fixed positioning for mobile */
+    .region {
+        position: relative !important;
+        transform: none !important;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        bottom: auto !important;
+        width: 100% !important;
+        text-align: center !important;
+        margin: 0 !important;
+        padding: 0 5px !important;
+        flex-shrink: 0;
     }
 
+    /* Mobile Vertical Stack Order */
+
+    /* 1. Clock - Top */
     .region.top.center {
-        top: 10px;
+        order: 1;
+        padding: 10px 0 5px 0 !important;
     }
 
-    /* Mobile SimpleLocation */
+    .region.top.center .clock {
+        font-size: 24px !important;
+        margin: 0 !important;
+    }
+
+    .region.top.center .clock .time {
+        font-size: 24px !important;
+    }
+
+    .region.top.center .clock .date {
+        font-size: 12px !important;
+        margin-top: 2px !important;
+    }
+
+    /* 2. Location - Below Clock */
     .region.upper.third {
-        top: 80px;
+        order: 2;
+        padding: 5px 0 !important;
     }
 
     .region.upper.third .MMM-SimpleLocation {
-        font-size: 14px;
+        font-size: 11px !important;
+        margin: 0 !important;
     }
 
-    /* Mobile Calendar and Weather - Stack Vertically */
-    .region.top.left,
-    .region.top.right {
-        width: 90%;
-        left: 5% !important;
-        right: auto !important;
-    }
-
+    /* 3. Calendar - Third */
     .region.top.left {
-        top: 140px;
+        order: 3;
+        padding: 8px 0 !important;
     }
 
+    .region.top.left .calendar {
+        font-size: 11px !important;
+        max-height: 120px !important;
+        overflow: hidden !important;
+    }
+
+    .region.top.left header {
+        font-size: 10px !important;
+        margin-bottom: 5px !important;
+    }
+
+    /* 4. Weather - Fourth */
     .region.top.right {
-        top: 300px;
+        order: 4;
+        padding: 8px 0 !important;
     }
 
-    /* Mobile Compliments */
-    .region.bottom.center .compliments {
-        font-size: 18px !important;
-        padding: 10px 20px;
-        width: 90%;
+    .region.top.right .weather {
+        font-size: 11px !important;
     }
 
-    .region.bottom.center {
-        bottom: 100px;
-        width: 90%;
-        left: 5%;
-        transform: none;
+    .region.top.right header {
+        font-size: 10px !important;
+        margin-bottom: 5px !important;
     }
 
-    /* Mobile Image Slider */
+    /* 5. Image Slideshow - Fifth */
     .region.bottom.left {
-        width: 120px;
-        left: 20px;
-        bottom: 160px;
+        order: 5;
+        padding: 8px 0 !important;
+        display: flex !important;
+        justify-content: center !important;
     }
 
     .MMM-ImageSlideshow {
-        max-width: 100px;
-        max-height: 70px;
+        max-width: 80px !important;
+        max-height: 60px !important;
     }
 
-    /* Mobile Voice Control */
-    .region.bottom.right {
-        width: 120px;
-        right: 20px;
-        bottom: 160px;
+    /* 6. Compliments - Sixth */
+    .region.bottom.center {
+        order: 6;
+        padding: 8px 0 !important;
     }
 
-    /* Mobile News */
-    .region.bottom.bar .newsfeed {
-        font-size: 12px;
-        max-height: 30px;
+    .region.bottom.center .compliments {
+        font-size: 14px !important;
+        padding: 8px 15px !important;
+        margin: 0 !important;
     }
 
+    /* 7. News - Bottom (Voice Control Hidden) */
     .region.bottom.bar {
-        padding: 8px 0;
+        order: 7;
+        padding: 8px 0 5px 0 !important;
+        flex-grow: 1;
+        display: flex !important;
+        align-items: flex-end !important;
+    }
+
+    .region.bottom.bar .newsfeed {
+        font-size: 10px !important;
+        max-height: 25px !important;
+        overflow: hidden !important;
+        white-space: nowrap !important;
+    }
+
+    /* Ensure all modules are compact */
+    .module {
+        margin: 0 !important;
+        padding: 2px 0 !important;
+        line-height: 1.2 !important;
+        max-width: 100% !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+    }
+
+    /* Ensure tables and lists are responsive */
+    .module table {
+        width: 100% !important;
+        font-size: inherit !important;
+    }
+
+    .module table td,
+    .module table th {
+        padding: 1px 3px !important;
+        font-size: inherit !important;
+    }
+
+    /* Calendar specific mobile styling */
+    .calendar table {
+        font-size: 10px !important;
+    }
+
+    .calendar .event {
+        font-size: 9px !important;
+        line-height: 1.1 !important;
+    }
+
+    /* Weather specific mobile styling */
+    .weather .weathericon {
+        font-size: 16px !important;
+    }
+
+    .weather .temperature {
+        font-size: 14px !important;
+    }
+
+    /* Hide voice control module completely on mobile */
+    .region.bottom.right {
+        display: none !important;
+    }
+
+    /* Hide module headers to save space if needed */
+    .module header {
+        display: none !important;
+    }
+
+    /* Show only essential headers */
+    .region.top.left header,
+    .region.top.right header {
+        display: block !important;
+        font-size: 9px !important;
+        margin-bottom: 3px !important;
+        padding-bottom: 2px !important;
+    }
+}
+
+/* Extra Small Mobile Screens - Ultra Compact */
+@media (max-width: 480px) {
+    body {
+        font-size: 12px;
+    }
+
+    /* Even smaller text for tiny screens */
+    .region.top.center .clock {
+        font-size: 20px !important;
+    }
+
+    .region.top.center .clock .time {
+        font-size: 20px !important;
+    }
+
+    .region.top.center .clock .date {
+        font-size: 10px !important;
+    }
+
+    .region.upper.third .MMM-SimpleLocation {
+        font-size: 9px !important;
+    }
+
+    .region.top.left .calendar,
+    .region.top.right .weather {
+        font-size: 9px !important;
+    }
+
+    .region.top.left .calendar {
+        max-height: 100px !important;
+    }
+
+    .region.bottom.center .compliments {
+        font-size: 12px !important;
+        padding: 6px 12px !important;
+    }
+
+    .MMM-ImageSlideshow {
+        max-width: 60px !important;
+        max-height: 45px !important;
+    }
+
+    .region.bottom.bar .newsfeed {
+        font-size: 9px !important;
+        max-height: 20px !important;
+    }
+
+    /* Reduce padding for ultra compact layout */
+    .region {
+        padding: 0 3px !important;
+    }
+
+    .region.top.center,
+    .region.bottom.bar {
+        padding: 5px 0 !important;
+    }
+
+    .region.upper.third,
+    .region.top.left,
+    .region.top.right,
+    .region.bottom.left,
+    .region.bottom.center,
+    .region.bottom.right {
+        padding: 4px 0 !important;
     }
 }
 

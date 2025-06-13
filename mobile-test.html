@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MagicMirror Mobile Test</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            color: #fff;
+            font-family: 'Roboto', sans-serif;
+        }
+        
+        .mobile-frame {
+            width: 375px;
+            height: 667px;
+            margin: 20px auto;
+            border: 2px solid #333;
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+        }
+        
+        .mobile-frame iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
+        
+        .controls {
+            text-align: center;
+            margin: 20px;
+        }
+        
+        .controls button {
+            background: #4286f4;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        
+        .controls button:hover {
+            background: #3367d6;
+        }
+        
+        .info {
+            text-align: center;
+            margin: 20px;
+            color: #ccc;
+        }
+    </style>
+</head>
+<body>
+    <div class="info">
+        <h2>MagicMirror Mobile Layout Test</h2>
+        <p>Testing responsive mobile layout (375x667px - iPhone 6/7/8)</p>
+        <p><strong>Instructions:</strong></p>
+        <ol style="text-align: left; max-width: 600px; margin: 0 auto;">
+            <li>Make sure MagicMirror server is running: <code>npm run server</code></li>
+            <li>Open <a href="http://localhost:8080" target="_blank" style="color: #4286f4;">http://localhost:8080</a> in a new tab</li>
+            <li>Use browser Developer Tools (F12) to test mobile view</li>
+            <li>Or manually resize browser window to less than 800px width</li>
+        </ol>
+    </div>
+
+    <div class="controls">
+        <button onclick="openMirror()">Open MagicMirror</button>
+        <button onclick="openDevTools()">How to Test Mobile</button>
+    </div>
+
+    <div class="mobile-frame" id="mobileFrame" style="display: none;">
+        <p style="color: #ccc; text-align: center; padding: 50px;">
+            Due to browser security restrictions, please open MagicMirror directly:<br>
+            <a href="http://localhost:8080" target="_blank" style="color: #4286f4; font-size: 18px;">
+                http://localhost:8080
+            </a>
+        </p>
+    </div>
+    
+    <script>
+        function openMirror() {
+            window.open('http://localhost:8080', '_blank');
+        }
+
+        function openDevTools() {
+            alert(`To test mobile layout:
+
+1. Open http://localhost:8080 in a new tab
+2. Press F12 to open Developer Tools
+3. Click the device toggle icon (📱) in the toolbar
+4. Select a mobile device from the dropdown
+5. Or manually resize the browser window to less than 800px width
+
+The mobile layout will automatically activate and show all modules in a vertical stack!`);
+        }
+    </script>
+</body>
+</html>

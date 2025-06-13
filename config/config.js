@@ -282,15 +282,17 @@ let config = {
 		},
 		*/
 
-		// WSL Voice Control - Browser-Based (WSL Compatible)
+		// WSL Voice Control - Browser-Based (WSL Compatible) - HIDDEN & ALWAYS ON
 		{
 			module: "MMM-WSLVoice",
 			position: "bottom_right",
 			config: {
 				debug: false, // Set to true for troubleshooting
-				enableVisualFeedback: true,
-				feedbackDuration: 3000,
+				enableVisualFeedback: false, // Disable visual feedback to keep it invisible
+				feedbackDuration: 0, // No feedback duration
 				bridgePort: 3001, // Port for voice control web interface
+				autoStart: true, // Always start automatically
+				hidden: true, // Keep module hidden
 				commands: {
 					// Natural language commands (case insensitive)
 					"magic mirror show weather": "WEATHER_SHOW",
