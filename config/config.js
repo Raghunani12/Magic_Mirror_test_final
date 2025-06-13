@@ -164,47 +164,51 @@ let config = {
 
 
 
-		// News Feed - Bottom (Production-Ready Proportional)
+		// News Feed - Bottom Center (Production-Ready Proportional)
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "bottom_center",
+			header: "Latest News", // Add header for debugging
 			config: {
 				feeds: [
 					{
-						title: "BBC",
-						url: "http://feeds.bbci.co.uk/news/rss.xml"
-					},
-					{
-						title: "Reuters",
-						url: "http://feeds.reuters.com/reuters/topNews"
+						title: "BBC News",
+						url: "https://feeds.bbci.co.uk/news/rss.xml"
 					},
 					{
 						title: "CNN",
 						url: "http://rss.cnn.com/rss/edition.rss"
+					},
+					{
+						title: "Reuters",
+						url: "https://feeds.reuters.com/reuters/topNews"
 					}
 				],
 				showSourceTitle: true,
-				showPublishDate: true,
+				showPublishDate: false, // Disable for cleaner ticker
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true,
 				showDescription: false, // Disabled for cleaner ticker
+				showAsList: false, // Use ticker format
 				wrapTitle: false, // No wrapping for ticker
 				wrapDescription: false,
 				truncDescription: true,
-				lengthDescription: 150, // Shorter for proportional design
+				lengthDescription: 100, // Shorter for ticker
 				hideLoading: false,
-				reloadInterval: 5 * 60 * 1000, // 5 minutes
+				reloadInterval: 3 * 60 * 1000, // 3 minutes for faster updates
 				updateInterval: 10 * 1000, // 10 seconds for smoother updates
-				animationSpeed: 1000, // Faster transitions
-				maxNewsItems: 20, // Limit items for performance
-				ignoreOldItems: true,
-				ignoreOlderThan: 12 * 60 * 60 * 1000, // 12 hours for fresh content
+				animationSpeed: 2000, // Animation speed for transitions
+				maxNewsItems: 10, // Limit items for performance
+				ignoreOldItems: false, // Show all items initially
+				ignoreOlderThan: 24 * 60 * 60 * 1000, // 24 hours for fresh content
 				removeStartTags: "",
 				removeEndTags: "",
 				startTags: [],
 				endTags: [],
 				prohibitedWords: [],
-				scrollLength: 500
+				scrollLength: 500,
+				logFeedWarnings: true, // Enable logging for debugging
+				dangerouslyDisableAutoEscaping: false
 			}
 		},
 

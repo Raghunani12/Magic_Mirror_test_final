@@ -161,7 +161,7 @@ html, body {
 }
 
 /* 6. COMPLIMENTS - BOTTOM CENTER (Moved higher to avoid news overlap) */
-.region.bottom.center {
+.region.bottom.center .compliments {
     position: fixed !important;
     bottom: 130px; /* Moved higher to avoid news overlap */
     left: 50%;
@@ -169,9 +169,6 @@ html, body {
     text-align: center;
     z-index: 600;
     width: 60%;
-}
-
-.region.bottom.center .compliments {
     font-size: 24px !important;
     font-weight: 400 !important;
     color: #ffffff !important;
@@ -179,50 +176,75 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM BAR (Production-Ready Proportional Design) */
-.region.bottom.bar {
+/* 6B. NEWS - BOTTOM CENTER (Below compliments) */
+.region.bottom.center .module.newsfeed {
     position: fixed !important;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    bottom: 20px; /* At the very bottom */
+    left: 50%;
+    transform: translateX(-50%);
+    text-align: center;
     z-index: 500;
-    width: 100vw;
-    height: clamp(30px, 4vh, 50px);
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    display: flex;
-    align-items: center;
+    width: 90%;
+    max-width: 1200px;
+    min-height: clamp(40px, 5vh, 60px);
+    overflow: visible; /* Allow header to show */
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    display: block !important;
+    padding: 10px 20px;
 }
 
-/* Main newsfeed container - Proportional */
-.region.bottom.bar .newsfeed {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
+/* News header styling */
+.region.bottom.center .module.newsfeed header {
+    color: #ffffff !important;
+    font-size: 14px !important;
+    text-align: center;
+    margin-bottom: 5px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.3);
+    padding-bottom: 5px;
+}
+
+/* News content area */
+.region.bottom.center .module.newsfeed .newsfeed {
     display: flex;
     align-items: center;
-    padding: 0 2vw;
+    justify-content: center;
+    height: clamp(30px, 4vh, 40px);
+    overflow: hidden;
 }
+
+/* 7. NEWS - BOTTOM CENTER STYLING (Production-Ready Proportional Design) */
 
 /* Scrolling ticker container - Responsive */
-.region.bottom.bar .newsfeed .newsfeed-ticker {
+.region.bottom.center .newsfeed .newsfeed-ticker,
+.region.bottom.center .newsfeed > div,
+.region.bottom.center .module.newsfeed > div {
     display: inline-block;
     white-space: nowrap;
-    animation: scroll-news 60s linear infinite;
+    animation: scroll-news-center 80s linear infinite;
     padding-left: 100%;
-    font-size: clamp(10px, 1.5vw, 16px);
-    color: #ffffff;
+    font-size: clamp(12px, 1.8vw, 18px);
+    color: #ffffff !important;
     font-weight: 400;
-    line-height: 1.2;
+    line-height: 1.3;
     font-family: 'Nunito Sans', sans-serif;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
 }
 
-/* Production-Ready News Scrolling Animation */
-@keyframes scroll-news {
+/* Fallback for when ticker class is not applied */
+.region.bottom.center .module.newsfeed {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* Production-Ready News Scrolling Animation for Center Position */
+@keyframes scroll-news-center {
     0% {
-        transform: translateX(100vw);
+        transform: translateX(100%);
     }
     100% {
         transform: translateX(-100%);
@@ -230,7 +252,9 @@ html, body {
 }
 
 /* Ensure smooth performance across all devices */
-.region.bottom.bar .newsfeed .newsfeed-ticker {
+.region.bottom.center .newsfeed .newsfeed-ticker,
+.region.bottom.center .newsfeed > div,
+.region.bottom.center .module.newsfeed > div {
     will-change: transform;
     backface-visibility: hidden;
     perspective: 1000px;
@@ -276,8 +300,8 @@ html, body {
     .region.top.left { order: 3; }        /* Calendar third */
     .region.top.right { order: 4; }       /* Weather fourth */
     .region.bottom.left { order: 5; }     /* Images fifth */
-    .region.bottom.center { order: 6; }   /* Compliments sixth */
-    .region.bottom.bar { order: 7; }      /* News last */
+    .region.bottom.center .compliments { order: 6; }   /* Compliments sixth */
+    .region.bottom.center .newsfeed { order: 7; }      /* News last */
 
     /* Mobile font sizes - smaller but readable */
     .region.top.center .clock {
@@ -313,18 +337,24 @@ html, body {
     }
 
     /* News - Mobile Responsive */
-    .region.bottom.bar {
-        height: clamp(25px, 3vh, 35px) !important;
-        padding: 0 !important;
+    .region.bottom.center .newsfeed {
+        height: clamp(30px, 4vh, 40px) !important;
+        padding: 0 15px !important;
+        width: 95% !important;
+        bottom: 10px !important;
     }
 
-    .region.bottom.bar .newsfeed {
-        padding: 0 3vw !important;
+    .region.bottom.center .newsfeed .newsfeed-ticker,
+    .region.bottom.center .newsfeed > div,
+    .region.bottom.center .module.newsfeed > div {
+        animation: scroll-news-center 60s linear infinite;
+        font-size: clamp(10px, 1.4vw, 14px) !important;
     }
 
-    .region.bottom.bar .newsfeed .newsfeed-ticker {
-        animation: scroll-news 45s linear infinite;
-        font-size: clamp(8px, 1.2vw, 12px) !important;
+    .region.bottom.center .compliments {
+        bottom: 60px !important; /* Move compliments higher on mobile */
+        font-size: 16px !important;
+        padding: 10px 15px !important;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -363,13 +393,15 @@ html, body {
     }
 
     /* News - Tablet Responsive */
-    .region.bottom.bar {
-        height: clamp(35px, 3.5vh, 45px) !important;
+    .region.bottom.center .newsfeed {
+        height: clamp(40px, 4vh, 50px) !important;
     }
 
-    .region.bottom.bar .newsfeed .newsfeed-ticker {
-        font-size: clamp(12px, 1.4vw, 14px) !important;
-        animation: scroll-news 55s linear infinite;
+    .region.bottom.center .newsfeed .newsfeed-ticker,
+    .region.bottom.center .newsfeed > div,
+    .region.bottom.center .module.newsfeed > div {
+        font-size: clamp(14px, 1.6vw, 16px) !important;
+        animation: scroll-news-center 70s linear infinite;
     }
 }
 
@@ -471,9 +503,44 @@ html, body {
 
 /* ===== ENSURE NEWSFEED MODULE IS VISIBLE ===== */
 .module.newsfeed,
-.region.bottom.bar .module,
-.region.bottom.bar .newsfeed,
+.region.bottom.center .module,
+.region.bottom.center .newsfeed,
 .newsfeed {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== ADDITIONAL NEWSFEED FIXES ===== */
+.region.bottom.center .module.newsfeed .newsfeed-source {
+    color: #cccccc !important;
+    font-size: 12px !important;
+}
+
+.region.bottom.center .module.newsfeed .newsfeed-title {
+    color: #ffffff !important;
+    font-weight: 400 !important;
+}
+
+.region.bottom.center .module.newsfeed .newsfeed-desc {
+    color: #dddddd !important;
+}
+
+/* Force newsfeed content to be visible */
+.region.bottom.center .module.newsfeed * {
+    color: #ffffff !important;
+}
+
+/* Loading and error states */
+.region.bottom.center .module.newsfeed .small.dimmed {
+    color: #ffffff !important;
+    font-size: clamp(12px, 1.5vw, 16px) !important;
+    text-align: center;
+    padding: 10px;
+}
+
+/* Ensure the region itself is visible */
+.region.bottom.center {
     display: block !important;
     visibility: visible !important;
     opacity: 1 !important;

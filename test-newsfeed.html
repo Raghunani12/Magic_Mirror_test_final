@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>News Feed Test</title>
+    <style>
+        body {
+            background: #000;
+            color: #fff;
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        .test-container {
+            border: 1px solid #333;
+            padding: 20px;
+            margin: 10px 0;
+        }
+        .news-ticker {
+            background: rgba(0,0,0,0.8);
+            border: 1px solid #fff;
+            padding: 10px;
+            overflow: hidden;
+            white-space: nowrap;
+            animation: scroll 30s linear infinite;
+        }
+        @keyframes scroll {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+    </style>
+</head>
+<body>
+    <h1>News Feed Test</h1>
+    
+    <div class="test-container">
+        <h2>Test 1: RSS Feed URLs</h2>
+        <div id="feed-test">Testing RSS feeds...</div>
+    </div>
+    
+    <div class="test-container">
+        <h2>Test 2: Sample News Ticker</h2>
+        <div class="news-ticker">
+            BBC News: Sample news headline for testing • Reuters: Another test headline • NPR: Third test headline • 
+        </div>
+    </div>
+    
+    <script>
+        // Test RSS feed URLs
+        const feeds = [
+            'https://feeds.bbci.co.uk/news/rss.xml',
+            'https://feeds.reuters.com/reuters/topNews',
+            'https://feeds.apnews.com/rss/apf-topnews',
+            'https://feeds.npr.org/1001/rss.xml'
+        ];
+        
+        async function testFeeds() {
+            const results = [];
+            for (const feed of feeds) {
+                try {
+                    const response = await fetch(feed, { mode: 'no-cors' });
+                    results.push(`✓ ${feed} - Accessible`);
+                } catch (error) {
+                    results.push(`✗ ${feed} - Error: ${error.message}`);
+                }
+            }
+            document.getElementById('feed-test').innerHTML = results.join('<br>');
+        }
+        
+        testFeeds();
+    </script>
+</body>
+</html>
