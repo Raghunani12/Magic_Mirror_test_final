@@ -179,49 +179,45 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM CENTER (Fixed positioning with visible scrolling) */
+/* 7. NEWS - BOTTOM BAR (Moved up with scrolling animation) */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 20px;
-    left: 50%;
-    transform: translateX(-50%);
+    bottom: 60px;
+    left: 0;
+    right: 0;
     text-align: center;
     z-index: 500;
-    width: 90%;
-    height: 40px;
+    width: 100%;
+    height: 55px;
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.5);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .region.bottom.bar .newsfeed {
     font-size: 14px !important;
     color: #ffffff !important;
-    height: 40px;
-    line-height: 40px;
+    height: 60px;
+    line-height: 60px;
     white-space: nowrap;
     overflow: hidden;
-    width: 100%;
-    position: relative;
+    padding: 0 10px;
+    display: flex;
+    align-items: center;
 }
 
 .region.bottom.bar .newsfeed .newsticker {
     display: inline-block;
     white-space: nowrap;
-    animation: news-scroll 30s linear infinite;
-    position: absolute;
-    left: 100%;
-    width: max-content;
+    animation: scroll-news 60s linear infinite;
+    padding-left: 100%;
 }
 
-/* News scrolling animation - Right to Left (Fixed) */
-@keyframes news-scroll {
+/* News scrolling animation - Right to Left */
+@keyframes scroll-news {
     0% {
         transform: translateX(0%);
     }
     100% {
-        transform: translateX(-200%);
+        transform: translateX(-100%);
     }
 }
 
@@ -313,7 +309,7 @@ html, body {
     }
 
     .region.bottom.bar .newsfeed .newsticker {
-        animation: news-scroll 25s linear infinite;
+        animation: scroll-news 45s linear infinite;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -427,19 +423,17 @@ html, body {
     white-space: nowrap;
     overflow: hidden;
     display: inline-block;
-    animation: news-scroll 30s linear infinite;
-    position: absolute;
-    left: 100%;
-    width: max-content;
+    animation: scroll-news 60s linear infinite;
+    padding-left: 100%;
 }
 
 /* Enhanced news scrolling animation */
-@keyframes news-scroll {
+@keyframes scroll-news {
     0% {
         transform: translateX(0%);
     }
     100% {
-        transform: translateX(-200%);
+        transform: translateX(-100%);
     }
 }
 
