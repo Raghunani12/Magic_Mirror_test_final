@@ -1,9 +1,9 @@
-/* ===== MAGIC MIRROR FIXED LAYOUT - YOUR EXACT REQUIREMENTS ===== */
+/* ===== MAGIC MIRROR - ORIGINAL LAYOUT WITH RESPONSIVE FIXES ===== */
 
-/* Import Google Font - Nunito Sans */
+/* Import Google Font - Nunito Sans (Your Original Choice) */
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;600;700&display=swap');
 
-/* ===== GLOBAL FOUNDATION ===== */
+/* ===== GLOBAL FOUNDATION (KEEPING YOUR ORIGINAL STYLE) ===== */
 
 html, body {
     font-family: 'Nunito Sans', sans-serif;
@@ -17,35 +17,26 @@ html, body {
     font-weight: 300;
     line-height: 1.4;
     -webkit-font-smoothing: antialiased;
-    overflow: hidden; /* NO SCROLLING */
-    height: 100vh; /* FIXED HEIGHT */
-    width: 100vw; /* FIXED WIDTH */
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
     animation: backgroundPulse 30s ease-in-out infinite;
 }
 
-/* Fixed Body Layout - ABSOLUTE POSITIONING ONLY */
-body {
-    position: relative;
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-}
-
-/* Ensure desktop/tablet layout remains unchanged */
-@media (min-width: 801px) {
-    body {
-        display: block !important;
-        flex-direction: initial !important;
+@keyframes backgroundPulse {
+    0%, 100% {
+        background-image:
+            radial-gradient(circle at 25% 25%, #111111 0%, transparent 50%),
+            radial-gradient(circle at 75% 75%, #0a0a0a 0%, transparent 50%);
     }
-
-    .region {
-        position: fixed !important;
+    50% {
+        background-image:
+            radial-gradient(circle at 30% 30%, #151515 0%, transparent 50%),
+            radial-gradient(circle at 70% 70%, #0f0f0f 0%, transparent 50%);
     }
 }
 
-/* ===== CLEAN LAYOUT - NO CONFLICTING RULES ===== */
-
-/* Hide Voice Control Module Completely - Always Invisible but Active */
+/* ===== HIDE VOICE CONTROL MODULE COMPLETELY ===== */
 .MMM-WSLVoice,
 .region.bottom.right .MMM-WSLVoice,
 .module.MMM-WSLVoice {
@@ -59,577 +50,9 @@ body {
     overflow: hidden !important;
 }
 
-/* ===== RESPONSIVE ADJUSTMENTS FOR DIFFERENT SCREEN SIZES ===== */
+/* ===== YOUR ORIGINAL FIXED POSITIONING LAYOUT ===== */
 
-/* Small Screens - Keep Desktop/Tablet Layout */
-@media (max-width: 1200px) and (min-width: 801px) {
-    .region.top.left {
-        top: 180px;
-        left: 10px;
-        width: calc(100% - 20px);
-        max-width: none;
-    }
-
-    .region.top.right {
-        top: 350px;
-        right: 10px;
-        left: 10px;
-        width: calc(100% - 20px);
-        max-width: none;
-    }
-
-    .region.bottom.left {
-        bottom: 180px;
-        left: 20px;
-        width: 150px;
-    }
-
-    .region.bottom.center {
-        bottom: 120px;
-        width: 80%;
-    }
-
-    .region.bottom.center .compliments {
-        font-size: 20px !important;
-        padding: 15px 20px;
-    }
-}
-
-/* Large Screens - Optimize Spacing */
-@media (min-width: 1200px) {
-    .region.top.center .clock {
-        font-size: 56px !important;
-    }
-
-    .region.top.center .clock .time {
-        font-size: 56px !important;
-    }
-
-    .region.top.left,
-    .region.top.right {
-        width: 40%;
-        max-width: 450px;
-    }
-
-    .region.bottom.center .compliments {
-        font-size: 32px !important;
-        padding: 25px 40px;
-    }
-}
-
-/* Portrait Orientation - Adjust for Vertical Displays */
-@media (orientation: portrait) {
-    .region.top.left {
-        top: 160px;
-        left: 5%;
-        width: 90%;
-    }
-
-    .region.top.right {
-        top: 320px;
-        left: 5%;
-        right: 5%;
-        width: 90%;
-    }
-
-    .region.bottom.left {
-        bottom: 160px;
-        left: 5%;
-    }
-
-    .region.bottom.center {
-        bottom: 100px;
-        width: 90%;
-    }
-}
-
-/* Calendar source differentiation */
-.calendar .event[data-calendar-name*="Google"] .symbol {
-    color: #4285f4; /* Google blue */
-}
-
-.calendar .event[data-calendar-name*="Outlook"] .symbol {
-    color: #0078d4; /* Outlook blue */
-}
-
-.calendar .event[data-calendar-name*="Google"] .title {
-    border-left: 3px solid #4285f4;
-    padding-left: 8px;
-}
-
-.calendar .event[data-calendar-name*="Outlook"] .title {
-    border-left: 3px solid #0078d4;
-    padding-left: 8px;
-}
-
-/* Calendar header styling */
-.calendar .module-header {
-    font-family: 'Cinzel', serif;
-    font-size: 12px;
-    margin-bottom: 8px;
-    color: #ffffff;
-    font-weight: 400;
-}
-
-/* Weather Styling */
-.weather {
-    font-family: 'Cinzel', serif;
-    padding: 8px;
-    margin: 5px 0;
-    text-align: center;
-}
-
-.weather .current {
-    text-align: center;
-}
-
-.weather .temperature {
-    font-family: 'Cinzel', serif;
-    font-size: 24px;
-    font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 0 12px rgba(255, 255, 255, 0.4);
-    margin: 4px 0;
-    line-height: 1;
-}
-
-.weather .weathericon {
-    font-size: 28px;
-    margin: 6px 0;
-    color: #ffffff;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.4);
-    line-height: 1;
-}
-
-.weather .description {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    color: #ffffff;
-    opacity: 0.8;
-    margin: 3px 0;
-    text-transform: capitalize;
-}
-
-.weather .humidity,
-.weather .wind,
-.weather .feelslike {
-    font-family: 'Cinzel', serif;
-    font-size: 8px;
-    color: #ffffff;
-    opacity: 0.7;
-    margin: 2px 0;
-}
-
-.weather .module-header {
-    font-family: 'Cinzel', serif;
-    font-size: 10px;
-    margin-bottom: 6px;
-    color: #ffffff;
-    font-weight: 400;
-}
-
-/* Remove weather animations to reduce distraction */
-.weather .temperature,
-.weather .weathericon {
-    animation: none !important;
-}
-
-/* News Feed Styling */
-.newsfeed {
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 20px 0;
-    animation: slideUp 1s ease-out;
-}
-
-@keyframes slideUp {
-    from { transform: translateY(100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-.newsfeed .newsfeed-source {
-    font-family: 'Cinzel', serif;
-    color: #ffffff;
-    font-weight: 400;
-    margin-right: 8px;
-    opacity: 0.7;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-size: 8px;
-}
-
-.newsfeed .newsfeed-title {
-    font-family: 'Cinzel', serif;
-    font-weight: 400;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    animation: scrollText 30s linear infinite;
-    font-size: 10px;
-}
-
-@keyframes scrollText {
-    0% { transform: translateX(100%); }
-    100% { transform: translateX(-100%); }
-}
-
-/* Photo Slideshow Styling */
-.MMM-ImageSlideshow {
-    overflow: hidden;
-    max-width: 120px;
-    max-height: 80px;
-}
-
-/* Image with Color Gradient Overlay */
-.MMM-ImageSlideshow img {
-    transition: all 1.5s ease;
-    filter: contrast(1.2) brightness(1.1);
-    width: 120px;
-    height: 80px;
-    object-fit: cover;
-    background: linear-gradient(
-        135deg,
-        rgba(138, 43, 226, 0.3) 0%,
-        rgba(30, 144, 255, 0.3) 25%,
-        rgba(0, 191, 255, 0.3) 50%,
-        rgba(255, 20, 147, 0.3) 75%,
-        rgba(255, 69, 0, 0.3) 100%
-    );
-    background-blend-mode: overlay;
-}
-
-/* Hover effect for enhanced colors */
-.MMM-ImageSlideshow img:hover {
-    filter: contrast(1.3) brightness(1.2) saturate(1.2);
-    box-shadow:
-        inset 0 0 0 3px rgba(138, 43, 226, 0.4),
-        inset 0 0 30px rgba(30, 144, 255, 0.3),
-        inset 0 0 50px rgba(0, 191, 255, 0.3),
-        inset 0 0 70px rgba(255, 20, 147, 0.3),
-        inset 0 0 90px rgba(255, 69, 0, 0.3);
-}
-
-@keyframes imageZoom {
-    0%, 100% { transform: scale(1); }
-    50% { transform: scale(1.05); }
-}
-
-/* Location Display Styling */
-.MMM-ip {
-    font-family: 'Cinzel', serif;
-    text-align: center;
-    font-weight: 400;
-    color: hsl(0, 0%, 100%);
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.808);
-    letter-spacing: 1px;
-    font-size: 10px;
-    padding: 4px 8px;
-    margin: 2px 0;
-}
-
-@keyframes slideInDown {
-    from { transform: translateY(-100%); opacity: 0; }
-    to { transform: translateY(0); opacity: 1; }
-}
-
-/* Compliments Styling - Cinzel Font */
-.compliments {
-    font-family: 'Cinzel', serif;
-    font-size: 16px;
-    font-weight: 400;
-    text-align: center;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
-    font-style: normal;
-    margin: 8px 0;
-    letter-spacing: 1px;
-}
-
-/* Hide ALL debug elements */
-.debug-console,
-.debug-toggle,
-.debug-info,
-.debug-panel,
-.console-log,
-.console-error,
-.console-warn,
-.console-info,
-.console-debug,
-[class*="debug"],
-[id*="debug"],
-.alert,
-.updatenotification {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-/* MMM-ModulePosition - Enhanced drag and drop visibility */
-.region.top.bar .module {
-    position: relative; /* Allow drag and drop */
-}
-
-/* ===== CLOCK VISIBILITY FIXES ===== */
-
-/* Prevent MMM-ModulePosition from hiding the clock */
-.module.clock {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Force clock visibility in all scenarios */
-.clock,
-.clock .time,
-.clock .date {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    color: #ffffff !important;
-}
-
-/* Override any hidden states */
-.region.top.center,
-.region.top.center .module,
-.region.top.center .clock {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Ensure clock content is always present */
-.clock .time:empty::before {
-    content: "Loading...";
-    color: #ffffff;
-    opacity: 0.7;
-}
-
-/* Remove any conflicting animations that might hide clock */
-.clock * {
-    animation-fill-mode: forwards !important;
-}
-
-/* Anti-overlap protection */
-.region {
-    box-sizing: border-box;
-}
-
-.module {
-    box-sizing: border-box;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-/* Ensure proper spacing between regions */
-.region.top.center {
-    margin-top: 0;
-    margin-bottom: 20px;
-}
-
-.region.top.bar {
-    margin-bottom: 10px;
-}
-
-/* Prevent content overflow */
-.region.top.bar .module {
-    max-width: 100%;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* Enhanced MMM-ModulePosition visibility */
-.drag {
-    border: 2px dashed rgba(66, 134, 244, 0.8) !important;
-    background-color: rgba(66, 134, 244, 0.1) !important;
-    cursor: move !important;
-}
-
-.drag:hover {
-    border: 2px dashed rgba(66, 134, 244, 1) !important;
-    background-color: rgba(66, 134, 244, 0.2) !important;
-    box-shadow: 0 0 20px rgba(66, 134, 244, 0.5) !important;
-}
-
-/* Enhanced resize handles */
-.resizable .resizer {
-    background: #4286f4 !important;
-    border: 2px solid #ffffff !important;
-    width: 12px !important;
-    height: 12px !important;
-    border-radius: 50% !important;
-    opacity: 0.8 !important;
-    z-index: 1000 !important;
-}
-
-.resizable .resizer:hover {
-    background: #ffffff !important;
-    border: 2px solid #4286f4 !important;
-    opacity: 1 !important;
-    transform: scale(1.2) !important;
-}
-
-/* Enhanced control panel */
-.currentmodulemeta {
-    background-color: rgba(0, 0, 0, 0.9) !important;
-    border: 2px solid rgba(66, 134, 244, 0.8) !important;
-    border-radius: 12px !important;
-    padding: 15px !important;
-    box-shadow: 0 0 30px rgba(0, 0, 0, 0.8) !important;
-    z-index: 2000 !important;
-}
-
-/* Enhanced save button */
-.save-button {
-    background: linear-gradient(135deg, #4286f4, #0f62fe) !important;
-    color: white !important;
-    border: none !important;
-    border-radius: 8px !important;
-    padding: 12px 20px !important;
-    font-family: 'Cinzel', serif !important;
-    font-size: 14px !important;
-    font-weight: 600 !important;
-    cursor: pointer !important;
-    transition: all 0.3s ease !important;
-}
-
-.save-button:hover {
-    background: linear-gradient(135deg, #0f62fe, #4286f4) !important;
-    transform: translateY(-2px) !important;
-    box-shadow: 0 5px 15px rgba(66, 134, 244, 0.4) !important;
-}
-
-/* Grid toggle styling */
-.switch {
-    position: relative !important;
-    display: inline-block !important;
-    width: 60px !important;
-    height: 34px !important;
-}
-
-.switch input {
-    opacity: 0 !important;
-    width: 0 !important;
-    height: 0 !important;
-}
-
-.slider {
-    position: absolute !important;
-    cursor: pointer !important;
-    top: 0 !important;
-    left: 0 !important;
-    right: 0 !important;
-    bottom: 0 !important;
-    background-color: #ccc !important;
-    transition: .4s !important;
-    border-radius: 34px !important;
-}
-
-.slider:before {
-    position: absolute !important;
-    content: "" !important;
-    height: 26px !important;
-    width: 26px !important;
-    left: 4px !important;
-    bottom: 4px !important;
-    background-color: white !important;
-    transition: .4s !important;
-    border-radius: 50% !important;
-}
-
-input:checked + .slider {
-    background-color: #4286f4 !important;
-}
-
-input:checked + .slider:before {
-    transform: translateX(26px) !important;
-}
-
-/* Meta display styling */
-.metagrid {
-    font-family: 'Cinzel', serif !important;
-    color: #ffffff !important;
-    font-size: 12px !important;
-}
-
-.metagridname {
-    font-weight: 600 !important;
-    color: #4286f4 !important;
-    margin-bottom: 5px !important;
-}
-
-/* Grid visibility */
-body.grid-enabled {
-    background-image: linear-gradient(to right, rgba(255, 255, 255, 0.2) 1px, transparent 1px),
-                      linear-gradient(to bottom, rgba(255, 255, 255, 0.2) 1px, transparent 1px) !important;
-    background-size: 10px 10px !important;
-}
-
-/* MMM-ModulePosition - Temporary positioning disabled for drag and drop */
-/* Uncomment the layout below after saving your custom layout */
-
-/*
-.module_0_clock {
-    left: 20px;
-    top: 20px;
-    width: 300px;
-    height: 100px;
-    position: absolute !important;
-}
-
-.module_1_calendar {
-    left: 20px;
-    top: 140px;
-    width: 280px;
-    height: 400px;
-    position: absolute !important;
-}
-
-.module_2_weather {
-    right: 20px;
-    top: 20px;
-    width: 250px;
-    height: 200px;
-    position: absolute !important;
-}
-
-.module_3_MMM-ip {
-    left: 50%;
-    top: 20px;
-    width: 200px;
-    height: 50px;
-    position: absolute !important;
-    transform: translateX(-50%);
-}
-
-.module_4_newsfeed {
-    left: 50%;
-    bottom: 100px;
-    width: 80%;
-    height: 60px;
-    position: absolute !important;
-    transform: translateX(-50%);
-}
-
-.module_5_MMM-ImageSlideshow {
-    left: 20px;
-    top: 560px;
-    width: 120px;
-    height: 80px;
-    position: absolute !important;
-}
-
-.module_6_compliments {
-    left: 50%;
-    bottom: 20px;
-    width: 60%;
-    height: 50px;
-    position: absolute !important;
-    transform: translateX(-50%);
-}
-*/
-
-/* ===== CLEAN FIXED POSITIONING - YOUR EXACT LAYOUT ===== */
-
-/* 1. CLOCK - TOP CENTER */
+/* 1. CLOCK - TOP CENTER (Your Original Position) */
 .region.top.center {
     position: fixed !important;
     top: 20px;
@@ -660,10 +83,10 @@ body.grid-enabled {
     margin-top: 5px;
 }
 
-/* 2. SIMPLELOCATION - BELOW CLOCK CENTER */
+/* 2. LOCATION - BELOW CLOCK (Your Original Position) */
 .region.upper.third {
     position: fixed !important;
-    top: 120px;
+    top: 100px;
     left: 50%;
     transform: translateX(-50%);
     text-align: center;
@@ -672,282 +95,112 @@ body.grid-enabled {
 }
 
 .region.upper.third .MMM-SimpleLocation {
-    font-size: 18px !important;
-    opacity: 0.9;
-    color: #ffffff;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.4);
+    font-size: 14px !important;
+    color: #cccccc !important;
+    font-weight: 400 !important;
 }
 
-/* 3. CALENDAR - LEFT SIDE */
+/* 3. CALENDAR - LEFT SIDE (Your Original Position) */
 .region.top.left {
     position: fixed !important;
-    top: 180px;
+    top: 160px;
     left: 20px;
-    width: 45%;
-    max-width: 400px;
+    width: 350px;
     z-index: 800;
 }
 
 .region.top.left .calendar {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    font-size: 14px !important;
+    color: #ffffff !important;
 }
 
-.region.top.left .module-header {
-    font-size: 16px !important;
+.region.top.left header {
+    font-size: 12px !important;
+    color: #cccccc !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
     margin-bottom: 10px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 600;
 }
 
-/* 4. WEATHER - RIGHT SIDE (SAME LINE AS CALENDAR) */
+/* 4. WEATHER - RIGHT SIDE (Your Original Position) */
 .region.top.right {
     position: fixed !important;
-    top: 180px;
+    top: 160px;
     right: 20px;
-    width: 45%;
-    max-width: 400px;
+    width: 300px;
     z-index: 800;
 }
 
 .region.top.right .weather {
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    padding: 15px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
-    text-align: center;
-}
-
-.region.top.right .module-header {
-    font-size: 16px !important;
-    margin-bottom: 10px;
-    text-align: center;
-    color: #ffffff;
-    font-weight: 600;
-}
-
-.region.top.right .weather .temperature {
-    font-size: 36px !important;
-    font-weight: 600 !important;
+    font-size: 14px !important;
     color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.5) !important;
 }
 
-/* 5. IMAGE SLIDER - LEFT SIDE (WITH PADDING) */
+.region.top.right header {
+    font-size: 12px !important;
+    color: #cccccc !important;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+}
+
+/* 5. IMAGE SLIDESHOW - BOTTOM LEFT (Your Original Position) */
 .region.bottom.left {
     position: fixed !important;
-    bottom: 200px;
-    left: 40px;
+    bottom: 120px;
+    left: 20px;
     width: 200px;
     z-index: 700;
 }
 
 .region.bottom.left .MMM-ImageSlideshow {
-    padding: 15px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 12px;
-    backdrop-filter: blur(10px);
-    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 150px !important;
+    max-height: 100px !important;
 }
 
-.region.bottom.left .MMM-ImageSlideshow img {
-    width: 150px;
-    height: 100px;
-    border-radius: 8px;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.4);
-}
-
-/* 6. COMPLIMENTS - CENTER */
+/* 6. COMPLIMENTS - BOTTOM CENTER (Your Original Position) */
 .region.bottom.center {
     position: fixed !important;
-    bottom: 150px;
+    bottom: 60px;
     left: 50%;
     transform: translateX(-50%);
-    width: 60%;
-    max-width: 600px;
     text-align: center;
     z-index: 600;
+    width: 60%;
 }
 
 .region.bottom.center .compliments {
-    font-size: 28px !important;
+    font-size: 24px !important;
     font-weight: 400 !important;
     color: #ffffff !important;
-    text-shadow: 0 0 15px rgba(255, 255, 255, 0.6) !important;
-    line-height: 1.3;
-    text-align: center;
-    font-family: 'Nunito Sans', sans-serif !important;
-    padding: 20px 30px;
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
-    backdrop-filter: blur(10px);
+    padding: 15px 30px;
+    font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM */
+/* 7. NEWS - BOTTOM BAR (Your Original Position) */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 0;
+    bottom: 10px;
     left: 0;
     right: 0;
-    width: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    border-top: 1px solid rgba(255, 255, 255, 0.1);
-    padding: 15px 20px;
-    backdrop-filter: blur(10px);
+    text-align: center;
     z-index: 500;
+    width: 100%;
 }
 
 .region.bottom.bar .newsfeed {
     font-size: 14px !important;
-    color: #ffffff;
-    line-height: 1.4;
-    text-align: center;
-    max-height: 60px;
+    color: #ffffff !important;
+    max-height: 40px;
     overflow: hidden;
 }
 
-/* 8. VOICE CONTROL - BOTTOM RIGHT */
-.region.bottom.right {
-    position: fixed !important;
-    bottom: 200px;
-    right: 40px;
-    width: 200px;
-    z-index: 700;
-}
+/* ===== RESPONSIVE FIXES FOR MOBILE DEVICES ===== */
 
-.region.bottom.right .MMM-WSLVoice {
-    font-size: 12px;
-    opacity: 0.8;
-    padding: 10px;
-    background: rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-    backdrop-filter: blur(5px);
-}
-
-/* ===== RESPONSIVE ADJUSTMENTS ===== */
-
-/* Ensure no overlaps and proper spacing */
-.region {
-    box-sizing: border-box;
-}
-
-/* Fix any potential z-index conflicts */
-.region.top.center {
-    z-index: 1000 !important;
-}
-
-.region.upper.third {
-    z-index: 900 !important;
-}
-
-.region.top.left,
-.region.top.right {
-    z-index: 800 !important;
-}
-
-.region.bottom.left,
-.region.bottom.right {
-    z-index: 700 !important;
-}
-
-.region.bottom.center {
-    z-index: 600 !important;
-}
-
-.region.bottom.bar {
-    z-index: 500 !important;
-}
-
-/* Module Container Styling */
-.module {
-    animation: moduleAppear 1s ease-out;
-    transition: all 0.3s ease;
-}
-
-@keyframes moduleAppear {
-    from {
-        opacity: 0;
-        transform: scale(0.9) translateY(20px);
-    }
-    to {
-        opacity: 1;
-        transform: scale(1) translateY(0);
-    }
-}
-
-/* ===== RESPONSIVE DESIGN FOR CUSTOM LAYOUT ===== */
-
-@media (max-width: 1200px) {
-    body {
-        font-size: 16px;
-    }
-
-    /* Clock responsive */
-    .region.top.center .clock {
-        font-size: 36px !important;
-    }
-
-    /* Calendar and Weather responsive */
-    .region.top.left,
-    .region.top.right {
-        width: 48%;
-        top: 180px;
-    }
-
-    .region.top.left {
-        left: 15px;
-    }
-
-    .region.top.right {
-        right: 15px;
-    }
-
-    /* Compliments responsive */
-    .region.bottom.center .compliments {
-        font-size: 20px !important;
-        padding: 12px 25px;
-    }
-
-    /* Image slider responsive */
-    .region.bottom.left {
-        width: 180px;
-        left: 30px;
-        bottom: 180px;
-    }
-
-    /* Voice control responsive */
-    .region.bottom.right {
-        width: 180px;
-        right: 30px;
-        bottom: 180px;
-    }
-
-    /* News responsive */
-    .region.bottom.bar .newsfeed {
-        font-size: 13px;
-        max-height: 35px;
-    }
-}
-
+/* Mobile Layout - Stack vertically without overlapping */
 @media (max-width: 800px) {
-    /* Mobile Layout - Vertical Stack Without Overlapping */
-    body {
-        font-size: 14px;
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100vh !important;
-        overflow: hidden !important;
-        padding: 0 !important;
-        margin: 0 !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-    }
-
     /* Reset all fixed positioning for mobile */
     .region {
         position: relative !important;
@@ -959,21 +212,35 @@ body.grid-enabled {
         width: 100% !important;
         text-align: center !important;
         margin: 0 !important;
-        padding: 0 5px !important;
-        flex-shrink: 0;
+        padding: 10px 5px !important;
+        z-index: auto !important;
     }
 
-    /* Mobile Vertical Stack Order */
-
-    /* 1. Clock - Top */
-    .region.top.center {
-        order: 1;
-        padding: 10px 0 5px 0 !important;
+    /* Mobile body - flexbox vertical stack */
+    body {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100vh !important;
+        overflow: hidden !important;
+        padding: 5px !important;
+        margin: 0 !important;
+        justify-content: flex-start !important;
+        align-items: stretch !important;
+        gap: 5px !important;
     }
 
+    /* Mobile order - your original module order */
+    .region.top.center { order: 1; }      /* Clock first */
+    .region.upper.third { order: 2; }     /* Location second */
+    .region.top.left { order: 3; }        /* Calendar third */
+    .region.top.right { order: 4; }       /* Weather fourth */
+    .region.bottom.left { order: 5; }     /* Images fifth */
+    .region.bottom.center { order: 6; }   /* Compliments sixth */
+    .region.bottom.bar { order: 7; }      /* News last */
+
+    /* Mobile font sizes - smaller but readable */
     .region.top.center .clock {
         font-size: 24px !important;
-        margin: 0 !important;
     }
 
     .region.top.center .clock .time {
@@ -982,407 +249,179 @@ body.grid-enabled {
 
     .region.top.center .clock .date {
         font-size: 12px !important;
-        margin-top: 2px !important;
-    }
-
-    /* 2. Location - Below Clock */
-    .region.upper.third {
-        order: 2;
-        padding: 5px 0 !important;
     }
 
     .region.upper.third .MMM-SimpleLocation {
-        font-size: 11px !important;
-        margin: 0 !important;
-    }
-
-    /* 3. Calendar - Third */
-    .region.top.left {
-        order: 3;
-        padding: 8px 0 !important;
-    }
-
-    .region.top.left .calendar {
-        font-size: 11px !important;
-        max-height: 120px !important;
-        overflow: hidden !important;
-    }
-
-    .region.top.left header {
         font-size: 10px !important;
-        margin-bottom: 5px !important;
     }
 
-    /* 4. Weather - Fourth */
-    .region.top.right {
-        order: 4;
-        padding: 8px 0 !important;
-    }
-
+    .region.top.left .calendar,
     .region.top.right .weather {
         font-size: 11px !important;
     }
 
+    .region.top.left header,
     .region.top.right header {
-        font-size: 10px !important;
+        font-size: 9px !important;
         margin-bottom: 5px !important;
     }
 
-    /* 5. Image Slideshow - Fifth */
-    .region.bottom.left {
-        order: 5;
-        padding: 8px 0 !important;
-        display: flex !important;
-        justify-content: center !important;
-    }
-
-    .MMM-ImageSlideshow {
-        max-width: 80px !important;
-        max-height: 60px !important;
-    }
-
-    /* 6. Compliments - Sixth */
-    .region.bottom.center {
-        order: 6;
-        padding: 8px 0 !important;
-    }
-
     .region.bottom.center .compliments {
-        font-size: 14px !important;
-        padding: 8px 15px !important;
-        margin: 0 !important;
-    }
-
-    /* 7. News - Bottom (Voice Control Hidden) */
-    .region.bottom.bar {
-        order: 7;
-        padding: 8px 0 5px 0 !important;
-        flex-grow: 1;
-        display: flex !important;
-        align-items: flex-end !important;
+        font-size: 16px !important;
+        padding: 10px 15px !important;
     }
 
     .region.bottom.bar .newsfeed {
         font-size: 10px !important;
         max-height: 25px !important;
-        overflow: hidden !important;
-        white-space: nowrap !important;
     }
 
-    /* Ensure all modules are compact */
-    .module {
-        margin: 0 !important;
-        padding: 2px 0 !important;
-        line-height: 1.2 !important;
-        max-width: 100% !important;
-        overflow: hidden !important;
-        text-overflow: ellipsis !important;
+    .region.bottom.left .MMM-ImageSlideshow {
+        max-width: 80px !important;
+        max-height: 60px !important;
     }
 
-    /* Ensure tables and lists are responsive */
-    .module table {
-        width: 100% !important;
-        font-size: inherit !important;
-    }
-
-    .module table td,
-    .module table th {
-        padding: 1px 3px !important;
-        font-size: inherit !important;
-    }
-
-    /* Calendar specific mobile styling */
-    .calendar table {
-        font-size: 10px !important;
-    }
-
-    .calendar .event {
+    /* Compact tables for mobile */
+    .calendar table,
+    .weather table {
         font-size: 9px !important;
-        line-height: 1.1 !important;
     }
 
-    /* Weather specific mobile styling */
-    .weather .weathericon {
-        font-size: 16px !important;
-    }
-
-    .weather .temperature {
-        font-size: 14px !important;
-    }
-
-    /* Hide voice control module completely on mobile */
-    .region.bottom.right {
-        display: none !important;
-    }
-
-    /* Hide module headers to save space if needed */
-    .module header {
-        display: none !important;
-    }
-
-    /* Show only essential headers */
-    .region.top.left header,
-    .region.top.right header {
-        display: block !important;
-        font-size: 9px !important;
-        margin-bottom: 3px !important;
-        padding-bottom: 2px !important;
+    .calendar td,
+    .calendar th,
+    .weather td,
+    .weather th {
+        padding: 2px !important;
+        font-size: 8px !important;
     }
 }
 
-/* Extra Small Mobile Screens - Ultra Compact */
-@media (max-width: 480px) {
-    body {
-        font-size: 12px;
-    }
-
-    /* Even smaller text for tiny screens */
+/* Tablet adjustments */
+@media (min-width: 801px) and (max-width: 1200px) {
     .region.top.center .clock {
-        font-size: 20px !important;
+        font-size: 36px !important;
     }
 
-    .region.top.center .clock .time {
-        font-size: 20px !important;
-    }
-
-    .region.top.center .clock .date {
-        font-size: 10px !important;
-    }
-
-    .region.upper.third .MMM-SimpleLocation {
-        font-size: 9px !important;
-    }
-
-    .region.top.left .calendar,
-    .region.top.right .weather {
-        font-size: 9px !important;
-    }
-
-    .region.top.left .calendar {
-        max-height: 100px !important;
+    .region.top.left,
+    .region.top.right {
+        width: 300px !important;
     }
 
     .region.bottom.center .compliments {
-        font-size: 12px !important;
-        padding: 6px 12px !important;
-    }
-
-    .MMM-ImageSlideshow {
-        max-width: 60px !important;
-        max-height: 45px !important;
-    }
-
-    .region.bottom.bar .newsfeed {
-        font-size: 9px !important;
-        max-height: 20px !important;
-    }
-
-    /* Reduce padding for ultra compact layout */
-    .region {
-        padding: 0 3px !important;
-    }
-
-    .region.top.center,
-    .region.bottom.bar {
-        padding: 5px 0 !important;
-    }
-
-    .region.upper.third,
-    .region.top.left,
-    .region.top.right,
-    .region.bottom.left,
-    .region.bottom.center,
-    .region.bottom.right {
-        padding: 4px 0 !important;
+        font-size: 20px !important;
     }
 }
 
-/* Enhanced Animations */
-@keyframes fadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(30px);
-    }
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
+/* ===== MODULE STYLING (Your Original Styles) ===== */
 
-/* Interactive Hover Effects */
-.calendar:hover,
-.weather:hover {
-    background: rgba(255, 255, 255, 0.08);
-    transform: translateY(-3px);
-    box-shadow: 0 12px 48px rgba(0, 0, 0, 0.4);
-    transition: all 0.4s ease;
-}
-
-.MMM-ip:hover {
-    background: rgba(255, 255, 255, 0.1);
-    transform: scale(1.05);
-    transition: all 0.3s ease;
-}
-
-/* Loading States */
-.loading {
-    opacity: 0.5;
-    animation: loadingPulse 2s ease-in-out infinite;
-}
-
-@keyframes loadingPulse {
-    0%, 100% {
-        opacity: 0.5;
-        transform: scale(1);
-    }
-    50% {
-        opacity: 0.8;
-        transform: scale(1.02);
-    }
-}
-
-/* Scrollbar Styling */
-::-webkit-scrollbar {
-    width: 8px;
-}
-
-::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-}
-
-::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-}
-
-::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
-}
-
-/* Focus States for Accessibility */
-.module:focus,
-.calendar .event:focus,
-.weather:focus {
-    outline: 2px solid rgba(255, 255, 255, 0.5);
-    outline-offset: 2px;
-}
-
-
-
-/* ===== JARVIS WELCOME INTEGRATION ===== */
-body.jarvis-welcome {
-    animation: jarvis-system-boot 2s ease-out;
-}
-
-@keyframes jarvis-system-boot {
-    0% {
-        filter: brightness(0.3);
-    }
-    50% {
-        filter: brightness(1.2);
-    }
-    100% {
-        filter: brightness(1);
-    }
-}
-
-/* Jarvis-style module entrance animations */
-body.jarvis-welcome .module {
-    animation: jarvis-module-online 1s ease-out forwards;
-    opacity: 0;
-    transform: translateY(20px);
-}
-
-@keyframes jarvis-module-online {
-    0% {
-        opacity: 0;
-        transform: translateY(20px);
-        filter: brightness(0.5);
-    }
-    100% {
-        opacity: 1;
-        transform: translateY(0);
-        filter: brightness(1);
-    }
-}
-
-/* Stagger the module animations */
-body.jarvis-welcome .region.top .module {
-    animation-delay: 0.2s;
-}
-
-body.jarvis-welcome .region.middle .module {
-    animation-delay: 0.4s;
-}
-
-body.jarvis-welcome .region.bottom .module {
-    animation-delay: 0.6s;
-}
-
-body.jarvis-welcome .region.fullscreen .module {
-    animation-delay: 0.8s;
-}
-
-/* Enhanced glow effects for post-Jarvis state */
-body.jarvis-welcome .clock .time {
-    text-shadow:
-        0 0 10px rgba(255, 255, 255, 0.8),
-        0 0 20px rgba(0, 212, 255, 0.3),
-        0 0 30px rgba(0, 212, 255, 0.1);
-}
-
-body.jarvis-welcome .weather .weathericon {
-    filter: drop-shadow(0 0 10px rgba(0, 212, 255, 0.5));
-}
-
-/* Jarvis notification styles */
-.jarvis-notification {
-    position: fixed !important;
-    top: 20px !important;
-    right: 20px !important;
-    background: linear-gradient(135deg, rgba(0, 212, 255, 0.9), rgba(0, 153, 204, 0.9)) !important;
-    color: white !important;
-    padding: 15px 25px !important;
-    border-radius: 25px !important;
-    font-family: 'Orbitron', monospace !important;
-    font-size: 14px !important;
-    z-index: 9999 !important;
-    box-shadow: 0 4px 20px rgba(0, 212, 255, 0.3) !important;
-    border: 1px solid rgba(255, 255, 255, 0.2) !important;
-    backdrop-filter: blur(10px) !important;
-    text-shadow: 0 0 10px rgba(255, 255, 255, 0.3) !important;
-    letter-spacing: 1px !important;
-}
-
-/* ===== RESPONSIVE UTILITIES ===== */
-
-/* Ensure no horizontal overflow on any screen */
-* {
-    box-sizing: border-box;
-}
-
-/* Responsive text wrapping */
 .module {
+    box-sizing: border-box;
     word-wrap: break-word;
     overflow-wrap: break-word;
-    hyphens: auto;
 }
 
-/* Responsive images */
-img {
+.module header {
+    text-transform: uppercase;
+    font-size: 12px;
+    font-family: 'Nunito Sans', sans-serif;
+    font-weight: 400;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+    line-height: 15px;
+    padding-bottom: 5px;
+    margin-bottom: 10px;
+    color: #cccccc;
+}
+
+/* Calendar specific styling */
+.calendar table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.calendar td,
+.calendar th {
+    padding: 3px 5px;
+    font-size: 12px;
+    vertical-align: top;
+    text-align: left;
+}
+
+.calendar .symbol {
+    font-size: 12px;
+    padding-right: 8px;
+}
+
+/* Weather specific styling */
+.weather table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.weather td,
+.weather th {
+    padding: 3px 5px;
+    font-size: 12px;
+    vertical-align: middle;
+    text-align: center;
+}
+
+.weather .weathericon {
+    font-size: 18px;
+    line-height: 1;
+}
+
+/* Image slideshow styling */
+.MMM-ImageSlideshow img {
     max-width: 100%;
     height: auto;
+    border-radius: 5px;
 }
 
-/* Hide scrollbars but allow scrolling if needed */
-::-webkit-scrollbar {
-    width: 0;
-    background: transparent;
+/* News feed styling */
+.newsfeed {
+    width: 100%;
+    overflow: hidden;
 }
 
-/* ===== ACCESSIBILITY & PERFORMANCE ===== */
+.newsfeed .newsticker {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    animation: scroll-left 30s linear infinite;
+}
 
-/* Reduce motion for users who prefer it */
+@keyframes scroll-left {
+    0% { transform: translateX(100%); }
+    100% { transform: translateX(-100%); }
+}
+
+/* ===== HIDE DEBUG ELEMENTS ===== */
+.debug-console,
+.debug-toggle,
+.debug-info,
+.debug-panel,
+.console-log,
+.console-error,
+.console-warn,
+.console-info,
+.console-debug,
+[class*="debug"],
+[id*="debug"],
+.alert,
+.updatenotification {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+}
+
+/* ===== ENSURE MODULES ARE VISIBLE ===== */
+.module {
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+}
+
+/* ===== ACCESSIBILITY ===== */
 @media (prefers-reduced-motion: reduce) {
     * {
         animation-duration: 0.01ms !important;
@@ -1391,27 +430,7 @@ img {
     }
 }
 
-/* High contrast mode support */
-@media (prefers-contrast: high) {
-    .module {
-        border: 1px solid rgba(255, 255, 255, 0.3);
-    }
-
-    .responsive-clock {
-        border-bottom: 2px solid rgba(255, 255, 255, 0.5);
-    }
-}
-
-/* ===== LEGACY OVERRIDES REMOVED - USING FIXED POSITIONING ===== */
-
-/* Ensure modules are visible */
-.module {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* Print Styles */
+/* ===== PRINT STYLES ===== */
 @media print {
     body {
         background: white !important;
@@ -1421,12 +440,4 @@ img {
     .module {
         animation: none !important;
     }
-
-    /* Hide Jarvis elements in print */
-    #jarvis-preloader,
-    .jarvis-notification {
-        display: none !important;
-    }
 }
-
-
