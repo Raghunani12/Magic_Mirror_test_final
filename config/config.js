@@ -164,24 +164,31 @@ let config = {
 
 
 
-		// News Feed - Bottom Center (Production-Ready Proportional)
+		// News Feed - Bottom (Production-Ready Proportional)
 		{
 			module: "newsfeed",
-			position: "bottom_center",
-			header: "Latest News", // Add header for debugging
+			position: "bottom_bar",
 			config: {
 				feeds: [
 					{
 						title: "BBC News",
-						url: "https://feeds.bbci.co.uk/news/rss.xml"
+						url: "https://feeds.bbci.co.uk/news/rss.xml",
+						useCorsProxy: true
 					},
 					{
-						title: "CNN",
-						url: "http://rss.cnn.com/rss/edition.rss"
+						title: "Reuters World",
+						url: "https://feeds.reuters.com/Reuters/worldNews",
+						useCorsProxy: true
 					},
 					{
-						title: "Reuters",
-						url: "https://feeds.reuters.com/reuters/topNews"
+						title: "CNN Top Stories",
+						url: "http://rss.cnn.com/rss/edition.rss",
+						useCorsProxy: true
+					},
+					{
+						title: "Associated Press",
+						url: "https://feeds.apnews.com/rss/apf-topnews",
+						useCorsProxy: true
 					}
 				],
 				showSourceTitle: true,
