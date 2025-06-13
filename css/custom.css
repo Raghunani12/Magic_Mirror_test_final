@@ -179,58 +179,65 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM BAR (Moved up with scrolling animation) */
+/* 7. NEWS - BOTTOM BAR (Fixed styling for proper news display) */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 60px;
+    bottom: 10px;
     left: 0;
     right: 0;
-    text-align: center;
+    text-align: left;
     z-index: 500;
     width: 100%;
-    height: 55px;
+    height: 40px;
     overflow: hidden;
-    /* DEBUG: Add visible border to see the container */
-    border: 2px solid red !important;
-    background: rgba(255, 0, 0, 0.1) !important;
+    background: rgba(0, 0, 0, 0.3);
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
 }
 
+/* Main newsfeed container */
 .region.bottom.bar .newsfeed {
     font-size: 14px !important;
     color: #ffffff !important;
-    height: 60px;
-    line-height: 60px;
+    height: 40px;
+    line-height: 40px;
     white-space: nowrap;
     overflow: hidden;
     padding: 0 10px;
-    display: flex;
-    align-items: center;
-    /* DEBUG: Add visible border to see the newsfeed container */
-    border: 2px solid blue !important;
-    background: rgba(0, 0, 255, 0.1) !important;
+    display: block;
+    width: 100%;
 }
 
-.region.bottom.bar .newsfeed .newsticker {
+/* Style for the entire newsfeed content */
+.region.bottom.bar .newsfeed > div {
     display: inline-block;
     white-space: nowrap;
     animation: scroll-news 60s linear infinite;
     padding-left: 100%;
-    /* DEBUG: Add visible border to see the ticker */
-    border: 2px solid green !important;
-    background: rgba(0, 255, 0, 0.1) !important;
 }
 
-/* DEBUG: Make sure all newsfeed text is visible */
-.region.bottom.bar .newsfeed .newsfeed-title,
-.region.bottom.bar .newsfeed .newsfeed-source,
-.region.bottom.bar .newsfeed .newsfeed-desc {
+/* News source styling */
+.region.bottom.bar .newsfeed .newsfeed-source {
+    color: #cccccc !important;
+    font-size: 12px !important;
+    display: inline !important;
+    margin-right: 10px;
+}
+
+/* News title styling */
+.region.bottom.bar .newsfeed .newsfeed-title {
     color: #ffffff !important;
     font-size: 14px !important;
-    display: inline-block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-    background: rgba(255, 255, 0, 0.2) !important;
-    border: 1px solid yellow !important;
+    display: inline !important;
+    font-weight: 400;
+    margin-right: 20px;
+}
+
+/* News description styling (if enabled) */
+.region.bottom.bar .newsfeed .newsfeed-desc {
+    color: #cccccc !important;
+    font-size: 12px !important;
+    display: inline !important;
+    margin-left: 10px;
 }
 
 /* News scrolling animation - Right to Left */
@@ -243,10 +250,7 @@ html, body {
     }
 }
 
-/* Pause animation on hover */
-.region.bottom.bar .newsfeed:hover .newsticker {
-    animation-play-state: paused;
-}
+
 
 /* ===== RESPONSIVE FIXES FOR MOBILE DEVICES ===== */
 
@@ -330,8 +334,16 @@ html, body {
         padding: 0 5px;
     }
 
-    .region.bottom.bar .newsfeed .newsticker {
+    .region.bottom.bar .newsfeed > div {
         animation: scroll-news 45s linear infinite;
+    }
+
+    .region.bottom.bar .newsfeed .newsfeed-title {
+        font-size: 10px !important;
+    }
+
+    .region.bottom.bar .newsfeed .newsfeed-source {
+        font-size: 9px !important;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -435,32 +447,8 @@ html, body {
     border-radius: 5px;
 }
 
-/* News feed styling - Enhanced scrolling */
-.newsfeed {
-    width: 100%;
-    overflow: hidden;
-}
-
-.newsfeed .newsticker {
-    white-space: nowrap;
-    overflow: hidden;
-    display: inline-block;
-    animation: scroll-news 60s linear infinite;
-    padding-left: 100%;
-}
-
-/* Enhanced news scrolling animation */
-@keyframes scroll-news {
-    0% {
-        transform: translateX(0%);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* Smooth scrolling for better readability */
-.newsfeed .newsticker:hover {
+/* Pause animation on hover for better readability */
+.region.bottom.bar .newsfeed:hover > div {
     animation-play-state: paused;
 }
 

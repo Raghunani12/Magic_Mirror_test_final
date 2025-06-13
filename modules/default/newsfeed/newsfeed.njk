@@ -27,10 +27,14 @@
     {% endif %}
 {% endmacro %}
 {% if loaded %}
+    <!-- DEBUG: Template loaded state -->
+    <div style="color: red; font-size: 12px; background: yellow;">🔥 DEBUG: Template loaded=true, showAsList={{ config.showAsList }}</div>
     {% if config.showAsList %}
+        <div style="color: red; font-size: 12px; background: yellow;">🔥 DEBUG: Showing as list, items count={{ items|length }}</div>
         <ul class="newsfeed-list">
             {% for item in items %}
                 <li>
+                    <div style="color: red; font-size: 10px; background: yellow;">🔥 DEBUG: Item {{ loop.index }}: {{ item.title }}</div>
                     {% if (config.showSourceTitle and item.sourceTitle) or config.showPublishDate %}
                         <div class="newsfeed-source light small dimmed">
                             {% if item.sourceTitle and config.showSourceTitle %}
@@ -55,7 +59,8 @@
             {% endfor %}
         </ul>
     {% else %}
-        <div>
+        <div style="color: red; font-size: 12px; background: yellow;">🔥 DEBUG: Single item mode - Title: {{ title }}, Source: {{ sourceTitle }}</div>
+        <div class="newsticker">
             {% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}
                 <div class="newsfeed-source light small dimmed">
                     {% if sourceTitle and config.showSourceTitle %}

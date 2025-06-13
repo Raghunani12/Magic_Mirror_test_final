@@ -65,7 +65,6 @@ Module.register("newsfeed", {
 	// Define start sequence.
 	start () {
 		Log.info(`Starting module: ${this.name}`);
-		console.log("🔥 NEWSFEED DEBUG: Module starting with config:", this.config);
 
 		// Set locale.
 		moment.locale(config.language);
@@ -76,24 +75,15 @@ Module.register("newsfeed", {
 		this.activeItem = 0;
 		this.scrollPosition = 0;
 
-		console.log("🔥 NEWSFEED DEBUG: Registering feeds:", this.config.feeds);
 		this.registerFeeds();
 
 		this.isShowingDescription = this.config.showDescription;
-		console.log("🔥 NEWSFEED DEBUG: Show description:", this.isShowingDescription);
 	},
 
 	// Override socket notification handler.
 	socketNotificationReceived (notification, payload) {
-		console.log("🔥 NEWSFEED DEBUG: Socket notification received:", notification);
-
 		if (notification === "NEWS_ITEMS") {
-			console.log("🔥 NEWSFEED DEBUG: Received NEWS_ITEMS payload:", payload);
-			console.log("🔥 NEWSFEED DEBUG: Number of feeds in payload:", Object.keys(payload).length);
-
 			this.generateFeed(payload);
-			console.log("🔥 NEWSFEED DEBUG: Generated newsItems count:", this.newsItems.length);
-			console.log("🔥 NEWSFEED DEBUG: First few news items:", this.newsItems.slice(0, 3));
 
 			if (!this.loaded) {
 				if (this.config.hideLoading) {
@@ -105,7 +95,6 @@ Module.register("newsfeed", {
 			this.loaded = true;
 			this.error = null;
 		} else if (notification === "NEWSFEED_ERROR") {
-			console.log("🔥 NEWSFEED DEBUG: Received error:", payload);
 			this.error = this.translate(payload.error_type);
 			this.scheduleUpdateInterval();
 		}
@@ -123,9 +112,6 @@ Module.register("newsfeed", {
 
 	//Override template data and return whats used for the current template
 	getTemplateData () {
-		console.log("🔥 NEWSFEED DEBUG: Getting template data...");
-		console.log("🔥 NEWSFEED DEBUG: Active item:", this.activeItem, "Total items:", this.newsItems.length);
-
 		if (this.activeItem >= this.newsItems.length) {
 			this.activeItem = 0;
 		}
@@ -138,14 +124,12 @@ Module.register("newsfeed", {
 			};
 		}
 		if (this.error) {
-			console.log("🔥 NEWSFEED DEBUG: Returning error state:", this.error);
 			this.activeItemHash = undefined;
 			return {
 				error: this.error
 			};
 		}
 		if (this.newsItems.length === 0) {
-			console.log("🔥 NEWSFEED DEBUG: No news items available - returning empty state");
 			this.activeItemHash = undefined;
 			return {
 				empty: true
@@ -153,7 +137,6 @@ Module.register("newsfeed", {
 		}
 
 		const item = this.newsItems[this.activeItem];
-		console.log("🔥 NEWSFEED DEBUG: Current active item:", item);
 		this.activeItemHash = item.hash;
 
 		const items = this.newsItems.map(function (item) {
@@ -161,7 +144,7 @@ Module.register("newsfeed", {
 			return item;
 		});
 
-		const templateData = {
+		return {
 			loaded: true,
 			config: this.config,
 			sourceTitle: item.sourceTitle,
@@ -171,13 +154,6 @@ Module.register("newsfeed", {
 			description: item.description,
 			items: items
 		};
-
-		console.log("🔥 NEWSFEED DEBUG: Template data being returned:", templateData);
-		console.log("🔥 NEWSFEED DEBUG: Title:", templateData.title);
-		console.log("🔥 NEWSFEED DEBUG: Source:", templateData.sourceTitle);
-		console.log("🔥 NEWSFEED DEBUG: Publish date:", templateData.publishDate);
-
-		return templateData;
 	},
 
 	getActiveItemURL () {
@@ -218,32 +194,16 @@ Module.register("newsfeed", {
 	 * @param {object} feeds An object with feeds returned by the node helper.
 	 */
 	generateFeed (feeds) {
-		console.log("🔥 NEWSFEED DEBUG: Generating feed from:", feeds);
 		let newsItems = [];
 		for (let feed in feeds) {
-			console.log("🔥 NEWSFEED DEBUG: Processing feed:", feed);
 			const feedItems = feeds[feed];
-			console.log("🔥 NEWSFEED DEBUG: Feed items count:", feedItems.length);
-			console.log("🔥 NEWSFEED DEBUG: First few feed items:", feedItems.slice(0, 2));
-
 			if (this.subscribedToFeed(feed)) {
-				console.log("🔥 NEWSFEED DEBUG: Subscribed to feed:", feed);
 				for (let item of feedItems) {
 					item.sourceTitle = this.titleForFeed(feed);
-					console.log("🔥 NEWSFEED DEBUG: Processing item:", {
-						title: item.title,
-						sourceTitle: item.sourceTitle,
-						pubdate: item.pubdate
-					});
 					if (!(this.getFeedProperty(feed, "ignoreOldItems") && Date.now() - new Date(item.pubdate) > this.getFeedProperty(feed, "ignoreOlderThan"))) {
 						newsItems.push(item);
-						console.log("🔥 NEWSFEED DEBUG: Added item to newsItems");
-					} else {
-						console.log("🔥 NEWSFEED DEBUG: Item ignored (too old)");
 					}
 				}
-			} else {
-				console.log("🔥 NEWSFEED DEBUG: Not subscribed to feed:", feed);
 			}
 		}
 		newsItems.sort(function (a, b) {
