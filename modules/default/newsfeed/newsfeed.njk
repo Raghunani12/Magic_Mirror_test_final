@@ -55,14 +55,7 @@
             {% endfor %}
         </ul>
     {% else %}
-        <div class="newsfeed-ticker">
-            {% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}
-                {% if sourceTitle and config.showSourceTitle %}
-                    {{ escapeText(sourceTitle, config.dangerouslyDisableAutoEscaping) }}{% if config.showPublishDate %}, {% else %}: {% endif %}
-                {% endif %}
-                {% if config.showPublishDate %}{{ publishDate }}: {% endif %}
-            {% endif %}{{ escapeTitle(title, url, config.dangerouslyDisableAutoEscaping, config.showTitleAsUrl) }}{% if config.showDescription %} - {% if config.truncDescription %}{{ escapeText(description | truncate(config.lengthDescription) , config.dangerouslyDisableAutoEscaping) }}{% else %}{{ escapeText(description, config.dangerouslyDisableAutoEscaping) }}{% endif %}{% endif %}
-        </div>
+        <div class="newsfeed-ticker">{% if (config.showSourceTitle and sourceTitle) or config.showPublishDate %}{% if sourceTitle and config.showSourceTitle %}{{ escapeText(sourceTitle, config.dangerouslyDisableAutoEscaping) }}{% if config.showPublishDate %}, {% else %}: {% endif %}{% endif %}{% if config.showPublishDate %}{{ publishDate }}: {% endif %}{% endif %}{{ escapeTitle(title, url, config.dangerouslyDisableAutoEscaping, config.showTitleAsUrl) }}{% if config.showDescription %} - {% if config.truncDescription %}{{ escapeText(description | truncate(150) , config.dangerouslyDisableAutoEscaping) }}{% else %}{{ escapeText(description | truncate(150), config.dangerouslyDisableAutoEscaping) }}{% endif %}{% endif %} • • • </div>
     {% endif %}
 {% elseif empty %}
     <div class="small dimmed">{{ "NEWSFEED_NO_ITEMS" | translate | safe }}</div>

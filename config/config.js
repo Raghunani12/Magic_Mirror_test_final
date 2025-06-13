@@ -164,14 +164,14 @@ let config = {
 
 
 
-		// News Feed - Bottom
+		// News Feed - Bottom (Production-Ready Proportional)
 		{
 			module: "newsfeed",
 			position: "bottom_bar",
 			config: {
 				feeds: [
 					{
-						title: "BBC News",
+						title: "BBC",
 						url: "http://feeds.bbci.co.uk/news/rss.xml"
 					},
 					{
@@ -181,28 +181,24 @@ let config = {
 					{
 						title: "CNN",
 						url: "http://rss.cnn.com/rss/edition.rss"
-					},
-					{
-						title: "TechCrunch",
-						url: "http://feeds.feedburner.com/TechCrunch/"
 					}
 				],
 				showSourceTitle: true,
 				showPublishDate: true,
 				broadcastNewsFeeds: true,
 				broadcastNewsUpdates: true,
-				showDescription: false,
-				wrapTitle: true,
-				wrapDescription: true,
+				showDescription: false, // Disabled for cleaner ticker
+				wrapTitle: false, // No wrapping for ticker
+				wrapDescription: false,
 				truncDescription: true,
-				lengthDescription: 300,
+				lengthDescription: 150, // Shorter for proportional design
 				hideLoading: false,
 				reloadInterval: 5 * 60 * 1000, // 5 minutes
-				updateInterval: 15 * 1000, // 15 seconds
-				animationSpeed: 2000,
-				maxNewsItems: 0,
-				ignoreOldItems: false,
-				ignoreOlderThan: 24 * 60 * 60 * 1000, // 1 day
+				updateInterval: 10 * 1000, // 10 seconds for smoother updates
+				animationSpeed: 1000, // Faster transitions
+				maxNewsItems: 20, // Limit items for performance
+				ignoreOldItems: true,
+				ignoreOlderThan: 12 * 60 * 60 * 1000, // 12 hours for fresh content
 				removeStartTags: "",
 				removeEndTags: "",
 				startTags: [],

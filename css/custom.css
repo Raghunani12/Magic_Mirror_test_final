@@ -179,48 +179,61 @@ html, body {
     font-family: 'Cinzel', serif !important;
 }
 
-/* 7. NEWS - BOTTOM BAR (Fixed for scrolling ticker) */
+/* 7. NEWS - BOTTOM BAR (Production-Ready Proportional Design) */
 .region.bottom.bar {
     position: fixed !important;
-    bottom: 10px;
+    bottom: 0;
     left: 0;
     right: 0;
     z-index: 500;
-    width: 100%;
-    height: 40px;
+    width: 100vw;
+    height: clamp(30px, 4vh, 50px);
     overflow: hidden;
-    background: rgba(0, 0, 0, 0.2);
+    background: rgba(0, 0, 0, 0.8);
     border-top: 1px solid rgba(255, 255, 255, 0.1);
+    display: flex;
+    align-items: center;
 }
 
-/* Main newsfeed container */
+/* Main newsfeed container - Proportional */
 .region.bottom.bar .newsfeed {
-    height: 40px;
-    line-height: 40px;
+    height: 100%;
+    width: 100%;
     overflow: hidden;
     position: relative;
-    width: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 2vw;
 }
 
-/* Scrolling ticker container */
+/* Scrolling ticker container - Responsive */
 .region.bottom.bar .newsfeed .newsfeed-ticker {
     display: inline-block;
     white-space: nowrap;
     animation: scroll-news 60s linear infinite;
     padding-left: 100%;
-    font-size: 14px;
+    font-size: clamp(10px, 1.5vw, 16px);
     color: #ffffff;
     font-weight: 400;
+    line-height: 1.2;
+    font-family: 'Nunito Sans', sans-serif;
 }
 
-/* News scrolling animation - Right to Left */
+/* Production-Ready News Scrolling Animation */
 @keyframes scroll-news {
     0% {
-        transform: translateX(0%);
+        transform: translateX(100vw);
     }
     100% {
         transform: translateX(-100%);
     }
+}
+
+/* Ensure smooth performance across all devices */
+.region.bottom.bar .newsfeed .newsfeed-ticker {
+    will-change: transform;
+    backface-visibility: hidden;
+    perspective: 1000px;
 }
 
 
@@ -299,18 +312,19 @@ html, body {
         padding: 10px 15px !important;
     }
 
+    /* News - Mobile Responsive */
     .region.bottom.bar {
-        height: 30px !important;
+        height: clamp(25px, 3vh, 35px) !important;
+        padding: 0 !important;
     }
 
     .region.bottom.bar .newsfeed {
-        height: 30px !important;
-        line-height: 30px;
+        padding: 0 3vw !important;
     }
 
     .region.bottom.bar .newsfeed .newsfeed-ticker {
         animation: scroll-news 45s linear infinite;
-        font-size: 10px !important;
+        font-size: clamp(8px, 1.2vw, 12px) !important;
     }
 
     .region.bottom.left .MMM-ImageSlideshow {
@@ -333,7 +347,7 @@ html, body {
     }
 }
 
-/* Tablet adjustments */
+/* Tablet adjustments - Proportional Design */
 @media (min-width: 801px) and (max-width: 1200px) {
     .region.top.center .clock {
         font-size: 36px !important;
@@ -346,6 +360,16 @@ html, body {
 
     .region.bottom.center .compliments {
         font-size: 20px !important;
+    }
+
+    /* News - Tablet Responsive */
+    .region.bottom.bar {
+        height: clamp(35px, 3.5vh, 45px) !important;
+    }
+
+    .region.bottom.bar .newsfeed .newsfeed-ticker {
+        font-size: clamp(12px, 1.4vw, 14px) !important;
+        animation: scroll-news 55s linear infinite;
     }
 }
 
