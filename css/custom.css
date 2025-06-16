@@ -164,6 +164,7 @@ html, body {
 .region.lower.third {
     position: fixed !important;
     top: 66%;
+    font-family: 'Nunito Sans';
     left: 50%;
     transform: translate(-50%, -50%);
     text-align: center;
@@ -172,11 +173,12 @@ html, body {
 }
 
 .region.lower.third .compliments {
+    font-family: 'Nunito Sans';
     font-size: 22px !important;
     font-weight: 400 !important;
     color: #ffffff !important;
     padding: 15px 30px;
-    font-family: 'Cinzel', serif !important;
+    /* font-family: 'Cinzel', serif !important; */
     text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
 }
 
@@ -320,6 +322,7 @@ html, body {
     }
 
     .region.lower.third .compliments {
+        font-family: 'Nunito Sans';
         font-size: 16px !important;
         padding: 10px 15px !important;
     }
@@ -376,6 +379,7 @@ html, body {
     }
 
     .region.lower.third .compliments {
+        font-family: 'Nunito Sans';
         font-size: 20px !important;
     }
 
