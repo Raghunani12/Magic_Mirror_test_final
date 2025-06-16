@@ -164,7 +164,60 @@ let config = {
 
 
 
-
+		// News Feed - Bottom (Production-Ready Proportional)
+		{
+			module: "newsfeed",
+			position: "bottom_bar",
+			config: {
+				feeds: [
+					{
+						title: "BBC News",
+						url: "https://feeds.bbci.co.uk/news/rss.xml",
+						useCorsProxy: true
+					},
+					{
+						title: "Reuters World",
+						url: "https://feeds.reuters.com/Reuters/worldNews",
+						useCorsProxy: true
+					},
+					{
+						title: "CNN Top Stories",
+						url: "http://rss.cnn.com/rss/edition.rss",
+						useCorsProxy: true
+					},
+					{
+						title: "Associated Press",
+						url: "https://feeds.apnews.com/rss/apf-topnews",
+						useCorsProxy: true
+					}
+				],
+				showSourceTitle: true,
+				showPublishDate: false, // Disable for cleaner ticker
+				broadcastNewsFeeds: true,
+				broadcastNewsUpdates: true,
+				showDescription: false, // Disabled for cleaner ticker
+				showAsList: false, // Use ticker format
+				wrapTitle: false, // No wrapping for ticker
+				wrapDescription: false,
+				truncDescription: true,
+				lengthDescription: 100, // Shorter for ticker
+				hideLoading: false,
+				reloadInterval: 3 * 60 * 1000, // 3 minutes for faster updates
+				updateInterval: 10 * 1000, // 10 seconds for smoother updates
+				animationSpeed: 2000, // Animation speed for transitions
+				maxNewsItems: 10, // Limit items for performance
+				ignoreOldItems: false, // Show all items initially
+				ignoreOlderThan: 24 * 60 * 60 * 1000, // 24 hours for fresh content
+				removeStartTags: "",
+				removeEndTags: "",
+				startTags: [],
+				endTags: [],
+				prohibitedWords: [],
+				scrollLength: 500,
+				logFeedWarnings: true, // Enable logging for debugging
+				dangerouslyDisableAutoEscaping: false
+			}
+		},
 
 		// Image Slideshow - Left Side (with padding)
 		{
@@ -183,10 +236,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Center (moved higher to make room for news)
+		// Compliments - Center
 		{
 			module: "compliments",
-			position: "lower_third",
+			position: "bottom_center",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -217,60 +270,6 @@ let config = {
 						"Tomorrow awaits your brilliance!"
 					]
 				}
-			}
-		},
-
-		// News Feed - Bottom Center (after compliments)
-		{
-			module: "newsfeed",
-			position: "bottom_center",
-			config: {
-				feeds: [
-					{
-						title: "BBC News",
-						url: "https://feeds.bbci.co.uk/news/rss.xml",
-						useCorsProxy: true
-					},
-					{
-						title: "Reuters World",
-						url: "https://feeds.reuters.com/Reuters/worldNews",
-						useCorsProxy: true
-					},
-					{
-						title: "CNN Top Stories",
-						url: "http://rss.cnn.com/rss/edition.rss",
-						useCorsProxy: true
-					},
-					{
-						title: "Associated Press",
-						url: "https://feeds.apnews.com/rss/apf-topnews",
-						useCorsProxy: true
-					}
-				],
-				showSourceTitle: true,
-				showPublishDate: false,
-				broadcastNewsFeeds: true,
-				broadcastNewsUpdates: true,
-				showDescription: false,
-				showAsList: true, // Changed to list format instead of ticker
-				wrapTitle: true, // Allow wrapping for better readability
-				wrapDescription: false,
-				truncDescription: true,
-				lengthDescription: 100,
-				hideLoading: false,
-				reloadInterval: 5 * 60 * 1000, // 5 minutes
-				updateInterval: 30 * 1000, // 30 seconds
-				animationSpeed: 2000,
-				maxNewsItems: 5, // Limit to 5 items for bottom center
-				ignoreOldItems: false,
-				ignoreOlderThan: 24 * 60 * 60 * 1000, // 24 hours
-				removeStartTags: "",
-				removeEndTags: "",
-				startTags: [],
-				endTags: [],
-				prohibitedWords: [],
-				logFeedWarnings: true,
-				dangerouslyDisableAutoEscaping: false
 			}
 		},
 
