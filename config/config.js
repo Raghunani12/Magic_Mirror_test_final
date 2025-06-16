@@ -236,10 +236,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Center
+		// Compliments - Lower Third (moved to make room for news)
 		{
 			module: "compliments",
-			position: "bottom_center",
+			position: "lower_third",
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -270,6 +270,31 @@ let config = {
 						"Tomorrow awaits your brilliance!"
 					]
 				}
+			}
+		},
+
+		// Location-Based News - Bottom Center (after compliments)
+		{
+			module: "MMM-LocationNews",
+			position: "bottom_center",
+			config: {
+				apiKey: "pub_c4a1c05cecfb4e5ab5612085c2bdf1e5", // newsdata.io API key
+				maxNewsItems: 1, // Only one headline as requested
+				updateInterval: 60 * 1000, // 60 seconds between headlines
+				reloadInterval: 10 * 60 * 1000, // 10 minutes for fresh news
+				showMarquee: true, // Enable ticker animation
+				showSourceTitle: true, // Show news source
+				showPublishDate: true, // Show publication time
+				showDescription: false, // Only show title as requested
+				fallbackCountry: "us", // Default country if location detection fails
+				priorityDomain: "top", // Priority domain for news quality
+				language: "en", // News language
+				category: "", // Empty for all categories
+				hideLoading: false,
+				wrapTitle: true,
+				truncDescription: true,
+				lengthDescription: 150,
+				animationSpeed: 2000
 			}
 		},
 
