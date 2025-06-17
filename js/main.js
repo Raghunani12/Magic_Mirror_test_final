@@ -54,9 +54,6 @@ const MM = (function () {
 			moduleContent.className = "module-content";
 			dom.appendChild(moduleContent);
 
-			// Initialize module content immediately
-			updateModuleContent(module, module.getHeader(), module.getDom());
-
 			// Then handle animations if needed
 			let domCreationPromise;
 			if (haveAnimateIn) {

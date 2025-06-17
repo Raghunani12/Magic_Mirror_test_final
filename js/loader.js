@@ -22,14 +22,36 @@ const Loader = (function () {
 	/**
 	 * Loops through all modules and requests start for every module.
 	 */
-	const startModules = function () {
-		const modules = getAllModules();
-		Log.info(`Starting module: ${modules.length} modules`);
-		modules.forEach(function (module) {
-			Log.info(`Starting module: ${module.name}`);
-			module.start();
+	const startModules = async function () {
+		const modulePromises = [];
+		for (const module of moduleObjects) {
+			try {
+				modulePromises.push(module.start());
+			} catch (error) {
+				Log.error(`Error when starting node_helper for module ${module.name}:`);
+				Log.error(error);
+			}
+		}
+
+		const results = await Promise.allSettled(modulePromises);
+
+		// Log errors that happened during async node_helper startup
+		results.forEach((result) => {
+			if (result.status === "rejected") {
+				Log.error(result.reason);
+			}
 		});
-		return modules;
+
+		// Notify core of loaded modules.
+		MM.modulesStarted(moduleObjects);
+
+		// Starting modules also hides any modules that have requested to be initially hidden
+		for (const thisModule of moduleObjects) {
+			if (thisModule.data.hiddenOnStartup) {
+				Log.info(`Initially hiding ${thisModule.name}`);
+				thisModule.hide();
+			}
+		}
 	};
 
 	/**
@@ -37,40 +59,27 @@ const Loader = (function () {
 	 * @returns {object[]} module data as configured in config
 	 */
 	const getAllModules = function () {
-		const modules = [];
-		// Add notification module
-		modules.push(Module.create("notification"));
+		const allModulesData = [];
 
-		// Add default modules
-		defaults.modules.forEach(function (module) {
-			const mod = Module.create(module.moduleClass);
-			mod.setConfig(module.config);
-			modules.push(mod);
+		// Add notification module data
+		allModulesData.push({
+			moduleClass: "notification",
+			config: {}
 		});
 
-		// Add user modules
+		// Add default modules data
+		defaults.modules.forEach(function (module) {
+			allModulesData.push(module);
+		});
+
+		// Add user modules data
 		if (config.modules) {
 			config.modules.forEach(function (module) {
-				const mod = Module.create(module.moduleClass);
-				mod.setConfig(module.config);
-				modules.push(mod);
+				allModulesData.push(module);
 			});
 		}
 
-		// Filter modules based on position
-		const availablePositions = MM.getAvailableModulePositions();
-		return modules.filter(function (module) {
-			const position = module.data.position;
-			if (!position) {
-				Log.warn(`Module ${module.name} has no position defined`);
-				return false;
-			}
-			if (!availablePositions.includes(position)) {
-				Log.warn(`Module ${module.name} has invalid position: ${position}`);
-				return false;
-			}
-			return true;
-		});
+		return allModulesData;
 	};
 
 	/**
@@ -78,19 +87,35 @@ const Loader = (function () {
 	 * @returns {object[]} Module information.
 	 */
 	const getModuleData = async function () {
-		const modules = getAllModules();
+		const allModules = getAllModules();
 		const moduleFiles = [];
 		const envVars = await getEnvVars();
+		const availablePositions = MM.getAvailableModulePositions();
 
-		modules.forEach(function (moduleData, index) {
-			const module = moduleData.module;
+		allModules.forEach(function (moduleData, index) {
+			if (moduleData.disabled === true) {
+				return;
+			}
 
-			const elements = module.split("/");
+			// Validate module position
+			const position = moduleData.position;
+			if (typeof position === "string") {
+				if (!availablePositions.includes(position)) {
+					Log.warn(`Module ${moduleData.moduleClass} has invalid position: ${position}`);
+					return;
+				}
+			} else if (position !== undefined) {
+				Log.warn(`Module ${moduleData.moduleClass} has an invalid position type: ${typeof position}`);
+				return;
+			}
+
+			const moduleClass = moduleData.moduleClass; // Use moduleClass instead of module
+			const elements = moduleClass.split("/");
 			const moduleName = elements[elements.length - 1];
-			let moduleFolder = `${envVars.modulesDir}/${module}`;
+			let moduleFolder = `${envVars.modulesDir}/${moduleClass}`;
 
 			if (defaultModules.indexOf(moduleName) !== -1) {
-				const defaultModuleFolder = `modules/default/${module}`;
+				const defaultModuleFolder = `modules/default/${moduleClass}`;
 				if (window.name !== "jsdom") {
 					moduleFolder = defaultModuleFolder;
 				} else {
@@ -101,13 +126,9 @@ const Loader = (function () {
 				}
 			}
 
-			if (moduleData.disabled === true) {
-				return;
-			}
-
 			moduleFiles.push({
 				index: index,
-				identifier: `module_${index}_${module}`,
+				identifier: `module_${index}_${moduleClass}`,
 				name: moduleName,
 				path: `${moduleFolder}/`,
 				file: `${moduleName}.js`,
@@ -118,7 +139,7 @@ const Loader = (function () {
 				header: moduleData.header,
 				configDeepMerge: typeof moduleData.configDeepMerge === "boolean" ? moduleData.configDeepMerge : false,
 				config: moduleData.config,
-				classes: typeof moduleData.classes !== "undefined" ? `${moduleData.classes} ${module}` : module
+				classes: typeof moduleData.classes !== "undefined" ? `${moduleData.classes} ${moduleClass}` : moduleClass
 			});
 		});
 
@@ -160,6 +181,7 @@ const Loader = (function () {
 	const bootstrapModule = async function (module, mObj) {
 		Log.info(`Bootstrapping module: ${module.name}`);
 		mObj.setData(module);
+		mObj.setConfig(module.config);
 
 		await mObj.loadScripts();
 		Log.log(`Scripts loaded for: ${module.name}`);
