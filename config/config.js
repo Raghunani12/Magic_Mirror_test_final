@@ -164,31 +164,17 @@ let config = {
 
 
 
-		// News Feed - Bottom (Production-Ready Proportional)
+		// News Feed - NewsAPI.org Integration (Production-Ready)
 		{
 			module: "newsfeed",
 			position: "bottom_bar",
 			config: {
 				feeds: [
 					{
-						title: "BBC News",
-						url: "https://feeds.bbci.co.uk/news/rss.xml",
-						useCorsProxy: true
-					},
-					{
-						title: "Reuters World",
-						url: "https://feeds.reuters.com/Reuters/worldNews",
-						useCorsProxy: true
-					},
-					{
-						title: "CNN Top Stories",
-						url: "http://rss.cnn.com/rss/edition.rss",
-						useCorsProxy: true
-					},
-					{
-						title: "Associated Press",
-						url: "https://feeds.apnews.com/rss/apf-topnews",
-						useCorsProxy: true
+						title: "Tesla News",
+						url: "https://newsapi.org/v2/everything?q=tesla&from=2025-05-17&sortBy=publishedAt&apiKey=b77004cb83c64ae4881ce4a66b50603e",
+						useCorsProxy: false, // NewsAPI.org supports CORS
+						isNewsAPI: true // Custom flag to identify NewsAPI feeds
 					}
 				],
 				showSourceTitle: true,
@@ -202,7 +188,7 @@ let config = {
 				truncDescription: true,
 				lengthDescription: 100, // Shorter for ticker
 				hideLoading: false,
-				reloadInterval: 3 * 60 * 1000, // 3 minutes for faster updates
+				reloadInterval: 5 * 60 * 1000, // 5 minutes (NewsAPI rate limits)
 				updateInterval: 10 * 1000, // 10 seconds for smoother updates
 				animationSpeed: 2000, // Animation speed for transitions
 				maxNewsItems: 10, // Limit items for performance

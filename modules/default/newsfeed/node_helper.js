@@ -1,6 +1,7 @@
 const NodeHelper = require("node_helper");
 const Log = require("logger");
 const NewsfeedFetcher = require("./newsfeedfetcher");
+const NewsAPIFetcher = require("./newsapifetcher");
 
 module.exports = NodeHelper.create({
 	// Override start method.
@@ -29,6 +30,9 @@ module.exports = NodeHelper.create({
 		let useCorsProxy = feed.useCorsProxy;
 		if (useCorsProxy === undefined) useCorsProxy = true;
 
+		// Check if this is a NewsAPI feed
+		const isNewsAPI = feed.isNewsAPI || false;
+
 		try {
 			new URL(url);
 		} catch (error) {
@@ -39,15 +43,21 @@ module.exports = NodeHelper.create({
 
 		let fetcher;
 		if (typeof this.fetchers[url] === "undefined") {
-			Log.log(`Create new newsfetcher for url: ${url} - Interval: ${reloadInterval}`);
-			fetcher = new NewsfeedFetcher(url, reloadInterval, encoding, config.logFeedWarnings, useCorsProxy);
+			if (isNewsAPI) {
+				Log.log(`Create new NewsAPI fetcher for url: ${url} - Interval: ${reloadInterval}`);
+				fetcher = new NewsAPIFetcher(url, reloadInterval, config.logFeedWarnings, useCorsProxy);
+			} else {
+				Log.log(`Create new RSS newsfetcher for url: ${url} - Interval: ${reloadInterval}`);
+				fetcher = new NewsfeedFetcher(url, reloadInterval, encoding, config.logFeedWarnings, useCorsProxy);
+			}
 
 			fetcher.onReceive(() => {
 				this.broadcastFeeds();
 			});
 
 			fetcher.onError((fetcher, error) => {
-				Log.error("Newsfeed Error. Could not fetch newsfeed: ", url, error);
+				const errorType = isNewsAPI ? "NewsAPI" : "Newsfeed";
+				Log.error(`${errorType} Error. Could not fetch: `, url, error);
 				let error_type = NodeHelper.checkFetchError(error);
 				this.sendSocketNotification("NEWSFEED_ERROR", {
 					error_type
@@ -56,7 +66,7 @@ module.exports = NodeHelper.create({
 
 			this.fetchers[url] = fetcher;
 		} else {
-			Log.log(`Use existing newsfetcher for url: ${url}`);
+			Log.log(`Use existing fetcher for url: ${url}`);
 			fetcher = this.fetchers[url];
 			fetcher.setReloadInterval(reloadInterval);
 			fetcher.broadcastItems();
