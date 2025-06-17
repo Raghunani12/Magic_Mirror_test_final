@@ -1,0 +1,115 @@
+[33mce67517[m[33m ([m[1;36mHEAD -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m chged
+[33m0cea385[m ch
+[33mb62ed09[m chns
+[33m63e5168[m hsh
+[33m797bfec[m changed
+[33m6c171fd[m reverted
+[33m9a8fbe1[m changed
+[33m028ffd5[m sa
+[33md6c8e69[m changed
+[33md440692[m sh
+[33ma086342[m chnaged
+[33m69157c0[m chnaged
+[33m8046673[m chnaged
+[33m38d37e5[m customized
+[33m83e602b[m changed layout
+[33ma2d792e[m reverted
+[33m2017a34[m chnaged to grid style
+[33mac12b54[m chendged--may be need to come here
+[33m621aac1[m discarded changes
+[33mf1c60c0[m changed font of compliments
+[33m510e7ce[m changed news
+[33m2656dc7[m s
+[33m5eb39c6[m s
+[33mc9751fa[m shhs
+[33m92d458c[m hs
+[33m11d1d4d[m final try
+[33m659e44d[m test
+[33mfc0b6c8[m tryyy
+[33mdf274c4[m changed
+[33maea97e5[m changed
+[33ma159cf3[m shsh
+[33m1987e93[m sh
+[33m98fe3f2[m hdh
+[33m28a94f6[m Chnges
+[33m69ec687[m done
+[33m1eabd7d[m changed
+[33m5a3a608[m fixed scrolling news module
+[33mdac904c[m fized news module
+[33m69d26b3[m chan
+[33m306c17d[m mobile-MOBILE_RESPONSIVE_FIXES
+[33m50b05ba[m ss
+[33me4dde33[m changed
+[33m1c57ce6[m ss
+[33mc9ccf91[m againn
+[33m622aadc[m BETA-FINAL
+[33me0acc66[m revertd to BETA
+[33m2301326[m updated again -beta
+[33md21f965[m DynamicWeather
+[33m91d4dee[m BETA-VERSION changed location to dynamic weather
+[33m76ecc71[m Removed unnecessary files
+[33m7991a3c[m reverted
+[33m8c4fa67[m Updated CSS
+[33m7bf0a90[m reverted
+[33mea45de5[m ss-test
+[33m11045c9[m sa
+[33mad2daa7[m ss
+[33m2364e4a[m sss
+[33m457d7d4[m sd
+[33m2ac4d54[m ss
+[33mb8859cd[m cha
+[33mbdf6b2e[m changed
+[33mb8c9b8d[m removed the popup-jarvis control
+[33md9c7e72[m reverted
+[33mcaa3877[m ss
+[33m5c1e367[m ss
+[33mbcf4b88[m Changed positions-to fix the time module visibility
+[33mbb10cc5[m context changed in preloader
+[33mab4c563[m preloader changed
+[33m7992c41[m wsl
+[33ma710fbd[m Added
+[33mc97696f[m Added Voice control
+[33m8ca9fdb[m Ass
+[33me04ca83[m ss
+[33m3e22f6e[m Position images exactly between news and compliments with perfect spacing
+[33mb095ac0[m Switch back to static image slideshow for immediate working solution
+[33mffb0cb1[m Add production-ready Google Drive integration with public website support
+[33me5f0424[m Fix Google Drive photos with working file ID solution
+[33mf5e41ad[m Create production-ready Google Drive photos with ultra-simple client setup
+[33mea6cc61[m Configure Google Drive photos with user's shared folder
+[33mbb61aa4[m updated URL
+[33m95071c4[m Update Outlook calendar URL to new iCal link
+[33m9f17643[m Add MMM-GoogleDrivePhotos module for dynamic photo display
+[33m3506687[m s
+[33md2caf4a[m Make MMM-DynamicWeather look exactly like default weather module
+[33m7cd0910[m Simplify modules to use default dark styling
+[33ma0c7645[m Update submodules with latest changes
+[33m887150f[m  Add Linux-compatible MMM-ModulePosition and IP Geolocation features
+[33m3ca8a02[m updated
+[33m84366bd[m updated
+[33m5f746ce[m Changed
+[33mc8d2883[m Added custome modifying position modules
+[33m3768055[m chnaged font
+[33m9256a59[m changed slider
+[33m9e81ebd[m added changes
+[33m18767d5[m added
+[33mdeb85d9[m Again removed glossmorphic and added cinzel font also
+[33ma26375d[m Changed custom css
+[33m8a21292[m Changes made to the custom.css file.
+[33m42d498e[m chnaged
+[33m264b91d[m Fix image slideshow: Apply gradient to images only + correct path
+[33mf0f511d[m Fix weather with coordinates and add beautiful color gradient to image slideshow
+[33m7e4f333[m Deletd pics
+[33ma983f40[m Added Gifs
+[33m2696c72[m Files changed thier oath -Image files
+[33mbf3a111[m Changed again path to default
+[33m362c23d[m CHanged path in IMAGE SLIDESHOW
+[33mafd3488[m Changed images
+[33m3749214[m Fix MMM-ImageSlideshow configuration - use correct parameter names
+[33m620d369[m Uploading Photos to test Slideshow
+[33m80b66ae[m Fix infinite loop in debug monitor - replace with simple debug
+[33m5e021d5[m Fix debug monitor module detection and add test page
+[33m11909ad[m Enhanced smart mirror configuration and styling
+[33m8ebf106[m Add comprehensive debugging system for all modules
+[33m1319980[m Complete cleanup: Remove all old repository references
+[33m6471bec[m Initial commit: Professional Smart Mirror with Black & White Animated Theme
