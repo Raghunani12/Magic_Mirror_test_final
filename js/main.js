@@ -62,7 +62,7 @@ const MM = (function () {
 				.catch(Log.error);
 		});
 
-		// Removed updateWrapperStates() call from here. The logic is now handled by CSS Grid.
+		updateWrapperStates();
 
 		Promise.all(domCreationPromises).then(function () {
 			sendNotification("DOM_OBJECTS_CREATED");
@@ -75,16 +75,13 @@ const MM = (function () {
 	 * @returns {HTMLElement | void} the wrapper element
 	 */
 	const selectWrapper = function (position) {
-		const selector = `.region.${position}`;
-		const parentWrapper = document.querySelector(selector);
-		if (parentWrapper) {
-			const wrapper = parentWrapper.getElementsByClassName("container");
+		const classes = position.replace("_", " ");
+		const parentWrapper = document.getElementsByClassName(classes);
+		if (parentWrapper.length > 0) {
+			const wrapper = parentWrapper[0].getElementsByClassName("container");
 			if (wrapper.length > 0) {
 				return wrapper[0];
 			}
-		} else {
-			Log.warn(`selectWrapper: No wrapper found for position: ${position}`);
-			return null; // Ensure null is returned if no wrapper is found
 		}
 	};
 
@@ -309,10 +306,10 @@ const MM = (function () {
 					// AnimateCSS is now done
 					moduleWrapper.style.opacity = 0;
 					moduleWrapper.classList.add("hidden");
-					// moduleWrapper.style.position = "fixed"; // Removed: CSS Grid manages position
+					moduleWrapper.style.position = "fixed";
 					module.hasAnimateOut = false;
 
-					// updateWrapperStates(); // Removed: Not needed with CSS Grid
+					updateWrapperStates();
 					if (typeof callback === "function") {
 						callback();
 					}
@@ -327,9 +324,9 @@ const MM = (function () {
 					// since it's fade out anyway, we can see it lay above or
 					// below other modules. This works way better than adjusting
 					// the .display property.
-					// moduleWrapper.style.position = "fixed"; // Removed: CSS Grid manages position
+					moduleWrapper.style.position = "fixed";
 
-					// updateWrapperStates(); // Removed: Not needed with CSS Grid
+					updateWrapperStates();
 
 					if (typeof callback === "function") {
 						callback();
@@ -404,10 +401,10 @@ const MM = (function () {
 
 			if (!haveAnimateName) moduleWrapper.style.transition = `opacity ${speed / 1000}s`;
 			// Restore the position. See hideModule() for more info.
-			// moduleWrapper.style.position = "static"; // Removed: CSS Grid manages position
+			moduleWrapper.style.position = "static";
 			moduleWrapper.classList.remove("hidden");
 
-			// updateWrapperStates(); // Removed: Not needed with CSS Grid
+			updateWrapperStates();
 
 			// Waiting for DOM-changes done in updateWrapperStates before we can start the animation.
 			const dummy = moduleWrapper.parentElement.parentElement.offsetHeight;
@@ -440,6 +437,34 @@ const MM = (function () {
 				callback();
 			}
 		}
+	};
+
+	/**
+	 * Checks for all positions if it has visible content.
+	 * If not, if will hide the position to prevent unwanted margins.
+	 * This method should be called by the show and hide methods.
+	 *
+	 * Example:
+	 * If the top_bar only contains the update notification. And no update is available,
+	 * the update notification is hidden. The top bar still occupies space making for
+	 * an ugly top margin. By using this function, the top bar will be hidden if the
+	 * update notification is not visible.
+	 */
+
+	const updateWrapperStates = function () {
+		modulePositions.forEach(function (position) {
+			const wrapper = selectWrapper(position);
+			const moduleWrappers = wrapper.getElementsByClassName("module");
+
+			let showWrapper = false;
+			Array.prototype.forEach.call(moduleWrappers, function (moduleWrapper) {
+				if (moduleWrapper.style.position === "" || moduleWrapper.style.position === "static") {
+					showWrapper = true;
+				}
+			});
+
+			wrapper.style.display = showWrapper ? "block" : "none";
+		});
 	};
 
 	/**
