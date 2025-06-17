@@ -661,50 +661,24 @@ html, body {
     overflow: hidden !important;
   }
   .magicmirror-grid {
-    display: grid;
-    grid-template-columns: 1fr 2fr 1.5fr;
-    grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 0.5fr 0.5fr;
-    gap: 24px;
-    height: 100vh;
-    width: 100vw;
-    box-sizing: border-box;
     padding: 24px;
-    background: linear-gradient(120deg, #181c20 0%, #23272b 100%);
-    border-radius: 24px;
-    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
-    grid-template-areas:
-      "calendar datetime weather"
-      "calendar empty1 weather"
-      "calendar compliments photo"
-      "calendar empty2 photo"
-      "empty3 empty3 empty3"
-      "news news news"
-      "empty4 empty4 empty4"
-      "empty5 empty5 empty5";
+    gap: 24px;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
   }
   .region.top.left         { grid-area: calendar; }
   .region.top.center,
   .region.upper.third      { grid-area: datetime; }
   .region.top.right        { grid-area: weather; }
-  .region.empty1           { grid-area: empty1; }
-  .region.lower.third      { grid-area: compliments; }
   .region.bottom.left      { grid-area: photo; }
-  .region.empty2           { grid-area: empty2; }
-  .region.empty3           { grid-area: empty3; }
+  .region.lower.third      { grid-area: compliments; }
   .region.bottom.center    { grid-area: news; }
-  .region.empty4           { grid-area: empty4; }
   .region.bottom.bar       { grid-area: empty5; display: none; }
-  .region.empty5           { grid-area: empty5; }
-  /* Style for empty regions (optional, for debugging) */
-  .region.empty1, .region.empty2, .region.empty3, .region.empty4, .region.empty5 {
-    /* background: rgba(255,255,255,0.01); */
-    min-height: 10px;
-    min-width: 10px;
-  }
   .region > .container {
-    background: rgba(24,28,32,0.85);
-    border-radius: 18px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
     padding: 24px 18px;
     margin: 0;
     min-height: 60px;
@@ -712,10 +686,10 @@ html, body {
     flex-direction: column;
     justify-content: center;
     align-items: stretch;
-    transition: box-shadow 0.2s;
+    transition: none;
   }
   .region > .container:hover {
-    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+    box-shadow: none;
   }
   .region.empty1 > .container,
   .region.empty2 > .container,
@@ -727,56 +701,56 @@ html, body {
     padding: 0;
     min-height: 10px;
   }
-  /* Compliments: Use Nunito Sans, match news style, modern look */
+  /* Compliments: Only keep font and padding changes */
   .region.lower.third .compliments {
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 2.1rem !important;
     font-weight: 600 !important;
     color: #fff !important;
-    background: linear-gradient(90deg, #2a2e35 0%, #23272b 100%);
-    border-radius: 12px;
     padding: 18px 32px !important;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
     letter-spacing: 0.01em;
     margin: 0 auto;
     text-align: center;
-    transition: background 0.2s;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    text-shadow: none;
+    transition: none;
   }
   .region.lower.third .compliments:hover {
-    background: linear-gradient(90deg, #23272b 0%, #2a2e35 100%);
+    background: none;
   }
-  /* Image Slider: Increase size and add modern look */
+  /* Image Slider: Only keep increased size */
   .region.bottom.left .MMM-ImageSlideshow {
     max-width: 260px !important;
     max-height: 180px !important;
-    border-radius: 14px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    border-radius: 0;
+    box-shadow: none;
     margin: 0 auto;
-    background: rgba(30,34,40,0.7);
+    background: none;
     padding: 8px;
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: box-shadow 0.2s;
+    transition: none;
   }
   .region.bottom.left .MMM-ImageSlideshow img {
-    border-radius: 10px;
-    box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+    border-radius: 0;
+    box-shadow: none;
     width: 100%;
     height: auto;
     object-fit: cover;
   }
-  /* Calendar, Weather, News, etc: Add subtle separation */
+  /* Remove extra separation from other modules */
   .region.top.left > .container,
   .region.top.right > .container,
   .region.bottom.center > .container {
-    background: linear-gradient(120deg, #23272b 0%, #181c20 100%);
-    border-radius: 16px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
     padding: 20px 16px;
   }
-  /* News: keep Nunito Sans, bold, modern */
+  /* News: Only keep font changes */
   .region.bottom.center .news-title,
   .region.bottom.center .news-ticker-content {
     font-family: 'Nunito Sans', sans-serif !important;
@@ -784,15 +758,15 @@ html, body {
     font-weight: 700 !important;
     color: #fff !important;
     letter-spacing: 0.01em;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    text-shadow: none;
   }
-  /* Clock and Date: modern, bold */
+  /* Clock and Date: Only keep font changes */
   .region.top.center .clock {
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 2.5rem !important;
     font-weight: 700 !important;
     color: #fff !important;
-    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    text-shadow: none;
     margin-bottom: 8px;
   }
   .region.top.center .clock .date {
@@ -801,14 +775,14 @@ html, body {
     opacity: 0.85;
     margin-top: 4px;
   }
-  /* Weather: modern, clean */
+  /* Weather: Only keep font changes */
   .region.top.right .weather {
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 1.1rem !important;
     color: #fff !important;
     font-weight: 500 !important;
   }
-  /* Calendar: modern, clean */
+  /* Calendar: Only keep font changes */
   .region.top.left .calendar {
     font-family: 'Nunito Sans', sans-serif !important;
     font-size: 1.1rem !important;
