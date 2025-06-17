@@ -108,7 +108,6 @@
          * Start the loading sequence
          */
         startLoadingSequence() {
-            this.updateSystemStats();
             this.progressInterval = setInterval(() => {
                 this.updateProgress();
             }, 800);
@@ -120,15 +119,11 @@
         updateProgress() {
             if (this.currentStep < this.loadingSteps.length) {
                 const statusElement = document.getElementById('jarvis-status');
-                const progressElement = document.getElementById('jarvis-progress');
-                const percentageElement = document.getElementById('jarvis-percentage');
 
-                statusElement.textContent = this.loadingSteps[this.currentStep];
+                if (statusElement) {
+                    statusElement.textContent = this.loadingSteps[this.currentStep];
+                }
                 
-                const progress = ((this.currentStep + 1) / this.loadingSteps.length) * 100;
-                progressElement.style.width = progress + '%';
-                percentageElement.textContent = Math.round(progress) + '%';
-
                 this.currentStep++;
 
                 if (this.currentStep >= this.loadingSteps.length) {
@@ -143,14 +138,8 @@
          * Update system statistics
          */
         updateSystemStats() {
-            const cpuElement = document.getElementById('cpu-usage');
-            const memoryElement = document.getElementById('memory-usage');
-            
-            // Simulate system stats
-            setInterval(() => {
-                cpuElement.textContent = (Math.random() * 30 + 10).toFixed(1) + '%';
-                memoryElement.textContent = (Math.random() * 20 + 40).toFixed(1) + '%';
-            }, 1000);
+            // This function is no longer needed as system stats are not displayed in the minimal preloader
+            // Keeping it as a placeholder or remove it completely if desired later.
         }
 
         /**
@@ -161,7 +150,9 @@
 
             // Final message
             const statusElement = document.getElementById('jarvis-status');
-            statusElement.textContent = 'Welcome back, Sir. All systems operational.';
+            if (statusElement) {
+                statusElement.textContent = 'Welcome back, Sir. All systems operational.';
+            }
 
             // Wait for MagicMirror to be ready
             this.waitForMagicMirror();
