@@ -664,12 +664,14 @@ html, body {
     display: grid;
     grid-template-columns: 1fr 2fr 1.5fr;
     grid-template-rows: 1fr 0.5fr 0.5fr 0.5fr 0.5fr 1fr 0.5fr 0.5fr;
-    gap: 10px;
+    gap: 24px;
     height: 100vh;
     width: 100vw;
     box-sizing: border-box;
-    padding: 10px;
-    background: none;
+    padding: 24px;
+    background: linear-gradient(120deg, #181c20 0%, #23272b 100%);
+    border-radius: 24px;
+    box-shadow: 0 8px 32px rgba(0,0,0,0.25);
     grid-template-areas:
       "calendar datetime weather"
       "calendar empty1 weather"
@@ -698,6 +700,125 @@ html, body {
     /* background: rgba(255,255,255,0.01); */
     min-height: 10px;
     min-width: 10px;
+  }
+  .region > .container {
+    background: rgba(24,28,32,0.85);
+    border-radius: 18px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    padding: 24px 18px;
+    margin: 0;
+    min-height: 60px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+    transition: box-shadow 0.2s;
+  }
+  .region > .container:hover {
+    box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  }
+  .region.empty1 > .container,
+  .region.empty2 > .container,
+  .region.empty3 > .container,
+  .region.empty4 > .container,
+  .region.empty5 > .container {
+    background: none;
+    box-shadow: none;
+    padding: 0;
+    min-height: 10px;
+  }
+  /* Compliments: Use Nunito Sans, match news style, modern look */
+  .region.lower.third .compliments {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 2.1rem !important;
+    font-weight: 600 !important;
+    color: #fff !important;
+    background: linear-gradient(90deg, #2a2e35 0%, #23272b 100%);
+    border-radius: 12px;
+    padding: 18px 32px !important;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    letter-spacing: 0.01em;
+    margin: 0 auto;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .region.lower.third .compliments:hover {
+    background: linear-gradient(90deg, #23272b 0%, #2a2e35 100%);
+  }
+  /* Image Slider: Increase size and add modern look */
+  .region.bottom.left .MMM-ImageSlideshow {
+    max-width: 260px !important;
+    max-height: 180px !important;
+    border-radius: 14px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.13);
+    margin: 0 auto;
+    background: rgba(30,34,40,0.7);
+    padding: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: box-shadow 0.2s;
+  }
+  .region.bottom.left .MMM-ImageSlideshow img {
+    border-radius: 10px;
+    box-shadow: 0 1px 8px rgba(0,0,0,0.10);
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+  }
+  /* Calendar, Weather, News, etc: Add subtle separation */
+  .region.top.left > .container,
+  .region.top.right > .container,
+  .region.bottom.center > .container {
+    background: linear-gradient(120deg, #23272b 0%, #181c20 100%);
+    border-radius: 16px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+    padding: 20px 16px;
+  }
+  /* News: keep Nunito Sans, bold, modern */
+  .region.bottom.center .news-title,
+  .region.bottom.center .news-ticker-content {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    letter-spacing: 0.01em;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+  }
+  /* Clock and Date: modern, bold */
+  .region.top.center .clock {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 2.5rem !important;
+    font-weight: 700 !important;
+    color: #fff !important;
+    text-shadow: 0 2px 8px rgba(0,0,0,0.18);
+    margin-bottom: 8px;
+  }
+  .region.top.center .clock .date {
+    font-size: 1.1rem !important;
+    font-weight: 400 !important;
+    opacity: 0.85;
+    margin-top: 4px;
+  }
+  /* Weather: modern, clean */
+  .region.top.right .weather {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 1.1rem !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+  }
+  /* Calendar: modern, clean */
+  .region.top.left .calendar {
+    font-family: 'Nunito Sans', sans-serif !important;
+    font-size: 1.1rem !important;
+    color: #fff !important;
+    font-weight: 500 !important;
+  }
+  /* Add a little breathing room for all modules */
+  .module {
+    margin-bottom: 12px !important;
+    margin-top: 12px !important;
   }
 }
 
