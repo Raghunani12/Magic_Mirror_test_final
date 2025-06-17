@@ -76,14 +76,19 @@ const MM = (function () {
 	 */
 	const selectWrapper = function (position) {
 		const selector = `.region.${position}`;
+		Log.log(`selectWrapper: Attempting to select wrapper with selector: ${selector}`);
 		const parentWrapper = document.querySelector(selector);
 		if (parentWrapper) {
+			Log.log(`selectWrapper: Found parentWrapper for ${selector}`);
 			const wrapper = parentWrapper.getElementsByClassName("container");
 			if (wrapper.length > 0) {
 				return wrapper[0];
+			} else {
+				Log.warn(`selectWrapper: No .container found inside ${selector}`);
+				return null;
 			}
 		} else {
-			Log.warn(`selectWrapper: No wrapper found for position: ${position}`);
+			Log.warn(`selectWrapper: No wrapper found for position: ${position} with selector: ${selector}`);
 			return null; // Ensure null is returned if no wrapper is found
 		}
 	};

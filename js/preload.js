@@ -162,17 +162,51 @@
          * Wait for MagicMirror to be fully loaded
          */
         waitForMagicMirror() {
+            let attempts = 0;
+            const maxAttempts = 50; // 5 seconds total
+            
             const checkMM = () => {
-                if (typeof MM !== 'undefined' && MM.getModules && MM.getModules().length > 0) {
-                    // MagicMirror is ready
+                attempts++;
+                
+                if (typeof MM === 'undefined') {
+                    Log.warn('MagicMirror not yet defined, attempt ' + attempts);
+                    if (attempts < maxAttempts) {
+                        setTimeout(checkMM, 100);
+                    } else {
+                        Log.error('MagicMirror failed to initialize after ' + maxAttempts + ' attempts');
+                        this.fadeOut(); // Fade out anyway to prevent permanent loading screen
+                    }
+                    return;
+                }
+
+                if (!MM.getModules) {
+                    Log.warn('MM.getModules not yet available, attempt ' + attempts);
+                    if (attempts < maxAttempts) {
+                        setTimeout(checkMM, 100);
+                    } else {
+                        Log.error('MM.getModules failed to initialize after ' + maxAttempts + ' attempts');
+                        this.fadeOut();
+                    }
+                    return;
+                }
+
+                const modules = MM.getModules();
+                if (modules && modules.length > 0) {
+                    Log.info('MagicMirror initialized successfully with ' + modules.length + ' modules');
                     setTimeout(() => {
                         this.fadeOut();
                     }, 1500);
                 } else {
-                    // Keep checking
-                    setTimeout(checkMM, 100);
+                    Log.warn('No modules loaded yet, attempt ' + attempts);
+                    if (attempts < maxAttempts) {
+                        setTimeout(checkMM, 100);
+                    } else {
+                        Log.error('No modules loaded after ' + maxAttempts + ' attempts');
+                        this.fadeOut();
+                    }
                 }
             };
+            
             checkMM();
         }
 
