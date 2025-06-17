@@ -32,11 +32,11 @@ const defaults = {
 	modules: [
 		{
 			module: "updatenotification",
-			position: "empty1"
+			position: "top_center"
 		},
 		{
 			module: "helloworld",
-			position: "empty2",
+			position: "upper_third",
 			classes: "large thin",
 			config: {
 				text: "MagicMirror²"
@@ -44,14 +44,14 @@ const defaults = {
 		},
 		{
 			module: "helloworld",
-			position: "empty3",
+			position: "middle_center",
 			config: {
 				text: "Please create a config file or check the existing one for errors."
 			}
 		},
 		{
 			module: "helloworld",
-			position: "empty4",
+			position: "middle_center",
 			classes: "small dimmed",
 			config: {
 				text: "See README for more information."
