@@ -219,19 +219,19 @@ let config = {
 			}
 		},
 
-		// Photo Slider - Middle Right (Grid Position)
+		// Image Slideshow - Left Side (with padding)
 		{
 			module: "MMM-ImageSlideshow",
-			position: "bottom_left", // This will be positioned in grid via CSS
+			position: "bottom_left",
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
 				delayUntilRestart: 0,
-				fixedImageWidth: 200, // Increased for better visibility
-				fixedImageHeight: 150, // Increased for better visibility
+				fixedImageWidth: 150,
+				fixedImageHeight: 100,
 				randomizeImageOrder: true,
 				treatAllPathsAsOne: false,
-				makeImagesGrayscale: false, // Keep color for visual appeal
+				makeImagesGrayscale: false, // Set to true for black/white theme
 				validImageFileExtensions: "bmp,jpg,jpeg,gif,png"
 			}
 		},
