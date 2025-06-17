@@ -75,10 +75,10 @@ const MM = (function () {
 	 * @returns {HTMLElement | void} the wrapper element
 	 */
 	const selectWrapper = function (position) {
-		const classes = position.replace("_", " ");
-		const parentWrapper = document.getElementsByClassName(classes);
-		if (parentWrapper.length > 0) {
-			const wrapper = parentWrapper[0].getElementsByClassName("container");
+		const selector = `.region.${position}`;
+		const parentWrapper = document.querySelector(selector);
+		if (parentWrapper) {
+			const wrapper = parentWrapper.getElementsByClassName("container");
 			if (wrapper.length > 0) {
 				return wrapper[0];
 			}
