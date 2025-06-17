@@ -38,10 +38,10 @@ let config = {
 	},
 
 	modules: [
-		// Clock - Top Center
+		// Clock - Now part of 'datetime' region
 		{
 			module: "clock",
-			position: "top_center",
+			position: "datetime", // Changed from "top_center"
 			config: {
 				timeFormat: 24,
 				showDate: true,
@@ -58,10 +58,10 @@ let config = {
 			}
 		},
 
-		// SimpleLocation - Below Clock (Upper Third)
+		// SimpleLocation - Now part of 'datetime' region
 		{
 			module: "MMM-SimpleLocation",
-			position: "upper_third",
+			position: "datetime", // Changed from "upper_third"
 			config: {
 				dimmed: true,
 				city: "New Delhi", // Fallback city
@@ -77,11 +77,11 @@ let config = {
 			}
 		},
 
-		// Calendar - Left Side
+		// Calendar - Now in 'calendar' region
 		{
 			module: "calendar",
 			header: "My Calendars",
-			position: "top_left",
+			position: "calendar", // Changed from "top_left"
 			config: {
 				calendars: [
 					{
@@ -131,10 +131,10 @@ let config = {
 			}
 		},
 
-		// Weather - Right Side (Same Line as Calendar)
+		// Weather - Now in 'weather' region
 		{
 			module: "weather",
-			position: "top_right",
+			position: "weather", // Changed from "top_right"
 			header: "Current Weather",
 			config: {
 				weatherProvider: "openmeteo",
@@ -164,10 +164,10 @@ let config = {
 
 
 
-		// News Feed - Bottom (Production-Ready Proportional)
+		// News Feed - Now in 'news' region
 		{
 			module: "newsfeed",
-			position: "bottom_bar",
+			position: "news", // Changed from "bottom_bar"
 			config: {
 				feeds: [
 					{
@@ -219,10 +219,10 @@ let config = {
 			}
 		},
 
-		// Image Slideshow - Left Side (with padding)
+		// Image Slideshow - Now in 'photo' region
 		{
 			module: "MMM-ImageSlideshow",
-			position: "bottom_left",
+			position: "photo", // Changed from "bottom_left"
 			config: {
 				imagePaths: ["modules/MMM-ImageSlideshow/exampleImages"],
 				slideshowSpeed: 12 * 1000, // 12 seconds per image
@@ -236,10 +236,10 @@ let config = {
 			}
 		},
 
-		// Compliments - Lower Third (moved to make room for news)
+		// Compliments - Now in 'compliments' region
 		{
 			module: "compliments",
-			position: "lower_third",
+			position: "compliments", // Changed from "lower_third"
 			config: {
 				updateInterval: 45000, // 45 seconds
 				fadeSpeed: 3000,
@@ -273,10 +273,10 @@ let config = {
 			}
 		},
 
-		// Location-Based News - Bottom Center (after compliments)
+		// Location-Based News - Now in 'news' region (consolidated with newsfeed)
 		{
 			module: "MMM-LocationNews",
-			position: "bottom_center",
+			position: "news", // Changed from "bottom_center"
 			config: {
 				apiKey: "pub_c4a1c05cecfb4e5ab5612085c2bdf1e5", // newsdata.io API key
 				maxNewsItems: 1, // Only one headline as requested
@@ -298,7 +298,7 @@ let config = {
 			}
 		},
 
-		// MMM-ModulePosition - Layout Control (COMMENTED OUT FOR STABLE LAYOUT)
+		// MMM-ModulePosition - No change, remains commented out/fullscreen
 		/*
 		{
 			module: "MMM-ModulePosition",
@@ -314,10 +314,10 @@ let config = {
 		},
 		*/
 
-		// WSL Voice Control - Browser-Based (WSL Compatible) - HIDDEN & ALWAYS ON
+		// WSL Voice Control - No change, remains hidden
 		{
 			module: "MMM-WSLVoice",
-			position: "bottom_right",
+			position: "bottom_right", // No change needed for hidden module
 			config: {
 				debug: false, // Set to true for troubleshooting
 				enableVisualFeedback: false, // Disable visual feedback to keep it invisible
