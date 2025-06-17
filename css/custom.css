@@ -37,9 +37,7 @@ html, body {
 }
 
 /* ===== HIDE VOICE CONTROL MODULE COMPLETELY ===== */
-.MMM-WSLVoice,
-.region.bottom.right .MMM-WSLVoice,
-.module.MMM-WSLVoice {
+.MMM-WSLVoice {
     display: none !important;
     visibility: hidden !important;
     opacity: 0 !important;
@@ -50,503 +48,266 @@ html, body {
     overflow: hidden !important;
 }
 
-/* ===== YOUR ORIGINAL FIXED POSITIONING LAYOUT ===== */
+/* === MAGIC MIRROR GRID LAYOUT FOR DESKTOP/TABLET === */
 
-/* 1. CLOCK - TOP CENTER (Your Original Position) */
-.region.top.center {
-    position: fixed !important;
-    top: 20px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 1000;
-    width: auto;
-}
-
-.region.top.center .clock {
-    font-size: 48px !important;
-    font-weight: 600 !important;
-    color: #ffffff !important;
-    text-shadow: 0 0 20px rgba(255, 255, 255, 0.6) !important;
-    margin-bottom: 10px;
-}
-
-.region.top.center .clock .time {
-    font-size: 48px !important;
-    font-weight: 600 !important;
-}
-
-.region.top.center .clock .date {
-    font-size: 16px !important;
-    font-weight: 400 !important;
-    opacity: 0.9;
-    margin-top: 5px;
-}
-
-/* 2. LOCATION - BELOW CLOCK (Fixed positioning) */
-.region.upper.third {
-    position: fixed !important;
-    top: 120px;
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 900;
-    width: auto;
-}
-
-.region.upper.third .MMM-SimpleLocation {
-    font-size: 14px !important;
-    color: #cccccc !important;
-    font-weight: 400 !important;
-}
-
-/* 3. CALENDAR - LEFT SIDE (Adjusted for location spacing) */
-.region.top.left {
-    position: fixed !important;
-    top: 180px;
-    left: 20px;
-    width: 350px;
-    z-index: 800;
-}
-
-.region.top.left .calendar {
-    font-size: 14px !important;
-    color: #ffffff !important;
-}
-
-.region.top.left header {
-    font-size: 12px !important;
-    color: #cccccc !important;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-/* 4. WEATHER - RIGHT SIDE (Adjusted for location spacing) */
-.region.top.right {
-    position: fixed !important;
-    top: 180px;
-    right: 20px;
-    width: 300px;
-    z-index: 800;
-}
-
-.region.top.right .weather {
-    font-size: 14px !important;
-    color: #ffffff !important;
-}
-
-.region.top.right header {
-    font-size: 12px !important;
-    color: #cccccc !important;
-    text-transform: uppercase;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-}
-
-/* 5. IMAGE SLIDESHOW - BOTTOM LEFT (Your Original Position) */
-.region.bottom.left {
-    position: fixed !important;
-    bottom: 120px;
-    left: 20px;
-    width: 200px;
-    z-index: 700;
-}
-
-.region.bottom.left .MMM-ImageSlideshow {
-    max-width: 150px !important;
-    max-height: 100px !important;
-}
-
-/* 6. COMPLIMENTS - BOTTOM CENTER (Moved higher to avoid news overlap) */
-.region.bottom.center {
-    position: fixed !important;
-    bottom: 130px; /* Moved higher to avoid news overlap */
-    left: 50%;
-    transform: translateX(-50%);
-    text-align: center;
-    z-index: 600;
-    width: 60%;
-}
-
-.region.bottom.center .compliments {
-    font-size: 24px !important;
-    font-weight: 400 !important;
-    color: #ffffff !important;
-    padding: 15px 30px;
-    font-family: 'Cinzel', serif !important;
-}
-
-/* 7. NEWS - BOTTOM BAR (Production-Ready Proportional Design) */
-.region.bottom.bar {
-    position: fixed !important;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    z-index: 500;
+@media (min-width: 901px) {
+  body {
+    display: block !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  .magicmirror-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    grid-template-rows: 1.2fr 0.6fr 0.6fr 0.3fr 0.3fr 1fr 0.3fr;
+    gap: 24px;
+    height: 100vh;
     width: 100vw;
-    height: clamp(40px, 5vh, 60px);
-    overflow: hidden;
-    background: rgba(0, 0, 0, 0.9);
-    border-top: 2px solid rgba(255, 255, 255, 0.2);
-    display: flex;
-    align-items: center;
-}
-
-/* Main newsfeed container - Proportional */
-.region.bottom.bar .newsfeed {
-    height: 100%;
-    width: 100%;
-    overflow: hidden;
-    position: relative;
-    display: flex;
-    align-items: center;
-    padding: 0 2vw;
-}
-
-/* Scrolling ticker container - Responsive */
-.region.bottom.bar .newsfeed .newsfeed-ticker,
-.region.bottom.bar .newsfeed > div {
-    display: inline-block;
-    white-space: nowrap;
-    animation: scroll-news 80s linear infinite;
-    padding-left: 100%;
-    font-size: clamp(12px, 1.8vw, 18px);
-    color: #ffffff !important;
-    font-weight: 400;
-    line-height: 1.3;
-    font-family: 'Nunito Sans', sans-serif;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
-}
-
-/* Fallback for when ticker class is not applied */
-.region.bottom.bar .module.newsfeed {
-    width: 100%;
-    height: 100%;
-    display: flex;
-    align-items: center;
-}
-
-.region.bottom.bar .module.newsfeed > div {
-    animation: scroll-news 80s linear infinite;
-    padding-left: 100%;
-    white-space: nowrap;
-    color: #ffffff !important;
-    font-size: clamp(12px, 1.8vw, 18px);
-}
-
-/* Production-Ready News Scrolling Animation */
-@keyframes scroll-news {
-    0% {
-        transform: translateX(100vw);
-    }
-    100% {
-        transform: translateX(-100%);
-    }
-}
-
-/* Ensure smooth performance across all devices */
-.region.bottom.bar .newsfeed .newsfeed-ticker,
-.region.bottom.bar .newsfeed > div {
-    will-change: transform;
-    backface-visibility: hidden;
-    perspective: 1000px;
-}
-
-
-
-/* ===== RESPONSIVE FIXES FOR MOBILE DEVICES ===== */
-
-/* Mobile Layout - Stack vertically without overlapping */
-@media (max-width: 800px) {
-    /* Reset all fixed positioning for mobile */
-    .region {
-        position: relative !important;
-        transform: none !important;
-        left: auto !important;
-        right: auto !important;
-        top: auto !important;
-        bottom: auto !important;
-        width: 100% !important;
-        text-align: center !important;
-        margin: 0 !important;
-        padding: 10px 5px !important;
-        z-index: auto !important;
-    }
-
-    /* Mobile body - flexbox vertical stack */
-    body {
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100vh !important;
-        overflow: hidden !important;
-        padding: 5px !important;
-        margin: 0 !important;
-        justify-content: flex-start !important;
-        align-items: stretch !important;
-        gap: 5px !important;
-    }
-
-    /* Mobile order - your original module order */
-    .region.top.center { order: 1; }      /* Clock first */
-    .region.upper.third { order: 2; }     /* Location second */
-    .region.top.left { order: 3; }        /* Calendar third */
-    .region.top.right { order: 4; }       /* Weather fourth */
-    .region.bottom.left { order: 5; }     /* Images fifth */
-    .region.bottom.center { order: 6; }   /* Compliments sixth */
-    .region.bottom.bar { order: 7; }      /* News last */
-
-    /* Mobile font sizes - smaller but readable */
-    .region.top.center .clock {
-        font-size: 24px !important;
-    }
-
-    .region.top.center .clock .time {
-        font-size: 24px !important;
-    }
-
-    .region.top.center .clock .date {
-        font-size: 12px !important;
-    }
-
-    .region.upper.third .MMM-SimpleLocation {
-        font-size: 10px !important;
-    }
-
-    .region.top.left .calendar,
-    .region.top.right .weather {
-        font-size: 11px !important;
-    }
-
-    .region.top.left header,
-    .region.top.right header {
-        font-size: 9px !important;
-        margin-bottom: 5px !important;
-    }
-
-    .region.bottom.center .compliments {
-        font-size: 16px !important;
-        padding: 10px 15px !important;
-    }
-
-    /* News - Mobile Responsive */
-    .region.bottom.bar {
-        height: clamp(30px, 4vh, 40px) !important;
-        padding: 0 !important;
-    }
-
-    .region.bottom.bar .newsfeed {
-        padding: 0 3vw !important;
-    }
-
-    .region.bottom.bar .newsfeed .newsfeed-ticker,
-    .region.bottom.bar .newsfeed > div,
-    .region.bottom.bar .module.newsfeed > div {
-        animation: scroll-news 60s linear infinite;
-        font-size: clamp(10px, 1.4vw, 14px) !important;
-    }
-
-    .region.bottom.left .MMM-ImageSlideshow {
-        max-width: 80px !important;
-        max-height: 60px !important;
-    }
-
-    /* Compact tables for mobile */
-    .calendar table,
-    .weather table {
-        font-size: 9px !important;
-    }
-
-    .calendar td,
-    .calendar th,
-    .weather td,
-    .weather th {
-        padding: 2px !important;
-        font-size: 8px !important;
-    }
-}
-
-/* Tablet adjustments - Proportional Design */
-@media (min-width: 801px) and (max-width: 1200px) {
-    .region.top.center .clock {
-        font-size: 36px !important;
-    }
-
-    .region.top.left,
-    .region.top.right {
-        width: 300px !important;
-    }
-
-    .region.bottom.center .compliments {
-        font-size: 20px !important;
-    }
-
-    /* News - Tablet Responsive */
-    .region.bottom.bar {
-        height: clamp(40px, 4vh, 50px) !important;
-    }
-
-    .region.bottom.bar .newsfeed .newsfeed-ticker,
-    .region.bottom.bar .newsfeed > div,
-    .region.bottom.bar .module.newsfeed > div {
-        font-size: clamp(14px, 1.6vw, 16px) !important;
-        animation: scroll-news 70s linear infinite;
-    }
-}
-
-/* ===== MODULE STYLING (Your Original Styles) ===== */
-
-.module {
     box-sizing: border-box;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
+    padding: 24px;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
+    grid-template-areas:
+      "calendar  datetime   weather"
+      "calendar  empty1     photo"
+      "calendar  compliments photo"
+      "calendar  empty2     photo"
+      "empty3    empty3     empty3"
+      "news      news       news"
+      "empty4    empty4     empty4";
+  }
+
+  /* Assign grid areas to the new region classes */
+  .region.calendar    { grid-area: calendar; }
+  .region.datetime   { grid-area: datetime; }
+  .region.weather    { grid-area: weather; }
+  .region.empty1     { grid-area: empty1; }
+  .region.compliments{ grid-area: compliments; }
+  .region.photo      { grid-area: photo; }
+  .region.empty2     { grid-area: empty2; }
+  .region.empty3     { grid-area: empty3; }
+  .region.news       { grid-area: news; }
+  .region.empty4     { grid-area: empty4; }
+
+  /* Base styles for all regions */
+  .region {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: auto !important;
+    transform: none !important;
+    text-align: initial !important;
+  }
+
+  /* Container padding for modules */
+  .region > .container {
+    padding: 24px 18px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: stretch;
+  }
+
+  /* Make empty spaces truly empty */
+  .region.empty1 > .container,
+  .region.empty2 > .container,
+  .region.empty3 > .container,
+  .region.empty4 > .container {
+    padding: 0;
+    min-height: 10px;
+    min-width: 10px;
+  }
+
+  /* Module-specific styles */
+  .region.datetime .clock {
+    font-size: 2.5rem;
+    font-weight: 600;
+    text-align: center;
+  }
+
+  .region.datetime .clock .time {
+    font-size: 3.5rem;
+    font-weight: 700;
+  }
+
+  .region.datetime .clock .date {
+    font-size: 1.8rem;
+    font-weight: 400;
+  }
+
+  .region.calendar .calendar {
+    font-size: 1.2rem;
+    text-align: left;
+  }
+
+  .region.calendar header {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 12px;
+  }
+
+  .region.compliments .compliments {
+    font-size: 2.1rem;
+    font-weight: 600;
+    text-align: center;
+    padding: 18px 32px;
+  }
+
+  .region.news {
+    font-size: 1.2rem;
+  }
+
+  .region.news .news-container {
+    padding: 12px;
+  }
+
+  .region.news .news-title {
+    font-size: 1.4rem;
+    font-weight: 600;
+    margin-bottom: 8px;
+  }
+
+  .region.photo .MMM-ImageSlideshow {
+    max-width: 260px;
+    max-height: 180px;
+    margin: 0 auto;
+  }
+}
+
+/* Mobile Layout */
+@media (max-width: 900px) {
+  .magicmirror-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 16px;
+  }
+
+  .region {
+    width: 100%;
+    margin-bottom: 16px;
+  }
+
+  .region > .container {
+    padding: 16px;
+  }
+
+  .region.datetime { order: 1; }
+  .region.empty1 { order: 2; }
+  .region.compliments { order: 3; }
+  .region.empty2 { order: 4; }
+  .region.calendar { order: 5; }
+  .region.weather { order: 6; }
+  .region.photo { order: 7; }
+  .region.empty3 { order: 8; }
+  .region.news { order: 9; }
+  .region.empty4 { order: 10; }
+
+  .region.datetime .clock {
+    font-size: 2rem;
+  }
+
+  .region.datetime .clock .time {
+    font-size: 2.8rem;
+  }
+
+  .region.datetime .clock .date {
+    font-size: 1.5rem;
+  }
+
+  .region.calendar .calendar {
+    font-size: 1.1rem;
+  }
+
+  .region.compliments .compliments {
+    font-size: 1.8rem;
+    padding: 12px 24px;
+  }
+
+  .region.news {
+    font-size: 1.1rem;
+  }
+
+  .region.photo .MMM-ImageSlideshow {
+    max-width: 200px;
+    max-height: 140px;
+  }
+}
+
+/* Base module styles */
+.module {
+    margin: 0;
+    padding: 0;
+    background: none;
+    border-radius: 0;
+    box-shadow: none;
 }
 
 .module header {
-    text-transform: uppercase;
-    font-size: 12px;
-    font-family: 'Nunito Sans', sans-serif;
-    font-weight: 400;
-    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-    line-height: 15px;
-    padding-bottom: 5px;
-    margin-bottom: 10px;
-    color: #cccccc;
+    margin: 0;
+    padding: 0;
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+    text-align: left;
 }
 
-/* Calendar specific styling */
+/* Calendar styles */
 .calendar table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.calendar td,
-.calendar th {
-    padding: 3px 5px;
-    font-size: 12px;
-    vertical-align: top;
-    text-align: left;
+.calendar td {
+    padding: 4px;
+    text-align: center;
 }
 
-.calendar .symbol {
-    font-size: 12px;
-    padding-right: 8px;
-}
-
-/* Weather specific styling */
+/* Weather styles */
 .weather table {
     width: 100%;
     border-collapse: collapse;
 }
 
-.weather td,
-.weather th {
-    padding: 3px 5px;
-    font-size: 12px;
-    vertical-align: middle;
+.weather td {
+    padding: 4px;
     text-align: center;
 }
 
-.weather .weathericon {
-    font-size: 18px;
-    line-height: 1;
-}
-
-/* Image slideshow styling */
+/* Image slider styles */
 .MMM-ImageSlideshow img {
     max-width: 100%;
     height: auto;
-    border-radius: 5px;
+    object-fit: contain;
 }
 
-/* Pause animation on hover for better readability */
-.region.bottom.bar .newsfeed:hover .newsfeed-ticker {
-    animation-play-state: paused;
-}
-
-/* ===== HIDE DEBUG ELEMENTS ===== */
-.debug-console,
-.debug-toggle,
-.debug-info,
-.debug-panel,
-.console-log,
-.console-error,
-.console-warn,
-.console-info,
-.console-debug,
-[class*="debug"],
-[id*="debug"],
-.alert,
-.updatenotification {
-    display: none !important;
-    visibility: hidden !important;
-    opacity: 0 !important;
-}
-
-/* ===== ENSURE MODULES ARE VISIBLE ===== */
-.module {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* ===== ENSURE NEWSFEED MODULE IS VISIBLE ===== */
-.module.newsfeed,
-.region.bottom.bar .module,
-.region.bottom.bar .newsfeed,
-.newsfeed {
-    display: block !important;
-    visibility: visible !important;
-    opacity: 1 !important;
-}
-
-/* ===== ADDITIONAL NEWSFEED FIXES ===== */
-.region.bottom.bar .module.newsfeed .newsfeed-source {
-    color: #cccccc !important;
-    font-size: 12px !important;
-}
-
-.region.bottom.bar .module.newsfeed .newsfeed-title {
-    color: #ffffff !important;
-    font-weight: 400 !important;
-}
-
-.region.bottom.bar .module.newsfeed .newsfeed-desc {
-    color: #dddddd !important;
-}
-
-/* Force newsfeed content to be visible */
-.region.bottom.bar .module.newsfeed * {
-    color: #ffffff !important;
-}
-
-/* Loading and error states */
-.region.bottom.bar .module.newsfeed .small.dimmed {
-    color: #ffffff !important;
-    font-size: clamp(12px, 1.5vw, 16px) !important;
-    text-align: center;
-    padding: 10px;
-}
-
-/* ===== ACCESSIBILITY ===== */
+/* Accessibility */
 @media (prefers-reduced-motion: reduce) {
     * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
+        animation: none !important;
+        transition: none !important;
     }
 }
 
-/* ===== PRINT STYLES ===== */
+/* Print styles */
 @media print {
     body {
-        background: white !important;
-        color: black !important;
+        background: #fff;
+        color: #000;
     }
-
     .module {
-        animation: none !important;
+        break-inside: avoid;
     }
 }

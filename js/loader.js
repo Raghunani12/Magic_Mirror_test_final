@@ -59,8 +59,27 @@ const Loader = (function () {
 	 * @returns {object[]} module data as configured in config
 	 */
 	const getAllModules = function () {
-		const AllModules = config.modules.filter((module) => (module.module !== undefined) && (MM.getAvailableModulePositions.indexOf(module.position) > -1 || typeof (module.position) === "undefined"));
-		return AllModules;
+		const allModulesData = [];
+
+		// Add notification module data
+		allModulesData.push({
+			moduleClass: "notification",
+			config: {}
+		});
+
+		// Add default modules data
+		defaults.modules.forEach(function (module) {
+			allModulesData.push(module);
+		});
+
+		// Add user modules data
+		if (config.modules) {
+			config.modules.forEach(function (module) {
+				allModulesData.push(module);
+			});
+		}
+
+		return allModulesData;
 	};
 
 	/**
@@ -68,19 +87,35 @@ const Loader = (function () {
 	 * @returns {object[]} Module information.
 	 */
 	const getModuleData = async function () {
-		const modules = getAllModules();
+		const allModules = getAllModules();
 		const moduleFiles = [];
 		const envVars = await getEnvVars();
+		const availablePositions = MM.getAvailableModulePositions();
 
-		modules.forEach(function (moduleData, index) {
-			const module = moduleData.module;
+		allModules.forEach(function (moduleData, index) {
+			if (moduleData.disabled === true) {
+				return;
+			}
 
-			const elements = module.split("/");
+			// Validate module position
+			const position = moduleData.position;
+			if (typeof position === "string") {
+				if (!availablePositions.includes(position)) {
+					Log.warn(`Module ${moduleData.moduleClass} has invalid position: ${position}`);
+					return;
+				}
+			} else if (position !== undefined) {
+				Log.warn(`Module ${moduleData.moduleClass} has an invalid position type: ${typeof position}`);
+				return;
+			}
+
+			const moduleClass = moduleData.moduleClass; // Use moduleClass instead of module
+			const elements = moduleClass.split("/");
 			const moduleName = elements[elements.length - 1];
-			let moduleFolder = `${envVars.modulesDir}/${module}`;
+			let moduleFolder = `${envVars.modulesDir}/${moduleClass}`;
 
 			if (defaultModules.indexOf(moduleName) !== -1) {
-				const defaultModuleFolder = `modules/default/${module}`;
+				const defaultModuleFolder = `modules/default/${moduleClass}`;
 				if (window.name !== "jsdom") {
 					moduleFolder = defaultModuleFolder;
 				} else {
@@ -91,13 +126,9 @@ const Loader = (function () {
 				}
 			}
 
-			if (moduleData.disabled === true) {
-				return;
-			}
-
 			moduleFiles.push({
 				index: index,
-				identifier: `module_${index}_${module}`,
+				identifier: `module_${index}_${moduleClass}`,
 				name: moduleName,
 				path: `${moduleFolder}/`,
 				file: `${moduleName}.js`,
@@ -108,7 +139,7 @@ const Loader = (function () {
 				header: moduleData.header,
 				configDeepMerge: typeof moduleData.configDeepMerge === "boolean" ? moduleData.configDeepMerge : false,
 				config: moduleData.config,
-				classes: typeof moduleData.classes !== "undefined" ? `${moduleData.classes} ${module}` : module
+				classes: typeof moduleData.classes !== "undefined" ? `${moduleData.classes} ${moduleClass}` : moduleClass
 			});
 		});
 
@@ -150,6 +181,7 @@ const Loader = (function () {
 	const bootstrapModule = async function (module, mObj) {
 		Log.info(`Bootstrapping module: ${module.name}`);
 		mObj.setData(module);
+		mObj.setConfig(module.config);
 
 		await mObj.loadScripts();
 		Log.log(`Scripts loaded for: ${module.name}`);
