@@ -646,3 +646,90 @@ html, body {
         animation: none !important;
     }
 }
+
+/* === MAGIC MIRROR GRID LAYOUT FOR DESKTOP/TABLET === */
+
+/* 1. Wrap all regions in a .magicmirror-grid container in index.html (see instructions) */
+
+@media (min-width: 901px) {
+  body {
+    display: block !important;
+    height: 100vh !important;
+    width: 100vw !important;
+    padding: 0 !important;
+    margin: 0 !important;
+    overflow: hidden !important;
+  }
+  .magicmirror-grid {
+    display: grid;
+    grid-template-columns: 1fr 2fr 1.5fr;
+    grid-template-rows: 1.2fr 0.6fr 0.6fr 0.6fr 0.6fr 1.2fr 0.6fr;
+    gap: 10px;
+    height: 100vh;
+    width: 100vw;
+    box-sizing: border-box;
+    padding: 10px;
+    background: none;
+  }
+  /* Assign grid areas */
+  .region.top.left         { grid-area: 1 / 1 / 5 / 2; position: static !important; }
+  .region.top.center       { grid-area: 1 / 2 / 2 / 3; position: static !important; }
+  .region.upper.third      { grid-area: 1 / 2 / 2 / 3; position: static !important; }
+  .region.top.right        { grid-area: 1 / 3 / 2 / 4; position: static !important; }
+  .region.middle.center    { grid-area: 2 / 2 / 3 / 3; position: static !important; }
+  .region.lower.third      { grid-area: 3 / 2 / 4 / 3; position: static !important; }
+  .region.bottom.left      { grid-area: 2 / 3 / 5 / 4; position: static !important; }
+  .region.bottom.center    { grid-area: 5 / 1 / 6 / 4; position: static !important; }
+  .region.bottom.bar       { grid-area: 6 / 1 / 7 / 4; position: static !important; }
+  .region.fullscreen.above { display: none !important; }
+  .region.fullscreen.below { display: none !important; }
+  /* Empty spaces: use .region.middle.center, .region.lower.third, etc. as needed */
+  /* Remove fixed positioning for all regions on desktop */
+  .region {
+    position: static !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    bottom: auto !important;
+    width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    z-index: auto !important;
+    transform: none !important;
+    text-align: initial !important;
+  }
+  /* Prevent overlap and add padding inside each region */
+  .region > .container {
+    padding: 10px 8px;
+    box-sizing: border-box;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+/* === END MAGIC MIRROR GRID LAYOUT === */
+
+/* (Mobile/flex stacking remains as is for <900px) */
+
+/* Remove conflicting fixed positioning for .region.* classes on desktop */
+.region.top.center,
+.region.upper.third,
+.region.top.left,
+.region.top.right,
+.region.bottom.left,
+.region.lower.third,
+.region.bottom.center,
+.region.bottom.bar {
+  /* Fixed positioning removed for grid layout (see grid CSS below) */
+  position: unset !important;
+  top: unset !important;
+  left: unset !important;
+  right: unset !important;
+  bottom: unset !important;
+  width: unset !important;
+  z-index: unset !important;
+  transform: unset !important;
+  text-align: unset !important;
+  margin: unset !important;
+  padding: unset !important;
+}
