@@ -162,8 +162,6 @@ let config = {
 			}
 		},
 
-
-
 		// News Feed - Now in 'news' region
 		{
 			module: "newsfeed",
@@ -314,19 +312,17 @@ let config = {
 		},
 		*/
 
-		// WSL Voice Control - No change, remains hidden
+		// Voice Control - No longer needs a visible position
 		{
 			module: "MMM-WSLVoice",
-			position: "bottom_right", // No change needed for hidden module
 			config: {
-				debug: false, // Set to true for troubleshooting
-				enableVisualFeedback: false, // Disable visual feedback to keep it invisible
-				feedbackDuration: 0, // No feedback duration
-				bridgePort: 3001, // Port for voice control web interface
-				autoStart: true, // Always start automatically
-				hidden: true, // Keep module hidden
+				debug: false,
+				enableVisualFeedback: false,
+				feedbackDuration: 0,
+				bridgePort: 3001,
+				autoStart: true,
+				hidden: true,
 				commands: {
-					// Natural language commands (case insensitive)
 					"magic mirror show weather": "WEATHER_SHOW",
 					"magic mirror hide weather": "WEATHER_HIDE",
 					"magic mirror show calendar": "CALENDAR_SHOW",
