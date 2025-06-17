@@ -22,36 +22,14 @@ const Loader = (function () {
 	/**
 	 * Loops through all modules and requests start for every module.
 	 */
-	const startModules = async function () {
-		const modulePromises = [];
-		for (const module of moduleObjects) {
-			try {
-				modulePromises.push(module.start());
-			} catch (error) {
-				Log.error(`Error when starting node_helper for module ${module.name}:`);
-				Log.error(error);
-			}
-		}
-
-		const results = await Promise.allSettled(modulePromises);
-
-		// Log errors that happened during async node_helper startup
-		results.forEach((result) => {
-			if (result.status === "rejected") {
-				Log.error(result.reason);
-			}
+	const startModules = function () {
+		const modules = getAllModules();
+		Log.info(`Starting module: ${modules.length} modules`);
+		modules.forEach(function (module) {
+			Log.info(`Starting module: ${module.name}`);
+			module.start();
 		});
-
-		// Notify core of loaded modules.
-		MM.modulesStarted(moduleObjects);
-
-		// Starting modules also hides any modules that have requested to be initially hidden
-		for (const thisModule of moduleObjects) {
-			if (thisModule.data.hiddenOnStartup) {
-				Log.info(`Initially hiding ${thisModule.name}`);
-				thisModule.hide();
-			}
-		}
+		return modules;
 	};
 
 	/**
@@ -59,8 +37,40 @@ const Loader = (function () {
 	 * @returns {object[]} module data as configured in config
 	 */
 	const getAllModules = function () {
-		const AllModules = config.modules.filter((module) => (module.module !== undefined) && (MM.getAvailableModulePositions.indexOf(module.position) > -1 || typeof (module.position) === "undefined"));
-		return AllModules;
+		const modules = [];
+		// Add notification module
+		modules.push(Module.create("notification"));
+
+		// Add default modules
+		defaults.modules.forEach(function (module) {
+			const mod = Module.create(module.moduleClass);
+			mod.setConfig(module.config);
+			modules.push(mod);
+		});
+
+		// Add user modules
+		if (config.modules) {
+			config.modules.forEach(function (module) {
+				const mod = Module.create(module.moduleClass);
+				mod.setConfig(module.config);
+				modules.push(mod);
+			});
+		}
+
+		// Filter modules based on position
+		const availablePositions = MM.getAvailableModulePositions();
+		return modules.filter(function (module) {
+			const position = module.data.position;
+			if (!position) {
+				Log.warn(`Module ${module.name} has no position defined`);
+				return false;
+			}
+			if (!availablePositions.includes(position)) {
+				Log.warn(`Module ${module.name} has invalid position: ${position}`);
+				return false;
+			}
+			return true;
+		});
 	};
 
 	/**

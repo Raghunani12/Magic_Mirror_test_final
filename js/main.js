@@ -13,14 +13,20 @@ const MM = (function () {
 
 		modules.forEach(function (module) {
 			if (typeof module.data.position !== "string") {
+				Log.warn(`Module ${module.name} has no position defined`);
+				return;
+			}
+
+			const wrapper = selectWrapper(module.data.position);
+			if (!wrapper) {
+				Log.error(`Could not find wrapper for module ${module.name} at position ${module.data.position}`);
 				return;
 			}
 
 			let haveAnimateIn = null;
-			// check if have valid animateIn in module definition (module.data.animateIn)
-			if (module.data.animateIn && AnimateCSSIn.indexOf(module.data.animateIn) !== -1) haveAnimateIn = module.data.animateIn;
-
-			const wrapper = selectWrapper(module.data.position);
+			if (module.data.animateIn && AnimateCSSIn.indexOf(module.data.animateIn) !== -1) {
+				haveAnimateIn = module.data.animateIn;
+			}
 
 			const dom = document.createElement("div");
 			dom.id = module.identifier;
@@ -30,7 +36,7 @@ const MM = (function () {
 				dom.className = `module ${dom.className} ${module.data.classes}`;
 			}
 
-			dom.opacity = 0;
+			dom.style.opacity = "0";
 			wrapper.appendChild(dom);
 
 			const moduleHeader = document.createElement("header");
@@ -38,21 +44,26 @@ const MM = (function () {
 			moduleHeader.className = "module-header";
 			dom.appendChild(moduleHeader);
 
-			if (typeof module.getHeader() === "undefined" || module.getHeader() !== "") {
-				moduleHeader.style.display = "none;";
+			if (typeof module.getHeader() === "undefined" || module.getHeader() === "") {
+				moduleHeader.style.display = "none";
 			} else {
-				moduleHeader.style.display = "block;";
+				moduleHeader.style.display = "block";
 			}
 
 			const moduleContent = document.createElement("div");
 			moduleContent.className = "module-content";
 			dom.appendChild(moduleContent);
 
-			// create the domCreationPromise with AnimateCSS (with animateIn of module definition)
-			// or just display it
-			var domCreationPromise;
-			if (haveAnimateIn) domCreationPromise = updateDom(module, { options: { speed: 1000, animate: { in: haveAnimateIn } } }, true);
-			else domCreationPromise = updateDom(module, 0);
+			// Initialize module content immediately
+			updateModuleContent(module, module.getHeader(), module.getDom());
+
+			// Then handle animations if needed
+			let domCreationPromise;
+			if (haveAnimateIn) {
+				domCreationPromise = updateDom(module, { options: { speed: 1000, animate: { in: haveAnimateIn } } }, true);
+			} else {
+				domCreationPromise = updateDom(module, 0);
+			}
 
 			domCreationPromises.push(domCreationPromise);
 			domCreationPromise
@@ -61,8 +72,6 @@ const MM = (function () {
 				})
 				.catch(Log.error);
 		});
-
-		// Removed updateWrapperStates() call from here. The logic is now handled by CSS Grid.
 
 		Promise.all(domCreationPromises).then(function () {
 			sendNotification("DOM_OBJECTS_CREATED");
@@ -174,12 +183,6 @@ const MM = (function () {
 			}
 
 			if (!moduleNeedsUpdate(module, newHeader, newContent)) {
-				resolve();
-				return;
-			}
-
-			if (!speed) {
-				updateModuleContent(module, newHeader, newContent);
 				resolve();
 				return;
 			}
